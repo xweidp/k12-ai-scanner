@@ -1,11 +1,9 @@
 // K-12 AI Resource Scanner app
-// Loads and filters datasets, benchmarks, and models for K-12 education
+// Loads and filters datasets, benchmarks, and models from k12_inventory_latest.csv
 
 const state = {
   resources: [],
   filtered: [],
-  minFit: 0,
-  source: "Weekly scan",
   scannedAt: ""
 };
 
@@ -30,6 +28,73 @@ const els = {
   scanMeta: document.querySelector("#scanMeta"),
   viewMeta: document.querySelector("#viewMeta")
 };
+
+// Load inventory from CSV file
+function loadInventory() {
+  fetch('data/k12_inventory_latest.csv')
+    .then(r => {
+      if (!r.ok) throw new Error('Failed to load inventory');
+      return r.text();
+    })
+    .then(csv => {
+      parseInventoryCSV(csv);
+      applyFilters();
+    })
+    .catch(err => {
+      console.error('Inventory load error:', err);
+      showEmpty('Unable to load inventory. Please check the data file.');
+    });
+}
+
+function parseInventoryCSV(csv) {
+  const lines = csv.trim().split('\n');
+  if (lines.length < 2) return;
+
+  const headers = parseCSVLine(lines[0]);
+  state.resources = lines.slice(1).map((line, idx) => {
+    const values = parseCSVLine(line);
+    const row = {};
+    headers.forEach((h, i) => {
+      row[h] = values[i] || '';
+    });
+
+    return {
+      id: row.record_id || `r-${idx}`,
+      title: row.resource_name || 'Untitled',
+      resourceType: row.resource_subtype || 'Dataset',
+      source: row.author_name || row.discovery_source || 'Unknown',
+      subjects: (row.subject_area || '').split(',').map(s => s.trim()).filter(Boolean),
+      gradeBand: row.grade_span_group || 'K-12',
+      license: row.license_status_clean || row.license || 'Not listed',
+      description: row.dataset_artifact_evidence || row.notes || '',
+      url: row.url || '',
+      discoveryDate: row.discovery_date || '',
+      readinessTier: row.final_readiness_index_tier || '',
+      fit: parseInt(row.fit_score) || 50
+    };
+  });
+
+  state.scannedAt = new Date().toISOString();
+}
+
+function parseCSVLine(line) {
+  const result = [];
+  let current = '';
+  let quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (char === '"') {
+      quoted = !quoted;
+    } else if (char === ',' && !quoted) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim());
+  return result;
+}
 
 // -------------------------------------------------------------------------
 // Custom search: parse pasted titles/urls and search loaded resources
