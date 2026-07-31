@@ -31,76 +31,46 @@
       "keywords": ["dataset", "benchmark", "model", "evaluator", "release", "open-source", "agent skills", "data"]
     },
     {
-      "name": "Hugging Face - Education Datasets",
-      "type": "Model & dataset hub",
-      "mode": "monitor",
-      "url": "https://huggingface.co/datasets?search=education",
-      "linkPattern": "/datasets/[^\"'/]+/[^\"'/]+",
-      "keywords": ["education", "k-12", "math", "science", "reading", "literacy", "tutoring", "student", "classroom", "benchmark"]
-    },
-    {
-      "name": "Hugging Face - K-12 Datasets",
-      "type": "Model & dataset hub",
-      "mode": "monitor",
-      "url": "https://huggingface.co/datasets?search=k-12",
-      "linkPattern": "/datasets/[^\"'/]+/[^\"'/]+",
-      "keywords": ["education", "k-12", "math", "science", "reading", "literacy", "tutoring", "student", "classroom", "benchmark"]
-    },
-    {
-      "name": "Linguistic Data Consortium (LDC)",
-      "type": "Language & annotation corpus",
-      "mode": "monitor",
-      "url": "https://www.ldc.upenn.edu/",
-      "keywords": ["dataset", "corpus", "language", "annotation", "education", "k-12", "assessment", "nlp", "text", "dialogue", "spoken"]
-    },
-    {
-      "name": "Stanford SHEG (History Education Group)",
-      "type": "Education research datasets",
-      "mode": "monitor",
-      "url": "https://sheg.stanford.edu/",
-      "keywords": ["dataset", "curriculum", "history", "literacy", "critical thinking", "k-12", "educational", "assessment"]
-    },
-    {
-      "name": "AI2 (Allen Institute for AI) - Datasets",
+      "name": "AI2 (Allen Institute for AI) - Publications",
       "type": "AI research & datasets",
       "mode": "monitor",
-      "url": "https://allenai.org/datasets",
-      "keywords": ["dataset", "benchmark", "nlp", "reading comprehension", "question answering", "education", "k-12", "science"]
+      "url": "https://allenai.org/",
+      "keywords": ["dataset", "benchmark", "nlp", "reading comprehension", "question answering", "education", "k-12", "science", "semantic scholar"]
     },
     {
-      "name": "OpenAI - Education Resources",
+      "name": "OpenAI - Research Blog",
       "type": "AI education resources",
       "mode": "monitor",
-      "url": "https://openai.com/research/",
-      "keywords": ["dataset", "model", "benchmark", "educational", "ai", "learning", "curriculum"]
-    },
-    {
-      "name": "Kaggle Datasets - Education",
-      "type": "Community data science platform",
-      "mode": "monitor",
-      "url": "https://www.kaggle.com/datasets?search=education",
-      "keywords": ["dataset", "education", "k-12", "student", "learning", "curriculum", "assessment", "benchmark"]
-    },
-    {
-      "name": "Zenodo - Education & Learning Science",
-      "type": "Open access research repository",
-      "mode": "monitor",
-      "url": "https://zenodo.org/search?q=education+dataset&sort=-date",
-      "keywords": ["dataset", "education", "learning science", "open access", "research", "k-12"]
+      "url": "https://openai.com/index/",
+      "keywords": ["dataset", "model", "benchmark", "educational", "ai", "learning", "curriculum", "training", "reasoning"]
     },
     {
       "name": "IEEE Dataport - Education Datasets",
       "type": "IEEE research data platform",
       "mode": "monitor",
       "url": "https://ieee-dataport.org/",
-      "keywords": ["dataset", "education", "learning", "ai", "machine learning", "research"]
+      "keywords": ["dataset", "education", "learning", "ai", "machine learning", "research", "evaluation"]
     },
     {
-      "name": "Figshare - Education Collections",
-      "type": "Research data sharing platform",
+      "name": "Papers With Code - Education",
+      "type": "ML research & code platform",
       "mode": "monitor",
-      "url": "https://figshare.com/articles/dataset",
-      "keywords": ["dataset", "education", "k-12", "learning", "research", "open data"]
+      "url": "https://paperswithcode.com/",
+      "keywords": ["dataset", "benchmark", "model", "education", "learning", "ai", "k-12", "evaluation"]
+    },
+    {
+      "name": "arXiv - Education AI Papers",
+      "type": "Open access research archive",
+      "mode": "monitor",
+      "url": "https://arxiv.org/",
+      "keywords": ["dataset", "education", "k-12", "learning science", "ai education", "benchmark", "model"]
+    },
+    {
+      "name": "GitHub - Education Datasets",
+      "type": "Code & data repository",
+      "mode": "monitor",
+      "url": "https://github.com/search?q=education+dataset+k-12&type=repositories",
+      "keywords": ["dataset", "education", "k-12", "benchmark", "model", "learning", "open source"]
     }
   ]
 }

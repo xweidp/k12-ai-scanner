@@ -1,167 +1,1289 @@
 {
-  "scannedAt": "2026-07-31T14:30:00Z",
-  "source": "K-12 AI resource watchlist (catalogs + hubs)",
+  "scannedAt": "2026-07-31T17:56:45.341439Z",
+  "source": "K-12 AI resource watchlist (monitor sources)",
   "profile": "K-12 AI datasets, benchmarks, and models",
   "counts": {
-    "total": 9,
-    "datasets": 6,
-    "benchmarks": 2,
-    "models": 1,
-    "competitions": 0
+    "total": 64,
+    "datasets": 38,
+    "benchmarks": 8,
+    "models": 3,
+    "competitions": 15
   },
   "resources": [
     {
-      "id": "kaiip-1",
-      "title": "Grade School Math (GSM8k)",
-      "source": "OpenAI",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
+      "id": "monitor-ieee-dataport---education-datasets-21",
+      "title": "LLM-Driven Service Composition Benchmark: A 100-Service, 58-Task Registry with Ground-Truth Plans and Cross-Model Evaluation Res",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Model",
+      "url": "https://ieee-dataport.org/documents/llm-driven-service-composition-benchmark-100-service-58-task-registry-ground-truth-plans",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "benchmark",
+        "model",
+        "llm",
+        "evaluation",
+        "eval",
+        "education"
+      ],
+      "fit": 49
+    },
+    {
+      "id": "monitor-drivendata-competitions-23",
+      "title": "#science",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?type=science",
+      "subjects": [
+        "Science"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark",
+        "science"
+      ],
+      "fit": 44
+    },
+    {
+      "id": "monitor-drivendata-competitions-13",
+      "title": "Lost in Transcription: Advancing Speech Recognition for Underserved Linguistic Contexts",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://competitions.mozilladatacollective.com/competitions/1/lost-in-transcription/",
+      "subjects": [
+        "Classroom discourse"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark",
+        "transcript"
+      ],
+      "fit": 44
+    },
+    {
+      "id": "monitor-ieee-dataport---education-datasets-23",
+      "title": "TSA-CoS Dance Performance Evaluation Dataset: Paired Reference and User Dance Videos with Pose Landmarks",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
       "resourceType": "Benchmark",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/1/gsm8k/version/1/",
-      "subjects": ["Math"],
+      "url": "https://ieee-dataport.org/documents/tsa-cos-dance-performance-evaluation-dataset-paired-reference-and-user-dance-videos-pose",
+      "subjects": [],
       "gradeBand": "K-12",
-      "modality": ["Tabular"],
-      "license": "CC0 1.0",
-      "description": "8.5k multi-step, grade-school math word problems with solutions. Useful for evaluating AI reasoning on mathematical problem-solving.",
-      "addedVia": "catalog",
-      "matchedTerms": ["benchmark", "math", "dataset", "evaluation", "grade school"],
-      "fit": 92
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "ai",
+        "evaluation",
+        "eval",
+        "education"
+      ],
+      "fit": 43
     },
     {
-      "id": "kaiip-7",
-      "title": "Bridge",
-      "source": "Stanford University",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
-      "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/7/bridge/version/7/",
-      "subjects": ["Tutoring", "Math", "Assessment"],
-      "gradeBand": "K-12",
-      "modality": ["Human transcript", "Tabular"],
-      "license": "CC BY-NC 4.0",
-      "description": "Online math tutoring conversations annotated for type of mistake and strategy for correction. Enables research on pedagogical AI systems.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "tutoring", "math", "annotation", "classroom"],
-      "fit": 91
-    },
-    {
-      "id": "kaiip-4",
-      "title": "SciQ",
-      "source": "Allen Institute for AI",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
+      "id": "monitor-ieee-dataport---education-datasets-20",
+      "title": "Adversity Response Profile- Indian Higher Education Institutions to evaluate Adversity Quotient (AQ)",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
       "resourceType": "Benchmark",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/4/sciq/version/4/",
-      "subjects": ["Science"],
+      "url": "https://ieee-dataport.org/documents/adversity-response-profile-indian-higher-education-institutions-evaluate-adversity-0",
+      "subjects": [],
       "gradeBand": "K-12",
-      "modality": ["Tabular"],
-      "license": "CC BY 4.0",
-      "description": "13.7k multiple-choice science questions with supporting text, response choices, and correct answer. Tests AI knowledge and reasoning in STEM domains.",
-      "addedVia": "catalog",
-      "matchedTerms": ["benchmark", "science", "evaluation", "multiple-choice"],
-      "fit": 90
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "eval",
+        "education"
+      ],
+      "fit": 37
     },
     {
-      "id": "kaiip-6",
-      "title": "EssayJudge",
-      "source": "Hong Kong University of Science and Technology",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
-      "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/6/essayjudge/version/6/",
-      "subjects": ["Writing", "Assessment"],
-      "gradeBand": "High school",
-      "modality": ["Text"],
-      "license": "CC BY 4.0",
-      "description": "Short argumentative essays describing math or science charts annotated for lexical quality. Supports NLP research on essay evaluation and writing assessment.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "assessment", "writing", "annotation", "nlp"],
-      "fit": 85
-    },
-    {
-      "id": "kaiip-10",
-      "title": "FairytaleQA",
-      "source": "UC Irvine",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
-      "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/10/fairytaleqa/version/10/",
-      "subjects": ["Reading", "Literacy"],
-      "gradeBand": "Elementary",
-      "modality": ["Text"],
-      "license": "CC0 1.0",
-      "description": "Fairytale excerpts with QA pairs categorized into seven narrative elements. Useful for evaluating reading comprehension and narrative understanding.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "reading", "literacy", "comprehension"],
-      "fit": 84
-    },
-    {
-      "id": "kaiip-8",
-      "title": "DrawEduMath",
-      "source": "Worcester Polytechnic Institute & UC Berkeley",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
-      "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/8/drawedumath/version/8/",
-      "subjects": ["Math", "Assessment"],
-      "gradeBand": "K-12",
-      "modality": ["Image"],
-      "license": "CC BY 4.0",
-      "description": "Hand-drawn responses to math problems annotated with QA pairs about the students' work. Supports multimodal AI research on mathematics education.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "math", "annotation", "image"],
-      "fit": 82
-    },
-    {
-      "id": "kaiip-9",
-      "title": "TalkMoves",
-      "source": "University of Colorado Boulder",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
-      "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/9/talkmoves/version/9/",
-      "subjects": ["Classroom discourse"],
-      "gradeBand": "K-12",
-      "modality": ["Human transcript"],
-      "license": "CC BY 4.0",
-      "description": "Classroom transcripts labeled for discursive moves. Enables research on teacher-student interactions and pedagogical discourse patterns.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "classroom", "transcript", "education"],
-      "fit": 80
-    },
-    {
-      "id": "kaiip-3",
-      "title": "MRBench",
-      "source": "Mohamed bin Zayed University of AI",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
+      "id": "monitor-openai---research-blog-21",
+      "title": "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark Research Jul 29, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
       "resourceType": "Benchmark",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/3/mrbench/version/3/",
-      "subjects": ["Tutoring", "Math"],
+      "url": "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/",
+      "subjects": [],
       "gradeBand": "K-12",
-      "modality": ["Text"],
-      "license": "CC0 1.0",
-      "description": "Math tutoring dialogues with LLM responses annotated across eight pedagogical dimensions. Benchmark for evaluating tutoring quality and pedagogical effectiveness.",
-      "addedVia": "catalog",
-      "matchedTerms": ["benchmark", "tutoring", "math", "dialogue"],
-      "fit": 79
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark",
+        "ai",
+        "education"
+      ],
+      "fit": 37
     },
     {
-      "id": "kaiip-11",
-      "title": "SemEval",
-      "source": "ACL-SIGLEX",
-      "program": "K-12 AI Infrastructure Program",
-      "sourceType": "Program catalog",
+      "id": "monitor-ieee-dataport---education-datasets-22",
+      "title": "UAS-Based Hyperspectral Imaging of an Unstructured Prairie with Georeferenced Live Fuel Moisture Measurements",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
       "resourceType": "Dataset",
-      "url": "https://platform.k12-ai-infrastructure.org/datasets/11/semeval/version/11/",
-      "subjects": ["Science", "Assessment"],
+      "url": "https://ieee-dataport.org/documents/uas-based-hyperspectral-imaging-unstructured-prairie-georeferenced-live-fuel-moisture",
+      "subjects": [],
       "gradeBand": "K-12",
-      "modality": ["Text"],
-      "license": "See dataset page",
-      "description": "Short-answer science questions with graded responses. Supports evaluation of student knowledge and AI-generated explanations in science education.",
-      "addedVia": "catalog",
-      "matchedTerms": ["dataset", "science", "assessment", "graded"],
-      "fit": 78
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "ai",
+        "education"
+      ],
+      "fit": 37
+    },
+    {
+      "id": "monitor-openai---research-blog-22",
+      "title": "Accelerating scientific discovery with ChatGPT for Academic Researchers Company Jul 29, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/index/chatgpt-for-academic-researchers/",
+      "subjects": [
+        "Science"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 36
+    },
+    {
+      "id": "monitor-openai---research-blog-24",
+      "title": "Scientific computing in the age of agentic AI Publication Jul 28, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/index/scientific-computing-agentic-ai/",
+      "subjects": [
+        "Science"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 36
+    },
+    {
+      "id": "monitor-ieee-dataport---education-datasets-13",
+      "title": "13,000+ Datasets:",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Dataset",
+      "url": "https://ieee-dataport.org/datasets",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-ieee-dataport---education-datasets-15",
+      "title": "2+TB Data Storage:",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Dataset",
+      "url": "https://ieee-dataport.org/submit-dataset",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-ieee-dataport---education-datasets-14",
+      "title": "Active User Community:",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Dataset",
+      "url": "https://ieee-dataport.org/news/share-your-research-data-world-through-ieee-dataport",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-ai2-(allen-institute-for-ai)---publications-15",
+      "title": "All projects",
+      "source": "AI2 (Allen Institute for AI) - Publications",
+      "program": "AI2 (Allen Institute for AI) - Publications",
+      "sourceType": "AI research & datasets",
+      "resourceType": "Dataset",
+      "url": "https://allenai.org/ai-for-science",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI research & datasets lead from AI2 (Allen Institute for AI) - Publications.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "ai"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-papers-with-code---education-2",
+      "title": "Datasets",
+      "source": "Papers With Code - Education",
+      "program": "Papers With Code - Education",
+      "sourceType": "ML research & code platform",
+      "resourceType": "Dataset",
+      "url": "https://paperswithcode.com/datasets",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "ML research & code platform lead from Papers With Code - Education.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-ieee-dataport---education-datasets-17",
+      "title": "Deep Learning-Based Phaseless Near-Field to Near-Field Transformation via Joint Height-Frequency Embedding",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Dataset",
+      "url": "https://ieee-dataport.org/documents/deep-learning-based-phaseless-near-field-near-field-transformation-joint-height-frequency",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-papers-with-code---education-1",
+      "title": "Models",
+      "source": "Papers With Code - Education",
+      "program": "Papers With Code - Education",
+      "sourceType": "ML research & code platform",
+      "resourceType": "Model",
+      "url": "https://paperswithcode.com/models",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "ML research & code platform lead from Papers With Code - Education.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "model",
+        "education"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-ai2-(allen-institute-for-ai)---publications-14",
+      "title": "Semantic Scholar",
+      "source": "AI2 (Allen Institute for AI) - Publications",
+      "program": "AI2 (Allen Institute for AI) - Publications",
+      "sourceType": "AI research & datasets",
+      "resourceType": "Dataset",
+      "url": "https://www.semanticscholar.org",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI research & datasets lead from AI2 (Allen Institute for AI) - Publications.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "ai"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-drivendata-competitions-21",
+      "title": "What&#x27;s Up, Docs? Document Summarization with LLMs",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Model",
+      "url": "https://www.drivendata.org/competitions/297/whats-up-docs/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark",
+        "llm"
+      ],
+      "fit": 34
+    },
+    {
+      "id": "monitor-drivendata-competitions-22",
+      "title": "#development",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?type=development",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-16",
+      "title": "#health",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?type=health",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-19",
+      "title": "#health",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?type=health",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-10",
+      "title": "Competition",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-12",
+      "title": "Competition",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-1",
+      "title": "Competitions",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-15",
+      "title": "DaT Parkinson&#x27;s Challenge",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/311/dat-parkinsons-challenge/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-18",
+      "title": "SNOMED CT Entity Linking Benchmark",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Benchmark",
+      "url": "https://www.drivendata.org/benchmarks/310/benchmark-snomed-ct/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-7",
+      "title": "Sign up",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/accounts/signup/?next=/competitions/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-11",
+      "title": "Trace the Ace",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://platform.k12-ai-infrastructure.org/competitions/3/tutoring-outcomes/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-20",
+      "title": "development",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=development",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-14",
+      "title": "health",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=health",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-17",
+      "title": "health",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=health",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-drivendata-competitions-24",
+      "title": "health",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://www.drivendata.org/competitions/search/?category=health",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-openai---research-blog-16",
+      "title": "AI Adoption",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/ai-adoption/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-20",
+      "title": "Advancing the price-performance frontier with GPT 5.6 Product Jul 30, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-18",
+      "title": "All",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-17",
+      "title": "Applied AI",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/applied-ai/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-19",
+      "title": "Building abundant intelligence Company Jul 31, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/index/building-abundant-intelligence/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-2",
+      "title": "Business",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/business/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-4",
+      "title": "Company",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/about/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-9",
+      "title": "Company",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/company-announcements/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-20",
+      "title": "Curriculum Sync",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/curriculum-sync/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "curriculum",
+        "knowledge graph"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-7",
+      "title": "Curriculum Sync Overview",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/curriculum-sync/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "curriculum",
+        "knowledge graph"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-papers-with-code---education-15",
+      "title": "Daily Papers",
+      "source": "Papers With Code - Education",
+      "program": "Papers With Code - Education",
+      "sourceType": "ML research & code platform",
+      "resourceType": "Dataset",
+      "url": "https://paperswithcode.com/papers",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "ML research & code platform lead from Papers With Code - Education.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-3",
+      "title": "Developers",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/api/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-13",
+      "title": "Engineering",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/engineering/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-5",
+      "title": "Foundation (opens in a new window)",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openaifoundation.org",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-7",
+      "title": "Foundation (opens in a new window)",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openaifoundation.org",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-15",
+      "title": "Global Affairs",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/global-affairs/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-23",
+      "title": "How GPT-5.6 fuses frontier intelligence with frontier efficiency Engineering Jul 29, 2026",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-11",
+      "title": "Product",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/product-releases/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-1",
+      "title": "Research",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/research/index/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-10",
+      "title": "Research",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/research/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-12",
+      "title": "Safety",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/safety-alignment/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-openai---research-blog-14",
+      "title": "Security",
+      "source": "OpenAI - Research Blog",
+      "program": "OpenAI - Research Blog",
+      "sourceType": "AI education resources",
+      "resourceType": "Dataset",
+      "url": "https://openai.com/news/security/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "AI education resources lead from OpenAI - Research Blog.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "ai",
+        "education"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-learning-commons-news-14",
+      "title": "Evaluators",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Benchmark",
+      "url": "https://learningcommons.org/topic/evaluators/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "eval"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-news-5",
+      "title": "Evaluators Features",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Benchmark",
+      "url": "https://learningcommons.org/evaluators/features/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "eval"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-news-4",
+      "title": "Evaluators Overview",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Benchmark",
+      "url": "https://learningcommons.org/evaluators/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "eval"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-news-6",
+      "title": "Evaluators Use Cases",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Benchmark",
+      "url": "https://learningcommons.org/evaluators/use-cases/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "eval"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-papers-with-code---education-24",
+      "title": "Inference Providers",
+      "source": "Papers With Code - Education",
+      "program": "Papers With Code - Education",
+      "sourceType": "ML research & code platform",
+      "resourceType": "Dataset",
+      "url": "https://paperswithcode.com/inference/models",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "ML research & code platform lead from Papers With Code - Education.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "education"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-news-18",
+      "title": "Introducing Claude for Teachers and open-source Agent Skills",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/blog/claude-for-teachers-agent-skills/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "teacher"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-18",
+      "title": "Knowledge Graph",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/knowledge-graph/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "knowledge graph"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-2",
+      "title": "Knowledge Graph Features",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/knowledge-graph/features/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "knowledge graph"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-1",
+      "title": "Knowledge Graph Overview",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/knowledge-graph/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "knowledge graph"
+      ],
+      "fit": 23
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-3",
+      "title": "Knowledge Graph Use Cases",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/knowledge-graph/use-cases/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "knowledge graph"
+      ],
+      "fit": 23
     }
   ]
 }
