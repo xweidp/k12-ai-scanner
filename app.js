@@ -4,6 +4,8 @@
 const state = {
   resources: [],
   filtered: [],
+  sortBy: null,
+  sortAsc: true,
   scannedAt: new Date().toISOString()
 };
 
@@ -141,8 +143,34 @@ function applyFilters() {
     return true;
   });
 
+  applySorting();
   populateSelects();
   render();
+}
+
+function applySorting() {
+  if (!state.sortBy) return;
+
+  state.filtered.sort((a, b) => {
+    let aVal = a[state.sortBy];
+    let bVal = b[state.sortBy];
+
+    // Handle dates
+    if (state.sortBy === 'publicationDate' || state.sortBy === 'discoveryDate') {
+      aVal = aVal ? new Date(aVal).getTime() : 0;
+      bVal = bVal ? new Date(bVal).getTime() : 0;
+    }
+
+    // Handle strings
+    if (typeof aVal === 'string') {
+      aVal = aVal.toLowerCase();
+      bVal = bVal.toLowerCase();
+    }
+
+    if (aVal < bVal) return state.sortAsc ? -1 : 1;
+    if (aVal > bVal) return state.sortAsc ? 1 : -1;
+    return 0;
+  });
 }
 
 function populateSelects() {
@@ -220,10 +248,6 @@ function renderRow(r) {
     ? '<span class="discovery-badge">NEW</span>'
     : '<span class="verified-badge">VERIFIED</span>';
 
-  const pubDate = r.publicationDate ? `<strong>Published:</strong> ${r.publicationDate}` : '';
-  const discDate = r.discoveryDate ? `<strong>Discovered:</strong> ${r.discoveryDate}` : '';
-  const dates = [pubDate, discDate].filter(Boolean).join(' | ');
-
   return `
     <article class="result-row">
       <div class="table-cell opportunity-cell">
@@ -235,10 +259,10 @@ function renderRow(r) {
       <div class="table-cell">${esc(r.resourceType)}</div>
       <div class="table-cell">${r.subjects.join(', ') || 'General'}</div>
       <div class="table-cell">${esc(r.source)}</div>
+      <div class="table-cell" style="font-weight: ${r.publicationDate ? 'bold' : 'normal'}">${r.publicationDate || '—'}</div>
       <div class="table-cell">${esc(r.license)}</div>
       <div class="table-cell description-cell">
-        ${dates ? `<em style="font-size:0.9em; color:#666;">${dates}</em><br>` : ''}
-        ${esc(r.description.slice(0, 100))}
+        ${esc(r.description.slice(0, 80))}
       </div>
     </article>
   `;
@@ -276,6 +300,21 @@ els.sourceSelect?.addEventListener('change', applyFilters);
 els.licenseToggle?.addEventListener('change', applyFilters);
 els.exportButton?.addEventListener('click', exportCsv);
 els.reloadButton?.addEventListener('click', loadInventory);
+
+// Sort button click handler
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const sortField = btn.dataset.sort;
+    if (state.sortBy === sortField) {
+      state.sortAsc = !state.sortAsc;
+    } else {
+      state.sortBy = sortField;
+      state.sortAsc = false; // Newest first by default
+    }
+    applyFilters();
+  });
+});
 
 // Load on page load
 loadInventory();

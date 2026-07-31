@@ -558,3 +558,21 @@ textarea {
     display: none;
   }
 }
+
+/* Sort button styling */
+.sort-btn {
+  min-height: auto;
+  padding: 2px 6px;
+  margin-left: 6px;
+  font-size: 0.85em;
+  border: 1px solid var(--muted);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.sort-btn:hover {
+  background: var(--line);
+  color: var(--ink);
+  border-color: var(--ink);
+}
