@@ -52,6 +52,55 @@
       "mode": "monitor",
       "url": "https://www.ldc.upenn.edu/",
       "keywords": ["dataset", "corpus", "language", "annotation", "education", "k-12", "assessment", "nlp", "text", "dialogue", "spoken"]
+    },
+    {
+      "name": "Stanford SHEG (History Education Group)",
+      "type": "Education research datasets",
+      "mode": "monitor",
+      "url": "https://sheg.stanford.edu/",
+      "keywords": ["dataset", "curriculum", "history", "literacy", "critical thinking", "k-12", "educational", "assessment"]
+    },
+    {
+      "name": "AI2 (Allen Institute for AI) - Datasets",
+      "type": "AI research & datasets",
+      "mode": "monitor",
+      "url": "https://allenai.org/datasets",
+      "keywords": ["dataset", "benchmark", "nlp", "reading comprehension", "question answering", "education", "k-12", "science"]
+    },
+    {
+      "name": "OpenAI - Education Resources",
+      "type": "AI education resources",
+      "mode": "monitor",
+      "url": "https://openai.com/research/",
+      "keywords": ["dataset", "model", "benchmark", "educational", "ai", "learning", "curriculum"]
+    },
+    {
+      "name": "Kaggle Datasets - Education",
+      "type": "Community data science platform",
+      "mode": "monitor",
+      "url": "https://www.kaggle.com/datasets?search=education",
+      "keywords": ["dataset", "education", "k-12", "student", "learning", "curriculum", "assessment", "benchmark"]
+    },
+    {
+      "name": "Zenodo - Education & Learning Science",
+      "type": "Open access research repository",
+      "mode": "monitor",
+      "url": "https://zenodo.org/search?q=education+dataset&sort=-date",
+      "keywords": ["dataset", "education", "learning science", "open access", "research", "k-12"]
+    },
+    {
+      "name": "IEEE Dataport - Education Datasets",
+      "type": "IEEE research data platform",
+      "mode": "monitor",
+      "url": "https://ieee-dataport.org/",
+      "keywords": ["dataset", "education", "learning", "ai", "machine learning", "research"]
+    },
+    {
+      "name": "Figshare - Education Collections",
+      "type": "Research data sharing platform",
+      "mode": "monitor",
+      "url": "https://figshare.com/articles/dataset",
+      "keywords": ["dataset", "education", "k-12", "learning", "research", "open data"]
     }
   ]
 }
