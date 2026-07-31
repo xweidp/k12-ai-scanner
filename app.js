@@ -103,6 +103,8 @@ function loadInventory() {
           publicationDate: row.publication_date || '',
           discoveryDate: row.discovery_date || '',
           readinessTier: row.final_readiness_index_tier || 'Not Reviewed',
+          isDownloadable: row.is_downloadable === 'True' || row.is_downloadable === true,
+          verificationNote: row.verification_note || '',
           fit: parseInt(row.fit_score) || 50
         };
       });
@@ -148,6 +150,15 @@ function applyFilters() {
     // Verification filter
     if (verification === 'verified' && !isVerified(r)) return false;
     if (verification === 'new' && isVerified(r)) return false;
+
+    // ALWAYS filter out broken links and obvious non-datasets
+    if (!r.isDownloadable) {
+      if (r.verificationNote?.includes('Link broken') ||
+          r.verificationNote?.includes('Paper/preprint') ||
+          r.verificationNote?.includes('Blog article')) {
+        return false;
+      }
+    }
 
     return true;
   });
@@ -257,6 +268,10 @@ function renderRow(r) {
     ? '<span class="discovery-badge">NEW</span>'
     : '<span class="verified-badge">VERIFIED</span>';
 
+  const downloadBadge = r.isDownloadable
+    ? '<span style="color: green; font-size: 0.85em;">✓ Downloadable</span>'
+    : `<span style="color: orange; font-size: 0.85em;">⚠ ${esc(r.verificationNote)}</span>`;
+
   return `
     <article class="result-row">
       <div class="table-cell opportunity-cell">
@@ -271,6 +286,7 @@ function renderRow(r) {
       <div class="table-cell" style="font-weight: ${r.publicationDate ? 'bold' : 'normal'}">${r.publicationDate || '—'}</div>
       <div class="table-cell">${esc(r.license)}</div>
       <div class="table-cell description-cell">
+        ${downloadBadge}<br/>
         ${esc(r.description.slice(0, 80))}
       </div>
     </article>
