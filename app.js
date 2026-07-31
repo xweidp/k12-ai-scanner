@@ -88,6 +88,7 @@ function loadInventory() {
           license: row.license_status_clean || 'Not listed',
           description: row.dataset_artifact_evidence || row.notes || '',
           url: row.url || '',
+          publicationDate: row.publication_date || '',
           discoveryDate: row.discovery_date || '',
           readinessTier: row.final_readiness_index_tier || 'Not Reviewed',
           fit: parseInt(row.fit_score) || 50
@@ -205,6 +206,10 @@ function renderRow(r) {
     ? '<span class="discovery-badge">NEW</span>'
     : '<span class="verified-badge">VERIFIED</span>';
 
+  const pubDate = r.publicationDate ? `<strong>Published:</strong> ${r.publicationDate}` : '';
+  const discDate = r.discoveryDate ? `<strong>Discovered:</strong> ${r.discoveryDate}` : '';
+  const dates = [pubDate, discDate].filter(Boolean).join(' | ');
+
   return `
     <article class="result-row">
       <div class="table-cell opportunity-cell">
@@ -218,7 +223,7 @@ function renderRow(r) {
       <div class="table-cell">${esc(r.source)}</div>
       <div class="table-cell">${esc(r.license)}</div>
       <div class="table-cell description-cell">
-        ${r.discoveryDate ? `<em>${r.discoveryDate}</em><br>` : ''}
+        ${dates ? `<em style="font-size:0.9em; color:#666;">${dates}</em><br>` : ''}
         ${esc(r.description.slice(0, 100))}
       </div>
     </article>
@@ -232,9 +237,9 @@ function esc(s) {
 
 function exportCsv() {
   if (!state.filtered.length) return;
-  const header = ['Title', 'Type', 'Source', 'License', 'URL', 'Status'];
+  const header = ['Title', 'Type', 'Source', 'License', 'Published', 'URL', 'Status'];
   const rows = state.filtered.map(r => [
-    r.title, r.resourceType, r.source, r.license, r.url, r.readinessTier
+    r.title, r.resourceType, r.source, r.license, r.publicationDate, r.url, r.readinessTier
   ]);
   const csv = [header, ...rows]
     .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
