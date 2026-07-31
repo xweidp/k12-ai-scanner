@@ -1,22 +1,18 @@
-// K-12 AI Resource Scanner app
-// Loads and filters datasets, benchmarks, and models from k12_inventory_latest.csv
+// K-12 AI Inventory Browser
+// Loads k12_inventory_latest.csv (v18 base + newly discovered resources)
 
 const state = {
   resources: [],
   filtered: [],
-  scannedAt: ""
+  scannedAt: new Date().toISOString()
 };
 
 const els = {
-  bulkInput: document.querySelector("#bulkInput"),
-  searchButton: document.querySelector("#searchButton"),
-  reloadButton: document.querySelector("#reloadButton"),
   resourceTypeSelect: document.querySelector("#resourceTypeSelect"),
   subjectSelect: document.querySelector("#subjectSelect"),
   gradeBandSelect: document.querySelector("#gradeBandSelect"),
   sourceSelect: document.querySelector("#sourceSelect"),
   licenseToggle: document.querySelector("#licenseToggle"),
-  modalityToggle: document.querySelector("#modalityToggle"),
   resultsList: document.querySelector("#resultsList"),
   exportButton: document.querySelector("#exportButton"),
   totalCount: document.querySelector("#totalCount"),
@@ -26,66 +22,21 @@ const els = {
   modelCount: document.querySelector("#modelCount"),
   viewTitle: document.querySelector("#viewTitle"),
   scanMeta: document.querySelector("#scanMeta"),
-  viewMeta: document.querySelector("#viewMeta")
+  viewMeta: document.querySelector("#viewMeta"),
+  reloadButton: document.querySelector("#reloadButton")
 };
 
-// Load inventory from CSV file
-function loadInventory() {
-  fetch('data/k12_inventory_latest.csv')
-    .then(r => {
-      if (!r.ok) throw new Error('Failed to load inventory');
-      return r.text();
-    })
-    .then(csv => {
-      parseInventoryCSV(csv);
-      applyFilters();
-    })
-    .catch(err => {
-      console.error('Inventory load error:', err);
-      showEmpty('Unable to load inventory. Please check the data file.');
-    });
-}
-
-function parseInventoryCSV(csv) {
-  const lines = csv.trim().split('\n');
-  if (lines.length < 2) return;
-
-  const headers = parseCSVLine(lines[0]);
-  state.resources = lines.slice(1).map((line, idx) => {
-    const values = parseCSVLine(line);
-    const row = {};
-    headers.forEach((h, i) => {
-      row[h] = values[i] || '';
-    });
-
-    return {
-      id: row.record_id || `r-${idx}`,
-      title: row.resource_name || 'Untitled',
-      resourceType: row.resource_subtype || 'Dataset',
-      source: row.author_name || row.discovery_source || 'Unknown',
-      subjects: (row.subject_area || '').split(',').map(s => s.trim()).filter(Boolean),
-      gradeBand: row.grade_span_group || 'K-12',
-      license: row.license_status_clean || row.license || 'Not listed',
-      description: row.dataset_artifact_evidence || row.notes || '',
-      url: row.url || '',
-      discoveryDate: row.discovery_date || '',
-      readinessTier: row.final_readiness_index_tier || '',
-      fit: parseInt(row.fit_score) || 50
-    };
-  });
-
-  state.scannedAt = new Date().toISOString();
-}
-
+// Parse CSV line properly handling quoted fields
 function parseCSVLine(line) {
   const result = [];
   let current = '';
-  let quoted = false;
+  let inQuotes = false;
+
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
     if (char === '"') {
-      quoted = !quoted;
-    } else if (char === ',' && !quoted) {
+      inQuotes = !inQuotes;
+    } else if (char === ',' && !inQuotes) {
       result.push(current.trim());
       current = '';
     } else {
@@ -96,319 +47,216 @@ function parseCSVLine(line) {
   return result;
 }
 
-// -------------------------------------------------------------------------
-// Custom search: parse pasted titles/urls and search loaded resources
-// -------------------------------------------------------------------------
+// Load and parse CSV
+function loadInventory() {
+  fetch('data/k12_inventory_latest.csv')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.text();
+    })
+    .then(csv => {
+      const lines = csv.trim().split('\n');
+      if (lines.length < 2) {
+        showError('CSV file is empty');
+        return;
+      }
 
-function searchResources(query) {
-  if (!query.trim()) {
-    applyFilters();
-    return;
+      const headers = parseCSVLine(lines[0]);
+      console.log('CSV Headers:', headers);
+
+      state.resources = lines.slice(1).map((line, idx) => {
+        const values = parseCSVLine(line);
+        const row = {};
+        headers.forEach((h, i) => {
+          row[h] = values[i] || '';
+        });
+
+        const resourceType = row.resource_subtype || 'Dataset';
+        const subjectArea = row.subject_area || '';
+        const source = row.discovery_source || row.author_name || 'Curated';
+
+        return {
+          id: row.record_id || `r-${idx}`,
+          title: row.resource_name || 'Untitled',
+          resourceType: resourceType,
+          source: source,
+          subjects: subjectArea
+            .split(',')
+            .map(s => s.trim())
+            .filter(Boolean),
+          gradeBand: row.grade_span_group || 'K-12',
+          license: row.license_status_clean || 'Not listed',
+          description: row.dataset_artifact_evidence || row.notes || '',
+          url: row.url || '',
+          discoveryDate: row.discovery_date || '',
+          readinessTier: row.final_readiness_index_tier || 'Not Reviewed',
+          fit: parseInt(row.fit_score) || 50
+        };
+      });
+
+      console.log(`Loaded ${state.resources.length} resources`);
+      applyFilters();
+      render();
+    })
+    .catch(err => {
+      console.error('Load error:', err);
+      showError(`Failed to load inventory: ${err.message}`);
+    });
+}
+
+function showError(msg) {
+  if (els.resultsList) {
+    els.resultsList.innerHTML = `<div class="empty-state"><h2>Error: ${msg}</h2></div>`;
   }
-
-  const terms = query
-    .split(/\n+/)
-    .map((line) => line.trim().toLowerCase())
-    .filter(Boolean);
-
-  const matches = state.resources.filter((res) => {
-    const haystack = `${res.title} ${res.source} ${res.description}`.toLowerCase();
-    return terms.some((term) => haystack.includes(term));
-  });
-
-  state.filtered = matches.sort((a, b) => b.fit - a.fit || a.title.localeCompare(b.title));
-  render();
-}
-
-// -------------------------------------------------------------------------
-// Filtering
-// -------------------------------------------------------------------------
-
-function getSelectedResourceType() {
-  return els.resourceTypeSelect?.value || "all";
-}
-
-function getSelectedSubject() {
-  return els.subjectSelect?.value || "all";
-}
-
-function getSelectedGradeBand() {
-  return els.gradeBandSelect?.value || "all";
-}
-
-function getSelectedSource() {
-  return els.sourceSelect?.value || "all";
-}
-
-function getSelectedSourceLabel() {
-  return els.sourceSelect?.options[els.sourceSelect.selectedIndex]?.textContent || "all sources";
-}
-
-function passesFilters(res) {
-  const resourceType = getSelectedResourceType();
-  const subject = getSelectedSubject();
-  const gradeBand = getSelectedGradeBand();
-  const source = getSelectedSource();
-  const licenseOpen = els.licenseToggle?.checked;
-  const hasModality = els.modalityToggle?.checked;
-
-  if (resourceType !== "all" && res.resourceType !== resourceType) return false;
-  if (subject !== "all" && !(res.subjects || []).includes(subject)) return false;
-  if (gradeBand !== "all" && res.gradeBand !== gradeBand) return false;
-  if (source !== "all" && res.source !== source) return false;
-  if (licenseOpen && /^see |^custom|^unknown/i.test(res.license || "")) return false;
-  if (hasModality && (!res.modality || res.modality.length === 0)) return false;
-
-  return res.fit >= state.minFit;
 }
 
 function applyFilters() {
-  const all = state.resources
-    .filter(passesFilters)
-    .sort((a, b) => b.fit - a.fit || a.title.localeCompare(b.title));
+  const resourceType = els.resourceTypeSelect?.value || 'all';
+  const subject = els.subjectSelect?.value || 'all';
+  const gradeBand = els.gradeBandSelect?.value || 'all';
+  const source = els.sourceSelect?.value || 'all';
+  const licenseOpen = els.licenseToggle?.checked;
 
-  populateFilterDropdowns(all);
-  state.filtered = all;
+  state.filtered = state.resources.filter(r => {
+    if (resourceType !== 'all' && r.resourceType !== resourceType) return false;
+    if (subject !== 'all' && !r.subjects.includes(subject)) return false;
+    if (gradeBand !== 'all' && r.gradeBand !== gradeBand) return false;
+    if (source !== 'all' && r.source !== source) return false;
+    if (licenseOpen && /^not|^see|^custom|^unknown/i.test(r.license)) return false;
+    return true;
+  });
+
+  populateSelects();
   render();
 }
 
-function populateFilterDropdowns(items) {
+function populateSelects() {
   // Subjects
+  const subjects = [...new Set(state.resources.flatMap(r => r.subjects))].sort();
+  const subjectValue = els.subjectSelect?.value || 'all';
   if (els.subjectSelect) {
-    const subjects = [...new Set(items.flatMap((r) => r.subjects || []))].sort();
-    const currentSubject = els.subjectSelect.value || "all";
     els.subjectSelect.innerHTML = [
-      `<option value="all">All subjects</option>`,
-      ...subjects.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`)
-    ].join("");
-    els.subjectSelect.value = subjects.includes(currentSubject) ? currentSubject : "all";
+      '<option value="all">All subjects</option>',
+      ...subjects.map(s => `<option value="${esc(s)}">${esc(s)}</option>`)
+    ].join('');
+    els.subjectSelect.value = subjectValue;
   }
 
   // Sources
+  const sources = [...new Set(state.resources.map(r => r.source))].sort();
+  const sourceValue = els.sourceSelect?.value || 'all';
   if (els.sourceSelect) {
-    const sources = [...new Set(items.map((r) => r.source))].filter(Boolean).sort();
-    const currentSource = els.sourceSelect.value || "all";
     els.sourceSelect.innerHTML = [
-      `<option value="all">All sources</option>`,
-      ...sources.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`)
-    ].join("");
-    els.sourceSelect.value = sources.includes(currentSource) ? currentSource : "all";
+      '<option value="all">All sources</option>',
+      ...sources.map(s => `<option value="${esc(s)}">${esc(s)}</option>`)
+    ].join('');
+    els.sourceSelect.value = sourceValue;
   }
 }
 
-// -------------------------------------------------------------------------
-// Rendering
-// -------------------------------------------------------------------------
-
 function render() {
-  const total = state.filtered.length;
-  const highFit = state.filtered.filter((r) => r.fit >= 85).length;
-  const datasets = state.filtered.filter((r) => r.resourceType === "Dataset").length;
-  const benchmarks = state.filtered.filter((r) => r.resourceType === "Benchmark").length;
-  const models = state.filtered.filter((r) => r.resourceType === "Model").length;
+  const counts = {
+    total: state.filtered.length,
+    high: state.filtered.filter(r => r.fit >= 70).length,
+    dataset: state.filtered.filter(r => r.resourceType === 'Dataset').length,
+    benchmark: state.filtered.filter(r => r.resourceType === 'Benchmark').length,
+    model: state.filtered.filter(r => r.resourceType === 'Model').length
+  };
 
-  els.totalCount.textContent = String(total);
-  els.highFitCount.textContent = String(highFit);
-  els.datasetCount.textContent = String(datasets);
-  els.benchmarkCount.textContent = String(benchmarks);
-  els.modelCount.textContent = String(models);
+  if (els.totalCount) els.totalCount.textContent = counts.total;
+  if (els.highFitCount) els.highFitCount.textContent = counts.high;
+  if (els.datasetCount) els.datasetCount.textContent = counts.dataset;
+  if (els.benchmarkCount) els.benchmarkCount.textContent = counts.benchmark;
+  if (els.modelCount) els.modelCount.textContent = counts.model;
 
-  const resourceTypeLabel = getSelectedResourceType() === "all" ? "" : ` ${getSelectedResourceType()}`;
-  const sourceLabel = getSelectedSource() === "all" ? "" : ` from ${getSelectedSourceLabel()}`;
+  const verified = state.filtered.filter(r => !r.readinessTier?.includes('Not Reviewed')).length;
+  const newCount = state.filtered.filter(r => r.readinessTier?.includes('Not Reviewed')).length;
 
-  els.viewTitle.textContent = total
-    ? `${total}${resourceTypeLabel} K-12 resources${sourceLabel}`
-    : state.resources.length
-      ? "No resources match current filters"
-      : "No resources loaded yet";
+  if (els.scanMeta) {
+    els.scanMeta.textContent = `${state.resources.length} total resources. ${verified} verified. ${newCount} newly discovered.`;
+  }
 
-  const scanLabel = state.scannedAt ? `Last scanned ${formatDateTime(state.scannedAt)}` : "Using fallback data";
-  els.scanMeta.textContent = `${scanLabel}. Source: ${state.source}.`;
-  els.viewMeta.textContent = `${scanLabel}. ${total} resources in current view.`;
+  if (els.viewTitle) {
+    els.viewTitle.textContent = counts.total
+      ? `${counts.total} K-12 resources`
+      : state.resources.length > 0
+        ? 'No resources match filters'
+        : 'Loading...';
+  }
 
-  if (!total) {
-    els.resultsList.innerHTML = `
-      <div class="empty-state">
-        <h2>${state.resources.length ? "Try adjusting filters or search terms." : "Paste search terms or load the weekly scan."}</h2>
-        <p>The scanner curates K-12 AI datasets, benchmarks, and models from education-focused catalogs and research hubs.</p>
-      </div>
-    `;
+  if (els.viewMeta) {
+    els.viewMeta.textContent = `${counts.dataset} datasets, ${counts.benchmark} benchmarks, ${counts.model} models`;
+  }
+
+  if (!counts.total) {
+    if (els.resultsList) {
+      els.resultsList.innerHTML = `<div class="empty-state"><h2>${state.resources.length > 0 ? 'No resources match your filters.' : 'Loading inventory...'}</h2></div>`;
+    }
     return;
   }
 
-  // Group by resource type
-  const groups = [
-    { type: "Dataset", items: state.filtered.filter((r) => r.resourceType === "Dataset") },
-    { type: "Benchmark", items: state.filtered.filter((r) => r.resourceType === "Benchmark") },
-    { type: "Model", items: state.filtered.filter((r) => r.resourceType === "Model") },
-    { type: "Competition", items: state.filtered.filter((r) => r.resourceType === "Competition") }
-  ].filter((g) => g.items.length > 0);
-
-  els.resultsList.innerHTML = groups.map((group) => renderGroup(group.type, group.items)).join("");
+  if (els.resultsList) {
+    els.resultsList.innerHTML = state.filtered.map(renderRow).join('');
+  }
 }
 
-function renderGroup(type, items) {
-  const subtitle = items.length === 1 ? "1 resource" : `${items.length} resources`;
-  return `
-    <div class="result-section">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker">${escapeHtml(type)}</p>
-          <h3>${escapeHtml(type)}</h3>
-        </div>
-        <span>${escapeHtml(subtitle)}</span>
-      </div>
-      ${items.map(renderRow).join("")}
-    </div>
-  `;
-}
-
-function renderRow(res) {
-  const subjects = (res.subjects || []).slice(0, 3).join(", ") || "Not tagged";
-  const modality = (res.modality || []).join(", ") || "Not listed";
+function renderRow(r) {
+  const badge = r.readinessTier?.includes('Not Reviewed')
+    ? '<span class="discovery-badge">NEW</span>'
+    : '<span class="verified-badge">VERIFIED</span>';
 
   return `
     <article class="result-row">
-      <div class="table-cell resource-cell" data-label="Resource">
-        <p class="resource-title">${res.url ? `<a href="${escapeHtml(res.url)}" target="_blank" rel="noreferrer">${escapeHtml(res.title)}</a>` : escapeHtml(res.title)}</p>
-        <p class="meta">Fit ${res.fit}</p>
+      <div class="table-cell opportunity-cell">
+        <p class="opportunity-title">
+          ${r.url ? `<a href="${esc(r.url)}" target="_blank">${esc(r.title)}</a>` : esc(r.title)}
+        </p>
+        <p class="meta">${badge}</p>
       </div>
-      <div class="table-cell" data-label="Type">${escapeHtml(res.resourceType)}</div>
-      <div class="table-cell" data-label="Source">${escapeHtml(res.source)}</div>
-      <div class="table-cell" data-label="Subjects">${escapeHtml(subjects)}</div>
-      <div class="table-cell" data-label="Grade Band">${escapeHtml(res.gradeBand)}</div>
-      <div class="table-cell" data-label="Modality">${escapeHtml(modality)}</div>
-      <div class="table-cell" data-label="License">${escapeHtml(res.license || "Not specified")}</div>
-      <div class="table-cell description-cell" data-label="Description">${escapeHtml(formatDescription(res.description))}</div>
+      <div class="table-cell">${esc(r.resourceType)}</div>
+      <div class="table-cell">${r.subjects.join(', ') || 'General'}</div>
+      <div class="table-cell">${esc(r.source)}</div>
+      <div class="table-cell">${esc(r.license)}</div>
+      <div class="table-cell description-cell">
+        ${r.discoveryDate ? `<em>${r.discoveryDate}</em><br>` : ''}
+        ${esc(r.description.slice(0, 100))}
+      </div>
     </article>
   `;
 }
 
-function formatDescription(value) {
-  const text = String(value || "").replace(/\s+/g, " ").trim();
-  if (!text) return "No description";
-  return text.length > 360 ? `${text.slice(0, 357)}...` : text;
+function esc(s) {
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  return String(s || '').replace(/[&<>"']/g, c => map[c]);
 }
-
-function formatDateTime(value) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return new Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short"
-  }).format(date);
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-// -------------------------------------------------------------------------
-// CSV Export
-// -------------------------------------------------------------------------
 
 function exportCsv() {
   if (!state.filtered.length) return;
-  const header = [
-    "title",
-    "resource_type",
-    "source",
-    "subjects",
-    "grade_band",
-    "modality",
-    "license",
-    "fit",
-    "url",
-    "description"
-  ];
-  const rows = state.filtered.map((res) => [
-    res.title,
-    res.resourceType,
-    res.source,
-    (res.subjects || []).join("; "),
-    res.gradeBand,
-    (res.modality || []).join("; "),
-    res.license,
-    res.fit,
-    res.url,
-    res.description
+  const header = ['Title', 'Type', 'Source', 'License', 'URL', 'Status'];
+  const rows = state.filtered.map(r => [
+    r.title, r.resourceType, r.source, r.license, r.url, r.readinessTier
   ]);
   const csv = [header, ...rows]
-    .map((row) => row.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(","))
-    .join("\n");
-  const blob = new Blob([csv], { type: "text/csv" });
+    .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+    .join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "k12-ai-resources.csv";
-  link.click();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `k12-inventory-${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
   URL.revokeObjectURL(url);
 }
 
-// -------------------------------------------------------------------------
-// Data loading
-// -------------------------------------------------------------------------
-
-async function loadWeeklyScan() {
-  try {
-    const response = await fetch("data/resources.json", { cache: "no-store" });
-    if (!response.ok) throw new Error(`Data request failed with ${response.status}`);
-    const data = await response.json();
-    state.resources = data.resources || [];
-    state.source = data.source || "Weekly scan";
-    state.scannedAt = data.scannedAt || "";
-    els.bulkInput.value = "";
-    applyFilters();
-  } catch (error) {
-    console.warn("Failed to load resources.json:", error);
-    state.resources = [];
-    state.source = "No data available";
-    state.scannedAt = "";
-    els.bulkInput.value = "";
-    applyFilters();
-  }
-}
-
-// -------------------------------------------------------------------------
 // Event listeners
-// -------------------------------------------------------------------------
+els.resourceTypeSelect?.addEventListener('change', applyFilters);
+els.subjectSelect?.addEventListener('change', applyFilters);
+els.gradeBandSelect?.addEventListener('change', applyFilters);
+els.sourceSelect?.addEventListener('change', applyFilters);
+els.licenseToggle?.addEventListener('change', applyFilters);
+els.exportButton?.addEventListener('click', exportCsv);
+els.reloadButton?.addEventListener('click', loadInventory);
 
-els.searchButton?.addEventListener("click", () => {
-  searchResources(els.bulkInput.value);
-});
-
-els.reloadButton?.addEventListener("click", () => {
-  loadWeeklyScan();
-});
-
-els.resourceTypeSelect?.addEventListener("change", applyFilters);
-els.subjectSelect?.addEventListener("change", applyFilters);
-els.gradeBandSelect?.addEventListener("change", applyFilters);
-els.sourceSelect?.addEventListener("change", applyFilters);
-els.licenseToggle?.addEventListener("change", applyFilters);
-els.modalityToggle?.addEventListener("change", applyFilters);
-els.exportButton?.addEventListener("click", exportCsv);
-
-document.querySelectorAll("[data-min-fit]").forEach((button) => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll("[data-min-fit]").forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    state.minFit = Number(button.dataset.minFit);
-    applyFilters();
-  });
-});
-
-// -------------------------------------------------------------------------
-// Initialization
-// -------------------------------------------------------------------------
-
-loadWeeklyScan();
+// Load on page load
+loadInventory();
