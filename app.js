@@ -151,14 +151,8 @@ function applyFilters() {
     if (verification === 'verified' && !isVerified(r)) return false;
     if (verification === 'new' && isVerified(r)) return false;
 
-    // ALWAYS filter out broken links and obvious non-datasets
-    if (!r.isDownloadable) {
-      if (r.verificationNote?.includes('Link broken') ||
-          r.verificationNote?.includes('Paper/preprint') ||
-          r.verificationNote?.includes('Blog article')) {
-        return false;
-      }
-    }
+    // Filter out broken/non-dataset items from newly discovered
+    if (!r.isDownloadable) return false;
 
     return true;
   });

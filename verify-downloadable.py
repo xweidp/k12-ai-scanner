@@ -119,21 +119,37 @@ def main():
 
     df = pd.read_csv('data/k12_inventory_latest.csv')
 
-    # Add verification columns
-    df['is_downloadable'] = False
-    df['verification_note'] = ''
+    # Identify v18 records (those already manually verified - no discovery_date)
+    is_v18 = df['discovery_date'].isna() | (df['discovery_date'] == '')
 
-    verified_count = 0
+    print(f"Found {is_v18.sum()} v18 records (manually verified) - skipping verification")
+    print(f"Will verify {(~is_v18).sum()} newly discovered records\n")
+
+    # Initialize columns if missing
+    if 'is_downloadable' not in df.columns:
+        df['is_downloadable'] = False
+    if 'verification_note' not in df.columns:
+        df['verification_note'] = ''
+
+    # Trust all v18 records
+    df.loc[is_v18, 'is_downloadable'] = True
+    df.loc[is_v18, 'verification_note'] = 'v18 - manually verified'
+
+    verified_count = is_v18.sum()  # All v18 records count as verified
     broken_count = 0
     non_dataset_count = 0
 
+    # Only verify newly discovered records
     for idx, row in df.iterrows():
+        if is_v18[idx]:
+            continue  # Skip v18 records
+
         is_valid, note, rtype = verify_resource(row)
         df.at[idx, 'is_downloadable'] = is_valid
         df.at[idx, 'verification_note'] = note
 
         if idx % 20 == 0:
-            print(f"Checking {idx}/{len(df)}...", end='\r')
+            print(f"Checking newly discovered {idx}/{len(df)}...", end='\r')
 
         if is_valid:
             verified_count += 1
@@ -150,16 +166,19 @@ def main():
     print(f"\n{'='*60}")
     print(f"Verification Results:")
     print(f"{'='*60}")
-    print(f"✅ Downloadable datasets: {verified_count}")
-    print(f"❌ Broken links: {broken_count}")
-    print(f"⚠️  Non-datasets (blogs, papers, etc): {non_dataset_count}")
-    print(f"{'='*60}\n")
+    print(f"✅ v18 records (trusted): {is_v18.sum()}")
+    print(f"✅ Newly discovered (valid): {verified_count - is_v18.sum()}")
+    print(f"❌ Newly discovered (broken): {broken_count}")
+    print(f"⚠️  Newly discovered (non-dataset): {non_dataset_count}")
+    print(f"{'='*60}")
+    print(f"Total downloadable: {verified_count}/{len(df)}\n")
 
-    # Show problematic resources
+    # Show problematic resources (only new discoveries)
     problematic = df[~df['is_downloadable']]
-    print(f"Non-downloadable resources by type:\n")
-    for note, count in problematic['verification_note'].value_counts().items():
-        print(f"  {note}: {count}")
+    if len(problematic) > 0:
+        print(f"Problematic newly-discovered resources:\n")
+        for note, count in problematic['verification_note'].value_counts().items():
+            print(f"  {note}: {count}")
 
     print(f"\nSaved verified inventory to: data/k12_inventory_verified.csv")
 
