@@ -46,6 +46,13 @@
             <option value="all">All sources</option>
           </select>
 
+          <label for="verificationSelect">Status</label>
+          <select id="verificationSelect">
+            <option value="verified">Verified only (high quality)</option>
+            <option value="all">All (includes newly discovered)</option>
+            <option value="new">Newly discovered (needs review)</option>
+          </select>
+
           <div class="toggle-group" aria-label="Additional filters">
             <label class="toggle-row" for="licenseToggle">
               <input id="licenseToggle" type="checkbox" />

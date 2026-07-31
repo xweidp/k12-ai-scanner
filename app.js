@@ -14,6 +14,7 @@ const els = {
   subjectSelect: document.querySelector("#subjectSelect"),
   gradeBandSelect: document.querySelector("#gradeBandSelect"),
   sourceSelect: document.querySelector("#sourceSelect"),
+  verificationSelect: document.querySelector("#verificationSelect"),
   licenseToggle: document.querySelector("#licenseToggle"),
   resultsList: document.querySelector("#resultsList"),
   exportButton: document.querySelector("#exportButton"),
@@ -132,7 +133,10 @@ function applyFilters() {
   const subject = els.subjectSelect?.value || 'all';
   const gradeBand = els.gradeBandSelect?.value || 'all';
   const source = els.sourceSelect?.value || 'all';
+  const verification = els.verificationSelect?.value || 'verified';
   const licenseOpen = els.licenseToggle?.checked;
+
+  const isVerified = r => r.readinessTier && !r.readinessTier.includes('Not Reviewed');
 
   state.filtered = state.resources.filter(r => {
     if (resourceType !== 'all' && r.resourceType !== resourceType) return false;
@@ -140,6 +144,11 @@ function applyFilters() {
     if (gradeBand !== 'all' && r.gradeBand !== gradeBand) return false;
     if (source !== 'all' && r.source !== source) return false;
     if (licenseOpen && /^not|^see|^custom|^unknown/i.test(r.license)) return false;
+
+    // Verification filter
+    if (verification === 'verified' && !isVerified(r)) return false;
+    if (verification === 'new' && isVerified(r)) return false;
+
     return true;
   });
 
@@ -216,7 +225,7 @@ function render() {
   const newCount = state.filtered.filter(r => r.readinessTier?.includes('Not Reviewed')).length;
 
   if (els.scanMeta) {
-    els.scanMeta.textContent = `${state.resources.length} total resources. ${verified} verified. ${newCount} newly discovered.`;
+    els.scanMeta.textContent = `${verified} verified (high quality, manually reviewed). ${newCount} newly discovered (auto-found, need manual review).`;
   }
 
   if (els.viewTitle) {
@@ -297,6 +306,7 @@ els.resourceTypeSelect?.addEventListener('change', applyFilters);
 els.subjectSelect?.addEventListener('change', applyFilters);
 els.gradeBandSelect?.addEventListener('change', applyFilters);
 els.sourceSelect?.addEventListener('change', applyFilters);
+els.verificationSelect?.addEventListener('change', applyFilters);
 els.licenseToggle?.addEventListener('change', applyFilters);
 els.exportButton?.addEventListener('click', exportCsv);
 els.reloadButton?.addEventListener('click', loadInventory);
