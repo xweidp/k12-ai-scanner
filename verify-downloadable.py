@@ -108,11 +108,18 @@ def verify_resource(row):
         # Papers/preprints are not downloadable datasets
         return False, 'Paper/preprint (not dataset)', 'Paper'
 
-    # For other sources, assume valid if link works and marked as Dataset
-    if resource_type == 'Dataset':
-        return True, 'Link valid', resource_type
+    # For other sources, be conservative: link validity alone isn't enough
+    # We can only confidently mark as downloadable if we recognize the source pattern
+    if 'kaggle.com' in url:
+        return True, 'Kaggle dataset', resource_type
+    if 'zenodo.org' in url or 'figshare.com' in url or 'osf.io' in url:
+        return True, 'Open repository', resource_type
+    if '.edu' in url and ('/data/' in url.lower() or 'dataset' in url.lower()):
+        return True, 'University data repo', resource_type
 
-    return False, f'Unknown type: {resource_type}', resource_type
+    # Default: don't mark as downloadable without recognition
+    # Valid link alone isn't enough - page might just describe a dataset
+    return False, f'Link valid but type not recognized (marked as {resource_type})', resource_type
 
 def main():
     print("Verifying dataset resources...\n")
