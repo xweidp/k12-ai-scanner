@@ -1,9 +1,0 @@
-name = "k12-ai-scanner"
-type = "javascript"
-main = "functions/scan-schedule.js"
-
-[env.production]
-vars = { ENVIRONMENT = "production" }
-
-[[triggers.crons]]
-cron = "0 13 * * 1"

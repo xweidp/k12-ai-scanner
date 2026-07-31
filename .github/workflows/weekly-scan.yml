@@ -1,0 +1,30 @@
+name: Weekly K-12 Resource Scan
+
+on:
+  schedule:
+    # Every Monday at 1:00 PM UTC (8:00 AM Central)
+    - cron: '0 13 * * 1'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run K-12 resource scan
+        run: node scripts/scan-resources.mjs
+
+      - name: Commit and push results
+        run: |
+          git config user.name "K-12 Scanner Bot"
+          git config user.email "scanner@example.com"
+          git add data/resources.json data/weekly_resources.csv weekly_resource_brief.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Weekly K-12 resource scan - $(date -u +'%Y-%m-%d %H:%M:%S') UTC"
+          git push
