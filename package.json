@@ -1,0 +1,27 @@
+{
+  "name": "k12-ai-scanner",
+  "version": "1.0.0",
+  "description": "K-12 AI Resource Scanner - discovers and filters datasets, benchmarks, and models for K-12 education",
+  "type": "module",
+  "main": "scripts/scan-resources.mjs",
+  "scripts": {
+    "scan": "node scripts/scan-resources.mjs",
+    "serve": "python3 -m http.server 8766",
+    "deploy:cloudflare": "wrangler pages deploy",
+    "dev": "wrangler pages dev"
+  },
+  "keywords": [
+    "k-12",
+    "ai",
+    "education",
+    "dataset",
+    "benchmark",
+    "model",
+    "scanner"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.28.0"
+  }
+}

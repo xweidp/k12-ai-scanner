@@ -1,0 +1,57 @@
+{
+  "sources": [
+    {
+      "name": "K-12 AI Infrastructure Program",
+      "type": "Program catalog",
+      "mode": "catalog",
+      "parser": "kaiip",
+      "url": "https://platform.k12-ai-infrastructure.org/datasets/",
+      "keywords": ["dataset", "benchmark", "model", "tutoring", "math", "science", "literacy", "assessment", "classroom"]
+    },
+    {
+      "name": "DrivenData Competitions",
+      "type": "Competition / benchmark",
+      "mode": "monitor",
+      "url": "https://www.drivendata.org/competitions/",
+      "linkPattern": "/competitions/[0-9]+/",
+      "keywords": ["education", "learning", "student", "school", "k-12", "teacher", "literacy", "math", "assessment", "classroom", "competition", "benchmark"]
+    },
+    {
+      "name": "Learning Commons Knowledge Graph",
+      "type": "Open infrastructure",
+      "mode": "monitor",
+      "url": "https://learningcommons.org/knowledge-graph/",
+      "keywords": ["dataset", "knowledge graph", "curriculum", "standards", "learning science", "machine-readable", "data"]
+    },
+    {
+      "name": "Learning Commons News",
+      "type": "Open infrastructure",
+      "mode": "monitor",
+      "url": "https://learningcommons.org/news/",
+      "keywords": ["dataset", "benchmark", "model", "evaluator", "release", "open-source", "agent skills", "data"]
+    },
+    {
+      "name": "Hugging Face - Education Datasets",
+      "type": "Model & dataset hub",
+      "mode": "monitor",
+      "url": "https://huggingface.co/datasets?search=education",
+      "linkPattern": "/datasets/[^\"'/]+/[^\"'/]+",
+      "keywords": ["education", "k-12", "math", "science", "reading", "literacy", "tutoring", "student", "classroom", "benchmark"]
+    },
+    {
+      "name": "Hugging Face - K-12 Datasets",
+      "type": "Model & dataset hub",
+      "mode": "monitor",
+      "url": "https://huggingface.co/datasets?search=k-12",
+      "linkPattern": "/datasets/[^\"'/]+/[^\"'/]+",
+      "keywords": ["education", "k-12", "math", "science", "reading", "literacy", "tutoring", "student", "classroom", "benchmark"]
+    },
+    {
+      "name": "Linguistic Data Consortium (LDC)",
+      "type": "Language & annotation corpus",
+      "mode": "monitor",
+      "url": "https://www.ldc.upenn.edu/",
+      "keywords": ["dataset", "corpus", "language", "annotation", "education", "k-12", "assessment", "nlp", "text", "dialogue", "spoken"]
+    }
+  ]
+}

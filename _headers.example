@@ -1,0 +1,8 @@
+# Optional Netlify Basic Auth.
+# This requires a Netlify Pro or Enterprise plan.
+# Copy this file to `_headers`, replace the username/password,
+# and deploy that `_headers` file with the site.
+#
+# /*
+#   Basic-Auth: education:REPLACE_WITH_A_STRONG_SHARED_PASSWORD
+

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>K-12 AI Resource Scanner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Scanner controls">
+        <div class="brand-block">
+          <p class="eyebrow">K-12 AI Education</p>
+          <h1>Resource Scanner</h1>
+          <p class="subhead">Browse and filter datasets, benchmarks, and models for evaluating and improving AI systems in K-12 education.</p>
+        </div>
+
+        <section class="panel research-areas">
+          <h2>Filter by</h2>
+
+          <label for="resourceTypeSelect">Resource Type</label>
+          <select id="resourceTypeSelect">
+            <option value="all">All types</option>
+            <option value="Dataset">Datasets</option>
+            <option value="Benchmark">Benchmarks</option>
+            <option value="Model">Models</option>
+            <option value="Competition">Competitions</option>
+          </select>
+
+          <label for="subjectSelect">Subject</label>
+          <select id="subjectSelect">
+            <option value="all">All subjects</option>
+          </select>
+
+          <label for="gradeBandSelect">Grade Band</label>
+          <select id="gradeBandSelect">
+            <option value="all">All grades</option>
+            <option value="Elementary">Elementary</option>
+            <option value="Middle school">Middle school</option>
+            <option value="High school">High school</option>
+            <option value="K-12 (unspecified)">K-12 (not specified)</option>
+          </select>
+
+          <label for="sourceSelect">Source</label>
+          <select id="sourceSelect">
+            <option value="all">All sources</option>
+          </select>
+
+          <div class="toggle-group" aria-label="Additional filters">
+            <label class="toggle-row" for="licenseToggle">
+              <input id="licenseToggle" type="checkbox" />
+              <span>Has open license</span>
+            </label>
+            <label class="toggle-row" for="modalityToggle">
+              <input id="modalityToggle" type="checkbox" />
+              <span>Has modality tag</span>
+            </label>
+          </div>
+
+          <div class="score-grid" aria-label="Current summary">
+            <div>
+              <strong id="totalCount">0</strong>
+              <span>Total</span>
+            </div>
+            <div>
+              <strong id="highFitCount">0</strong>
+              <span>High Fit</span>
+            </div>
+            <div>
+              <strong id="datasetCount">0</strong>
+              <span>Datasets</span>
+            </div>
+            <div>
+              <strong id="benchmarkCount">0</strong>
+              <span>Benchmarks</span>
+            </div>
+            <div>
+              <strong id="modelCount">0</strong>
+              <span>Models</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel status-panel">
+          <h2>Weekly Scan</h2>
+          <p id="scanMeta" class="scan-meta">Loading latest scan...</p>
+          <p class="helper-text">This dashboard refreshes from generated data covering curated K-12 AI catalogs and resource hubs.</p>
+        </section>
+
+        <details class="panel custom-scan">
+          <summary>Custom Search</summary>
+          <label for="bulkInput">Paste resource titles or URLs (one per line)</label>
+          <textarea id="bulkInput" spellcheck="false" placeholder="e.g., GSM8k, Bridge dataset..."></textarea>
+          <div class="button-row">
+            <button id="searchButton" type="button">Search</button>
+            <button id="reloadButton" type="button" class="secondary">Reload Weekly Scan</button>
+          </div>
+        </details>
+      </aside>
+
+      <section class="workspace">
+        <header class="toolbar">
+          <div class="filter-group" role="group" aria-label="Minimum fit">
+            <button type="button" class="chip active" data-min-fit="0">All</button>
+            <button type="button" class="chip" data-min-fit="70">70+</button>
+            <button type="button" class="chip" data-min-fit="85">85+</button>
+          </div>
+          <button id="exportButton" type="button" class="secondary">Export CSV</button>
+        </header>
+
+        <section class="hero-strip" aria-label="Scanner status">
+          <div>
+            <p class="eyebrow">Current View</p>
+            <h2 id="viewTitle">No resources scanned yet</h2>
+            <p id="viewMeta" class="view-meta">Waiting for data...</p>
+          </div>
+          <div class="signal-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </section>
+
+        <section class="results" aria-live="polite">
+          <div class="table-header">
+            <span>Resource</span>
+            <span>Type</span>
+            <span>Source</span>
+            <span>Subjects</span>
+            <span>Grade Band</span>
+            <span>Modality</span>
+            <span>License</span>
+            <span>Description</span>
+          </div>
+          <div id="resultsList" class="results-list">
+            <div class="empty-state">
+              <h2>Paste a search or load the weekly scan to begin.</h2>
+              <p>The scanner curates K-12 AI datasets, benchmarks, and models from education-focused catalogs and research hubs.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

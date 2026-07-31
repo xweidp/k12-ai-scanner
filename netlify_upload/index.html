@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Education Research Opportunity Scanner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Scanner controls">
+        <div class="brand-block">
+          <p class="eyebrow">Education Research</p>
+          <h1>Opportunity Scanner</h1>
+          <p class="subhead">Select a research area to see the latest funding opportunities sorted by deadline.</p>
+        </div>
+
+        <section class="panel research-areas">
+          <h2>Research Areas</h2>
+          <label for="profileSelect">Select topic</label>
+          <select id="profileSelect">
+            <option value="all">All funding opportunities</option>
+            <option value="ai">AI, data infrastructure, and public goods</option>
+            <option value="learning">Learning outcomes and interventions</option>
+            <option value="equity">Equity, access, and multilingual learners</option>
+            <option value="workforce">Teacher workforce and implementation</option>
+            <option value="postsecondary">Postsecondary and workforce</option>
+            <option value="stem">STEM education and pathways</option>
+            <option value="secondaryData">Secondary data analysis</option>
+          </select>
+
+          <label for="sourceSelect">Select Agency / Source</label>
+          <select id="sourceSelect">
+            <option value="all">All agencies / sources</option>
+          </select>
+
+          <div class="toggle-group" aria-label="Deadline filters">
+            <label class="toggle-row" for="hidePastDeadlines">
+              <input id="hidePastDeadlines" type="checkbox" />
+              <span>Hide past deadlines</span>
+            </label>
+            <label class="toggle-row" for="hideNoDeadlines">
+              <input id="hideNoDeadlines" type="checkbox" />
+              <span>Hide no-deadline RFPs</span>
+            </label>
+          </div>
+
+          <div class="score-grid" aria-label="Current scoring summary">
+            <div>
+              <strong id="totalCount">0</strong>
+              <span>Total</span>
+            </div>
+            <div>
+              <strong id="hotCount">0</strong>
+              <span>High Fit</span>
+            </div>
+            <div>
+              <strong id="withDeadlineCount">0</strong>
+              <span>With Deadline</span>
+            </div>
+            <div>
+              <strong id="withoutDeadlineCount">0</strong>
+              <span>No Deadline</span>
+            </div>
+            <div>
+              <strong id="deadlineCount">0</strong>
+              <span>Urgent</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel status-panel">
+          <h2>Weekly Scan</h2>
+          <p id="scanMeta" class="scan-meta">Loading latest scan...</p>
+          <p class="helper-text">This dashboard refreshes from generated data. Use the custom scan only for one-off leads.</p>
+        </section>
+
+        <details class="panel custom-scan">
+          <summary>Custom Scan</summary>
+          <label for="bulkInput">Paste opportunity text, CSV, or one item per line</label>
+          <textarea id="bulkInput" spellcheck="false" placeholder="Title, source, deadline, description..."></textarea>
+          <div class="button-row">
+            <button id="scanButton" type="button">Scan Custom Leads</button>
+            <button id="loadSampleButton" type="button" class="secondary">Reload Weekly Scan</button>
+          </div>
+        </details>
+      </aside>
+
+      <section class="workspace">
+        <header class="toolbar">
+          <div class="filter-group" role="group" aria-label="Minimum fit">
+            <button type="button" class="chip active" data-min-fit="0">All</button>
+            <button type="button" class="chip" data-min-fit="70">70+</button>
+            <button type="button" class="chip" data-min-fit="85">85+</button>
+          </div>
+          <button id="exportButton" type="button" class="secondary">Export CSV</button>
+        </header>
+
+        <section class="hero-strip" aria-label="Scanner status">
+          <div>
+            <p class="eyebrow">Current View</p>
+            <h2 id="viewTitle">No opportunities scanned yet</h2>
+            <p id="viewMeta" class="view-meta">Waiting for data...</p>
+          </div>
+          <div class="signal-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </section>
+
+        <section class="results" aria-live="polite">
+          <div class="table-header">
+            <span>Opportunity</span>
+            <span>Agency / Source</span>
+            <span>Deadline</span>
+            <span>Posted Date</span>
+            <span>Award Ceiling / Estimated Funding</span>
+            <span>Eligibility Categories</span>
+            <span>Description</span>
+          </div>
+          <div id="resultsList" class="results-list">
+            <div class="empty-state">
+              <h2>Paste leads or load the sample set to begin.</h2>
+              <p>The scanner extracts basic fields, scores topical fit, flags urgency, and keeps a shortlist ready for CSV export.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

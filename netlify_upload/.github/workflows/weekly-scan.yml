@@ -1,0 +1,38 @@
+name: Weekly opportunity scan
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monday 8:00 AM Central during daylight saving time.
+    # Change to "0 14 * * 1" during standard time if exact local time matters.
+    - cron: "0 13 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Scan funding opportunities
+        run: node scripts/scan-opportunities.mjs
+
+      - name: Commit refreshed opportunity data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/opportunities.json data/weekly_opportunities.csv weekly_opportunity_brief.md
+          if git diff --cached --quiet; then
+            echo "No opportunity changes to commit."
+          else
+            git commit -m "Update weekly education opportunity scan"
+            git push
+          fi
