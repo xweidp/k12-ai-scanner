@@ -1,0 +1,24 @@
+{
+  "scan_date": "2026-07-31T19:45:46.603657+00:00",
+  "new_resources_count": 50,
+  "by_source": {
+    "IEEE Dataport - Education Datasets": 8,
+    "DrivenData Competitions": 10,
+    "OpenAI - Research Blog": 20,
+    "AI2 (Allen Institute for AI) - Publications": 2,
+    "Papers With Code - Education": 4,
+    "Learning Commons Knowledge Graph": 2,
+    "Learning Commons News": 4
+  },
+  "by_type": {
+    "Model": 3,
+    "Competition": 8,
+    "Benchmark": 7,
+    "Dataset": 32
+  },
+  "by_subject": {
+    "General": 46,
+    "Science": 3,
+    "Classroom discourse": 1
+  }
+}

@@ -1,4 +1,4 @@
-name: Weekly K-12 Resource Scan
+name: Weekly K-12 Resource Scan & Inventory Update
 
 on:
   schedule:
@@ -7,24 +7,128 @@ on:
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
-  scan:
+  scan-and-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          node-version: '18'
+          python-version: '3.10'
 
-      - name: Run K-12 resource scan
-        run: node scripts/scan-resources.mjs
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests openpyxl
+
+      - name: Run generic monitor-source scanner
+        run: python3 scan-resources.py
+
+      - name: Run GitHub & Hugging Face direct scanner
+        run: python3 scan-github-hf.py
+
+      - name: Merge scan results
+        run: |
+          python3 << 'EOF'
+          import json
+          from pathlib import Path
+
+          results = {'resources': []}
+
+          # Load all scan results
+          for file in ['data/resources.json', 'data/github_hf_scan_results.json']:
+              if Path(file).exists():
+                  with open(file) as f:
+                      data = json.load(f)
+                      results['resources'].extend(data.get('resources', []))
+
+          # Dedupe by URL
+          seen_urls = set()
+          deduped = []
+          for res in results['resources']:
+              url = res.get('url', '')
+              if url not in seen_urls:
+                  seen_urls.add(url)
+                  deduped.append(res)
+
+          results['resources'] = deduped
+          results['scannedAt'] = deduped[0].get('discovery_date') if deduped else ''
+          results['totalScanned'] = len(deduped)
+
+          with open('data/all_scanned_resources.json', 'w') as f:
+              json.dump(results, f, indent=2)
+
+          print(f"Merged {len(deduped)} total resources from all scans")
+          EOF
+
+      - name: Update inventory with new discoveries
+        run: |
+          # Update the merge script to use all_scanned_resources.json
+          python3 << 'EOF'
+          import json
+          import pandas as pd
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          def load_base_inventory():
+              try:
+                  df = pd.read_excel('data/k12_inventory_v18_base.xlsx')
+                  return df
+              except:
+                  return pd.DataFrame()
+
+          def load_all_scanned():
+              try:
+                  with open('data/all_scanned_resources.json') as f:
+                      data = json.load(f)
+                  return data.get('resources', [])
+              except:
+                  return []
+
+          base = load_base_inventory()
+          scanned = load_all_scanned()
+
+          if base.empty or not scanned:
+              print("Cannot update inventory")
+              exit(1)
+
+          existing_urls = set(base['url'].tolist())
+          new_records = []
+
+          for res in scanned:
+              url = res.get('url', '')
+              if url not in existing_urls:
+                  new_records.append({
+                      'record_id': f"new_{hash(url) % 10000000}",
+                      'resource_name': res.get('title', '')[:100],
+                      'author_name': res.get('source', ''),
+                      'url': url,
+                      'resource_subtype': res.get('resourceType', 'Dataset'),
+                      'discovery_date': res.get('discovery_date', datetime.now(timezone.utc).strftime('%Y-%m-%d')),
+                      'discovery_source': res.get('addedVia', res.get('source', 'Scanner')),
+                      'subject_area': ', '.join(res.get('subjects', []) or ['General']),
+                      'fit_score': res.get('fit', 0)
+                  })
+
+          if new_records:
+              new_df = pd.DataFrame(new_records)
+              for col in base.columns:
+                  if col not in new_df.columns:
+                      new_df[col] = ''
+
+              combined = pd.concat([base, new_df], ignore_index=True)
+              combined = combined.drop_duplicates(subset=['url'], keep='first')
+              combined.to_csv('data/k12_inventory_latest.csv', index=False)
+              print(f"Updated inventory: {len(combined)} total records (+{len(new_records)} new)")
+          else:
+              print("No new resources to add")
+          EOF
 
       - name: Commit and push results
         run: |
           git config user.name "K-12 Scanner Bot"
-          git config user.email "scanner@example.com"
-          git add data/resources.json data/weekly_resources.csv weekly_resource_brief.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Weekly K-12 resource scan - $(date -u +'%Y-%m-%d %H:%M:%S') UTC"
-          git push
+          git config user.email "scanner@digitalpromise.org"
+          git add data/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Weekly K-12 scan & inventory update - $(date -u +'%Y-%m-%d %H:%M:%S') UTC" && git push)
