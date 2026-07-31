@@ -34,16 +34,25 @@ function parseCSVLine(line) {
 
   for (let i = 0; i < line.length; i++) {
     const char = line[i];
+    const nextChar = line[i + 1];
+
     if (char === '"') {
-      inQuotes = !inQuotes;
+      if (inQuotes && nextChar === '"') {
+        // Escaped quote
+        current += '"';
+        i++;
+      } else {
+        // Toggle quote state
+        inQuotes = !inQuotes;
+      }
     } else if (char === ',' && !inQuotes) {
-      result.push(current.trim());
+      result.push(current.trim().replace(/^"(.*)"$/, '$1'));
       current = '';
     } else {
       current += char;
     }
   }
-  result.push(current.trim());
+  result.push(current.trim().replace(/^"(.*)"$/, '$1'));
   return result;
 }
 
@@ -96,6 +105,11 @@ function loadInventory() {
       });
 
       console.log(`Loaded ${state.resources.length} resources`);
+      const withDates = state.resources.filter(r => r.publicationDate).length;
+      console.log(`Resources with publication dates: ${withDates}`);
+      if (state.resources[0]) {
+        console.log(`Sample resource:`, state.resources[0]);
+      }
       applyFilters();
       render();
     })
