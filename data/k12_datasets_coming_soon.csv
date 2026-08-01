@@ -1,10 +1,15 @@
 resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
 DrivenData: K-12 Education Competitions,DrivenData,2026-08-01,,Expected Release,https://www.drivendata.org/competitions/,Open data science competitions focused on education and K-12 AI,,competition,Yes,2026-08-01
-ArXiv: Aligning LLM-Simulated and Human Examinees for Psychometric Calibration: A Cogni,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26317v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
-"ArXiv: IKS-Instruct: A 24,000-Example Multilingual Dataset for Teaching Language Models",ArXiv,2026-07-25,,Published,https://arxiv.org/abs/2607.23322v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
-ArXiv: AI Assistants Overassist,ArXiv,2026-07-23,,Published,https://arxiv.org/abs/2607.21306v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
-ArXiv: Sympathetic Framing: Evaluating AI Alignment across Sociodemographic Groups,ArXiv,2026-07-22,,Published,https://arxiv.org/abs/2607.27232v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
-ArXiv: Data Annotations as Pedagogical Hints: From Subjective Labels to Critical Thinki,ArXiv,2026-07-22,,Published,https://arxiv.org/abs/2607.20149v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
+ArXiv: The Role of Causality in Algorithmic Recourse,ArXiv,2026-07-30,,Published,https://arxiv.org/abs/2607.28497v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Fairness Pruning: Locating Demographic Bias in GLU-MLP Layers via Differential A,ArXiv,2026-07-30,,Published,https://arxiv.org/abs/2607.28319v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Technology-Enhanced Tabletop Exercises for Cybersecurity Education: Lessons Lear,ArXiv,2026-07-30,,Published,https://arxiv.org/abs/2607.28179v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Rethinking LLM-Judged Helpfulness as a Pedagogy Signal: A Pre-Registered Audit A,ArXiv,2026-07-30,,Published,https://arxiv.org/abs/2607.28128v1,Research paper with educational AI resource,,model,Yes,2026-08-01
+ArXiv: Can AI agents conduct open-ended AI research? Early evidence from two case studi,ArXiv,2026-07-29,,Published,https://arxiv.org/abs/2607.27191v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Constitutional Midtraining: Content Presence Drives Alignment Gains,ArXiv,2026-07-29,,Published,https://arxiv.org/abs/2607.26654v2,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Aligning LLM-Simulated and Human Examinees for Psychometric Calibration: A Cogni,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26317v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: When benchmark inferences do not compose: Projectibility in AI evaluation,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26159v1,Research paper with educational AI resource,,benchmark,Yes,2026-08-01
+ArXiv: Towards Trustworthy Embodied Intelligence: A Systems Framework and Graded Trustw,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26121v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
+ArXiv: Detecting CSAM Text-to-Image LoRAs From Weights,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.25750v1,Research paper with educational AI resource,,research_paper,Yes,2026-08-01
 GitHub transformers: Release v5.14.0,GitHub - huggingface,2026-07-15,,Released,https://github.com/huggingface/transformers/releases/tag/v5.14.0,"# Release v5.14.0
 
 ## New Model additions
