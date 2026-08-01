@@ -4,9 +4,12 @@
 const state = {
   resources: [],
   filtered: [],
+  comingSoon: [],
+  comingSoonFiltered: [],
   sortBy: null,
   sortAsc: true,
-  scannedAt: new Date().toISOString()
+  scannedAt: new Date().toISOString(),
+  activeTab: 'current' // 'current' or 'coming'
 };
 
 const els = {
@@ -336,5 +339,124 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
   });
 });
 
+function loadComingSoon() {
+  fetch('data/k12_datasets_coming_soon.csv')
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.text();
+    })
+    .then(csv => {
+      const lines = csv.trim().split('\n');
+      if (lines.length < 2) {
+        state.comingSoon = [];
+        return;
+      }
+
+      const headers = parseCSVLine(lines[0]);
+      state.comingSoon = lines.slice(1).map((line, idx) => {
+        const values = parseCSVLine(line);
+        const row = {};
+        headers.forEach((h, i) => {
+          row[h] = values[i] || '';
+        });
+
+        return {
+          id: `coming-${idx}`,
+          title: row.resource_name || 'Untitled',
+          organization: row.organization || '',
+          announcementDate: row.announcement_date || '',
+          expectedReleaseDate: row.expected_release_date || '',
+          status: row.status || '',
+          url: row.source_url || '',
+          description: row.description || '',
+          sourceType: row.source_type || '',
+          previewAvailable: row.preview_available || 'No',
+          lastUpdated: row.last_updated || ''
+        };
+      });
+
+      console.log(`Loaded ${state.comingSoon.length} coming soon resources`);
+    })
+    .catch(err => {
+      console.error('Coming soon load error:', err);
+      state.comingSoon = [];
+    });
+}
+
+function switchTab(tabName) {
+  state.activeTab = tabName;
+
+  // Update button states
+  document.getElementById('tab-current').classList.toggle('active', tabName === 'current');
+  document.getElementById('tab-coming').classList.toggle('active', tabName === 'coming');
+
+  if (tabName === 'coming') {
+    renderComingSoon();
+  } else {
+    applyFilters();
+  }
+}
+
+function renderComingSoon() {
+  const counts = {
+    total: state.comingSoon.length,
+    bySource: {}
+  };
+
+  state.comingSoon.forEach(r => {
+    counts.bySource[r.sourceType] = (counts.bySource[r.sourceType] || 0) + 1;
+  });
+
+  if (els.viewTitle) {
+    els.viewTitle.textContent = counts.total ? `${counts.total} Upcoming K-12 Resources` : 'No upcoming resources tracked yet';
+  }
+
+  if (els.scanMeta) {
+    const sourceBreakdown = Object.entries(counts.bySource)
+      .map(([source, count]) => `${count} ${source}`)
+      .join(', ');
+    els.scanMeta.textContent = sourceBreakdown || 'Monitoring for announcements...';
+  }
+
+  if (!counts.total) {
+    if (els.resultsList) {
+      els.resultsList.innerHTML = '<div class="empty-state"><h2>No upcoming datasets announced yet.</h2><p>Check back soon for announcements from DrivenData, K-12 AI Infrastructure, and other partners.</p></div>';
+    }
+    return;
+  }
+
+  if (els.resultsList) {
+    els.resultsList.innerHTML = state.comingSoon.map(renderComingSoonRow).join('');
+  }
+}
+
+function renderComingSoonRow(r) {
+  const statusBadge = `<span style="color: #b67612; font-size: 0.85em;">📢 ${r.status}</span>`;
+  const releaseDate = r.expectedReleaseDate ? `Expected: ${r.expectedReleaseDate}` : 'TBA';
+
+  return `
+    <article class="result-row">
+      <div class="table-cell opportunity-cell">
+        <p class="opportunity-title">
+          ${r.url ? `<a href="${esc(r.url)}" target="_blank">${esc(r.title)}</a>` : esc(r.title)}
+        </p>
+        <p class="meta">${statusBadge}</p>
+      </div>
+      <div class="table-cell">${esc(r.sourceType)}</div>
+      <div class="table-cell">${esc(r.organization)}</div>
+      <div class="table-cell">${releaseDate}</div>
+      <div class="table-cell">${r.previewAvailable === 'Yes' ? '✓ Preview' : '—'}</div>
+      <div class="table-cell description-cell">
+        ${esc(r.description.slice(0, 80))}
+      </div>
+    </article>
+  `;
+}
+
 // Load on page load
 loadInventory();
+loadComingSoon();
+
+// Tab switching
+document.getElementById('tab-current')?.addEventListener('click', () => switchTab('current'));
+document.getElementById('tab-coming')?.addEventListener('click', () => switchTab('coming'));

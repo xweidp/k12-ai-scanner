@@ -107,6 +107,14 @@
 
       <section class="workspace">
         <header class="toolbar">
+          <div class="tab-switcher" role="tablist">
+            <button type="button" class="tab-button active" id="tab-current" role="tab" aria-selected="true" aria-controls="panel-current">
+              📊 Current Datasets
+            </button>
+            <button type="button" class="tab-button" id="tab-coming" role="tab" aria-selected="false" aria-controls="panel-coming">
+              🔮 Coming Soon
+            </button>
+          </div>
           <div class="filter-group" role="group" aria-label="Minimum fit">
             <button type="button" class="chip active" data-min-fit="0">All</button>
             <button type="button" class="chip" data-min-fit="70">70+</button>
