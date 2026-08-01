@@ -31,7 +31,7 @@ CURATED_COMING_SOON = [
         'name': 'Google Classroom AI Dataset',
         'org': 'Google',
         'date': '2026-08-30',
-        'url': 'https://google.com/education/',
+        'url': 'https://edu.google.com/',
         'type': 'dataset',
         'desc': 'Anonymized student learning data from Google Classroom'
     },

@@ -1,7 +1,7 @@
 resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
 DrivenData: Math Problem Solving Challenge,DrivenData,2026-08-01,2026-08-15,Expected Release,https://www.drivendata.org/competitions/,AI challenge for K-12 math problem datasets,,competition,Yes,2026-08-01
 OpenAI K-12 Education Benchmark,OpenAI,2026-08-01,2026-09-01,Expected Release,https://openai.com/research/,New benchmark for K-12 educational AI evaluation,,benchmark,Yes,2026-08-01
-Google Classroom AI Dataset,Google,2026-08-01,2026-08-30,Expected Release,https://google.com/education/,Anonymized student learning data from Google Classroom,,dataset,Yes,2026-08-01
+Google Classroom AI Dataset,Google,2026-08-01,2026-08-30,Expected Release,https://edu.google.com/,Anonymized student learning data from Google Classroom,,dataset,Yes,2026-08-01
 NSF EAGER: Student Success Dataset,NSF,2026-08-01,2026-09-15,Expected Release,https://nsf.gov/funding/,NSF-funded research dataset on student success factors,,dataset,Yes,2026-08-01
 EdTech Consortium: Learning Analytics Corpus,EdTech Consortium,2026-08-01,2026-10-01,Expected Release,https://edtech-consortium.org/,Multi-institutional learning analytics dataset,,dataset,Yes,2026-08-01
 MIT Media Lab: K-12 AI Learning Dataset,MIT Media Lab,2026-08-01,2026-09-20,Expected Release,https://media.mit.edu/,Research dataset on AI literacy and learning,,dataset,Yes,2026-08-01
