@@ -70,17 +70,16 @@ function loadInventory() {
       return r.text();
     })
     .then(csv => {
-      const lines = csv.trim().split('\n');
-      if (lines.length < 2) {
+      const rows = parseFullCSV(csv);
+      if (rows.length < 2) {
         showError('CSV file is empty');
         return;
       }
 
-      const headers = parseCSVLine(lines[0]);
+      const headers = rows[0];
       console.log('CSV Headers:', headers);
 
-      state.resources = lines.slice(1).map((line, idx) => {
-        const values = parseCSVLine(line);
+      state.resources = rows.slice(1).map((values, idx) => {
         const row = {};
         headers.forEach((h, i) => {
           row[h] = values[i] || '';
@@ -339,6 +338,56 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
   });
 });
 
+// Parse full CSV respecting multiline quoted fields
+function parseFullCSV(csvText) {
+  const rows = [];
+  let row = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < csvText.length; i++) {
+    const char = csvText[i];
+    const nextChar = csvText[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && nextChar === '"') {
+        // Escaped quote
+        current += '"';
+        i++;
+      } else {
+        // Toggle quote state
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      // Field separator
+      row.push(current.trim().replace(/^"(.*)"$/s, '$1'));
+      current = '';
+    } else if ((char === '\n' || char === '\r') && !inQuotes) {
+      // Row separator
+      if (current || row.length) {
+        row.push(current.trim().replace(/^"(.*)"$/s, '$1'));
+        if (row.some(v => v)) {
+          rows.push(row);
+        }
+        row = [];
+        current = '';
+      }
+      if (char === '\r' && nextChar === '\n') i++;
+    } else {
+      current += char;
+    }
+  }
+
+  if (current || row.length) {
+    row.push(current.trim().replace(/^"(.*)"$/s, '$1'));
+    if (row.some(v => v)) {
+      rows.push(row);
+    }
+  }
+
+  return rows;
+}
+
 function loadComingSoon() {
   fetch('data/k12_datasets_coming_soon.csv?' + Date.now())
     .then(r => {
@@ -346,15 +395,14 @@ function loadComingSoon() {
       return r.text();
     })
     .then(csv => {
-      const lines = csv.trim().split('\n');
-      if (lines.length < 2) {
+      const rows = parseFullCSV(csv);
+      if (rows.length < 2) {
         state.comingSoon = [];
         return;
       }
 
-      const headers = parseCSVLine(lines[0]);
-      state.comingSoon = lines.slice(1).map((line, idx) => {
-        const values = parseCSVLine(line);
+      const headers = rows[0];
+      state.comingSoon = rows.slice(1).map((values, idx) => {
         const row = {};
         headers.forEach((h, i) => {
           row[h] = values[i] || '';
@@ -376,6 +424,9 @@ function loadComingSoon() {
       });
 
       console.log(`Loaded ${state.comingSoon.length} coming soon resources`);
+      if (state.comingSoon.length > 0) {
+        console.log('Sample:', state.comingSoon[0]);
+      }
     })
     .catch(err => {
       console.error('Coming soon load error:', err);
