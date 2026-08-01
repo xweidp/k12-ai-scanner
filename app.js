@@ -402,30 +402,28 @@ function loadComingSoon() {
       }
 
       const headers = rows[0];
-      state.comingSoon = rows.slice(1).map((values, idx) => {
-        const row = {};
-        headers.forEach((h, i) => {
-          row[h] = values[i] || '';
-        });
+      state.comingSoon = rows.slice(1)
+        .map((values, idx) => {
+          const row = {};
+          headers.forEach((h, i) => {
+            row[h] = values[i] || '';
+          });
 
-        if (idx < 3) {
-          console.log(`Row ${idx}:`, { resource_name: row.resource_name, values_len: values.length, headers_len: headers.length });
-        }
-
-        return {
-          id: `coming-${idx}`,
-          title: row.resource_name || 'Untitled',
-          organization: row.organization || '',
-          announcementDate: row.announcement_date || '',
-          expectedReleaseDate: row.expected_release_date || '',
-          status: row.status || '',
-          url: row.source_url || '',
-          description: row.description || '',
-          sourceType: row.source_type || '',
-          previewAvailable: row.preview_available || 'No',
-          lastUpdated: row.last_updated || ''
-        };
-      });
+          return {
+            id: `coming-${idx}`,
+            title: row.resource_name || 'Untitled',
+            organization: row.organization || '',
+            announcementDate: row.announcement_date || '',
+            expectedReleaseDate: row.expected_release_date || '',
+            status: row.status || '',
+            url: row.source_url || '',
+            description: row.description || '',
+            sourceType: row.source_type || '',
+            previewAvailable: row.preview_available || 'No',
+            lastUpdated: row.last_updated || ''
+          };
+        })
+        .filter(r => r.title !== 'Untitled' && r.url && r.expectedReleaseDate);
 
       console.log(`Loaded ${state.comingSoon.length} coming soon resources`);
       if (state.comingSoon.length > 0) {
