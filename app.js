@@ -408,6 +408,10 @@ function loadComingSoon() {
           row[h] = values[i] || '';
         });
 
+        if (idx < 3) {
+          console.log(`Row ${idx}:`, { resource_name: row.resource_name, values_len: values.length, headers_len: headers.length });
+        }
+
         return {
           id: `coming-${idx}`,
           title: row.resource_name || 'Untitled',
