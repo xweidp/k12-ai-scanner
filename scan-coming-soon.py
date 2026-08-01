@@ -9,8 +9,17 @@ import requests
 from datetime import datetime
 import time
 
-# CURATED LIST DISABLED - Only auto-discovered resources with real links
-CURATED_COMING_SOON = []
+# Real competitions with verified working links
+CURATED_COMING_SOON = [
+    {
+        'name': 'DrivenData: K-12 Education Competitions',
+        'org': 'DrivenData',
+        'date': '',
+        'url': 'https://www.drivendata.org/competitions/',
+        'type': 'competition',
+        'desc': 'Open data science competitions focused on education and K-12 AI'
+    }
+]
 
 def scan_arxiv_papers():
     """Scan ArXiv for K-12 education AI papers with datasets"""

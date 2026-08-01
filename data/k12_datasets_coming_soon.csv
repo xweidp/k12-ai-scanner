@@ -1,4 +1,5 @@
 resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
+DrivenData: K-12 Education Competitions,DrivenData,2026-08-01,,Expected Release,https://www.drivendata.org/competitions/,Open data science competitions focused on education and K-12 AI,,competition,Yes,2026-08-01
 ArXiv: Aligning LLM-Simulated and Human Examinees for Psychometric Calibration: A Cogni,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26317v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
 "ArXiv: IKS-Instruct: A 24,000-Example Multilingual Dataset for Teaching Language Models",ArXiv,2026-07-25,,Published,https://arxiv.org/abs/2607.23322v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
 ArXiv: AI Assistants Overassist,ArXiv,2026-07-23,,Published,https://arxiv.org/abs/2607.21306v1,Research paper with educational dataset or benchmark,,research_paper,Yes,2026-08-01
