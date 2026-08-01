@@ -1,3 +1,5 @@
 resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
-DrivenData Education Competitions,DrivenData,2026-08-01,,Active,https://www.drivendata.org/competitions/,Browse current and upcoming data competitions,,competition,Yes,2026-08-01
+DrivenData Education Competitions,DrivenData,2026-08-01,,Active,https://www.drivendata.org/competitions/,Open data science competitions including education AI challenges,,competition,Yes,2026-08-01
 K-12 AI Infrastructure Datasets,K-12 AI Infrastructure,2026-08-01,,Available,https://platform.k12-ai-infrastructure.org/datasets/,Official K-12 AI datasets and resources platform,,platform,Yes,2026-08-01
+Stanford AI/Education News,Stanford,2026-08-01,,Check Website,https://hai.stanford.edu/news,"Research announcements on: education, ai",,research_institution,Yes,2026-08-01
+CMU AI/Education News,CMU,2026-08-01,,Check Website,https://www.cs.cmu.edu/news,Research announcements on: education,,research_institution,Yes,2026-08-01
