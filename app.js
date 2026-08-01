@@ -64,7 +64,7 @@ function parseCSVLine(line) {
 
 // Load and parse CSV
 function loadInventory() {
-  fetch('data/k12_inventory_latest.csv')
+  fetch('data/k12_inventory_latest.csv?' + Date.now())
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.text();
@@ -340,7 +340,7 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
 });
 
 function loadComingSoon() {
-  fetch('data/k12_datasets_coming_soon.csv')
+  fetch('data/k12_datasets_coming_soon.csv?' + Date.now())
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.text();
