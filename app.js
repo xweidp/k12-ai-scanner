@@ -423,7 +423,7 @@ function loadComingSoon() {
             lastUpdated: row.last_updated || ''
           };
         })
-        .filter(r => r.title !== 'Untitled' && r.url && r.expectedReleaseDate);
+        .filter(r => r.title !== 'Untitled' && r.url);
 
       console.log(`Loaded ${state.comingSoon.length} coming soon resources`);
       if (state.comingSoon.length > 0) {
@@ -485,7 +485,7 @@ function renderComingSoon() {
 
 function renderComingSoonRow(r) {
   const statusBadge = `<span style="color: #b67612; font-size: 0.85em;">📢 ${r.status}</span>`;
-  const releaseDate = r.expectedReleaseDate ? `Expected: ${r.expectedReleaseDate}` : 'TBA';
+  const releaseDate = r.expectedReleaseDate ? `Expected: ${r.expectedReleaseDate}` : `Published: ${r.announcementDate || 'Available'}`;
 
   return `
     <article class="result-row">
