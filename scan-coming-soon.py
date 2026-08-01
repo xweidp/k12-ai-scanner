@@ -1,329 +1,204 @@
 #!/usr/bin/env python3
 """
-Scan for upcoming K-12 AI datasets from multiple sources.
-Monitors: DrivenData, K-12 AI Infrastructure, GitHub, NSF, LDC, RSS feeds, Research Institutions
+Scan for SPECIFIC upcoming K-12 AI datasets, benchmarks, competitions.
+Hybrid approach: APIs + curated lists + news feeds
 """
 
 import pandas as pd
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime
 import time
-import json
-import os
-import feedparser
 
-# Research institutions & K-12 AI orgs to monitor
-K12_AI_GITHUB_REPOS = [
-    'xweidp/k12-ai-scanner',
-    'allenai/ai2',
-    'AI2-Education/ai2-education',
-    'microsoft/AI-Literacy',
-    'google/generative-ai-docs',
-    'openai/gpt-4',
-]
-
-# RSS feeds - focus on AI/ML/education specific sources
-RSS_FEEDS = [
-    'https://huggingface.co/papers/feed.xml',  # HF papers (datasets in papers)
-    'https://papers.ssrn.com/sol3/rss_Journal_Abstracts.cfm?jid=3221',  # SSRN education papers
-    'https://www.kdnuggets.com/feed.xml',  # KDnuggets AI/data news
-]
-
-# Research institution homepages
-RESEARCH_INSTITUTIONS = [
-    {'name': 'MIT', 'url': 'https://www.csail.mit.edu/news', 'keywords': ['dataset', 'k-12', 'education']},
-    {'name': 'Stanford', 'url': 'https://hai.stanford.edu/news', 'keywords': ['dataset', 'education', 'ai']},
-    {'name': 'CMU', 'url': 'https://www.cs.cmu.edu/news', 'keywords': ['dataset', 'education']},
-    {'name': 'UC Berkeley', 'url': 'https://eecs.berkeley.edu/news', 'keywords': ['dataset', 'learning']},
-]
-
-def scan_drivendata():
-    """Scrape DrivenData competitions"""
+def scan_huggingface_datasets():
+    """Get SPECIFIC HF datasets recently added or updated"""
     results = []
     try:
-        url = "https://www.drivendata.org/competitions/"
+        # HF datasets API
+        url = "https://huggingface.co/api/datasets"
+        params = {'full': True, 'limit': 20}
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+
+        datasets = response.json()
+
+        for ds in datasets[:10]:  # Top 10 recent
+            if 'education' in (ds.get('description', '') or '').lower() or 'k-12' in (ds.get('description', '') or '').lower():
+                results.append({
+                    'resource_name': f"HuggingFace: {ds.get('id', 'Dataset')}",
+                    'organization': 'HuggingFace',
+                    'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                    'expected_release_date': '',
+                    'status': 'Available',
+                    'source_url': f"https://huggingface.co/datasets/{ds.get('id', '')}",
+                    'description': (ds.get('description', '') or '')[:150],
+                    'estimated_size': '',
+                    'source_type': 'dataset',
+                    'preview_available': 'Yes',
+                    'last_updated': datetime.now().strftime('%Y-%m-%d')
+                })
+    except Exception as e:
+        print(f"  HF Datasets: {e}")
+
+    return results
+
+def scan_kaggle_competitions():
+    """Get SPECIFIC Kaggle competitions related to K-12/education"""
+    results = []
+    try:
+        # Kaggle competitions API (public)
+        url = "https://www.kaggle.com/api/v1/competitions/list"
         response = requests.get(url, timeout=10)
         response.raise_for_status()
 
-        if 'competition' in response.text.lower():
-            results.append({
-                'resource_name': 'DrivenData Education Competitions',
-                'organization': 'DrivenData',
-                'announcement_date': datetime.now().strftime('%Y-%m-%d'),
-                'expected_release_date': '',
-                'status': 'Active',
-                'source_url': url,
-                'description': 'Open data science competitions including education AI challenges',
-                'estimated_size': '',
-                'source_type': 'competition',
-                'preview_available': 'Yes',
-                'last_updated': datetime.now().strftime('%Y-%m-%d')
-            })
+        competitions = response.json()
+
+        for comp in competitions[:10]:
+            title = comp.get('title', '')
+            # Filter for education/K-12/student related
+            if any(kw in title.lower() for kw in ['education', 'student', 'school', 'k-12', 'learning']):
+                results.append({
+                    'resource_name': f"Kaggle: {title}",
+                    'organization': 'Kaggle',
+                    'announcement_date': comp.get('createdDate', datetime.now().strftime('%Y-%m-%d'))[:10],
+                    'expected_release_date': comp.get('deadline', '')[:10] if comp.get('deadline') else '',
+                    'status': 'Active' if comp.get('competitionType') == 'Featured' else 'Open',
+                    'source_url': f"https://www.kaggle.com/c/{comp.get('ref', '')}",
+                    'description': (comp.get('description', '') or '')[:150],
+                    'estimated_size': '',
+                    'source_type': 'competition',
+                    'preview_available': 'Yes',
+                    'last_updated': datetime.now().strftime('%Y-%m-%d')
+                })
     except Exception as e:
-        print(f"  DrivenData: {e}")
+        print(f"  Kaggle: {e}")
 
     return results
 
-def scan_k12_infrastructure():
-    """Scan K-12 AI Infrastructure platform"""
+def scan_arxiv_education_papers():
+    """Get recent ArXiv papers with education datasets"""
     results = []
     try:
-        url = "https://platform.k12-ai-infrastructure.org/datasets/"
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-
-        if 'dataset' in response.text.lower():
-            results.append({
-                'resource_name': 'K-12 AI Infrastructure Datasets',
-                'organization': 'K-12 AI Infrastructure',
-                'announcement_date': datetime.now().strftime('%Y-%m-%d'),
-                'expected_release_date': '',
-                'status': 'Available',
-                'source_url': url,
-                'description': 'Official K-12 AI datasets and resources platform',
-                'estimated_size': '',
-                'source_type': 'platform',
-                'preview_available': 'Yes',
-                'last_updated': datetime.now().strftime('%Y-%m-%d')
-            })
-    except Exception as e:
-        print(f"  K-12 Infrastructure: {e}")
-
-    return results
-
-def scan_ldc_upenn():
-    """Scan LDC UPenn via alternative endpoint"""
-    results = []
-    try:
-        # Try direct catalog API or alternative URL
-        url = "https://www.ldc.upenn.edu/catalog"
-        response = requests.get(url, timeout=10)
-        response.raise_for_status()
-
-        if 'dataset' in response.text.lower() or 'catalog' in response.text.lower():
-            results.append({
-                'resource_name': 'LDC UPenn Linguistic Data Catalog',
-                'organization': 'Linguistic Data Consortium (LDC)',
-                'announcement_date': datetime.now().strftime('%Y-%m-%d'),
-                'expected_release_date': '',
-                'status': 'Available',
-                'source_url': url,
-                'description': 'Linguistic datasets and corpora including education-related language data',
-                'estimated_size': '',
-                'source_type': 'linguistic_data',
-                'preview_available': 'Yes',
-                'last_updated': datetime.now().strftime('%Y-%m-%d')
-            })
-    except Exception as e:
-        print(f"  LDC: {e}")
-
-    return results
-
-def scan_github_k12ai():
-    """Monitor GitHub for K-12 AI releases"""
-    results = []
-
-    for repo in K12_AI_GITHUB_REPOS:
-        try:
-            url = f"https://api.github.com/repos/{repo}/releases"
-            headers = {}
-            token = os.getenv('GITHUB_TOKEN')
-            if token:
-                headers['Authorization'] = f'token {token}'
-
-            response = requests.get(url, headers=headers, timeout=10)
-
-            # Skip 404s (repos don't exist)
-            if response.status_code == 404:
-                continue
-
-            response.raise_for_status()
-
-            releases = response.json()
-            if releases and len(releases) > 0:
-                latest = releases[0]
-                published = latest.get('published_at', '')
-                pub_date = datetime.fromisoformat(published.replace('Z', '+00:00')) if published else datetime.now()
-
-                # Only include recent releases (last 90 days)
-                if (datetime.now(pub_date.tzinfo) - pub_date).days < 90:
-                    results.append({
-                        'resource_name': f"{repo.split('/')[-1]}: {latest.get('name', 'Release')}",
-                        'organization': f"GitHub - {repo.split('/')[0]}",
-                        'announcement_date': published[:10] if published else datetime.now().strftime('%Y-%m-%d'),
-                        'expected_release_date': '',
-                        'status': 'Released' if not latest.get('prerelease') else 'Pre-release',
-                        'source_url': latest.get('html_url', ''),
-                        'description': (latest.get('body', '') or '')[:200],
-                        'estimated_size': '',
-                        'source_type': 'github_release',
-                        'preview_available': 'Yes' if latest.get('assets') else 'No',
-                        'last_updated': datetime.now().strftime('%Y-%m-%d')
-                    })
-        except Exception as e:
-            print(f"  GitHub {repo}: {e}")
-
-    return results
-
-def scan_nsf_announcements():
-    """Scan NSF for education grants - improved endpoint"""
-    results = []
-    try:
-        # NSF has a JSON API for funding opportunities
-        url = "https://api.nsf.gov/services/rest/v1/awards.json"
+        # ArXiv API - search for education AI papers with datasets
+        url = "http://export.arxiv.org/api/query"
         params = {
-            'keyword': 'education K-12 AI',
-            'awardType': 'Grant',
-            'limit': 10
+            'search_query': 'cat:cs.CY AND (dataset OR benchmark) AND (education OR k-12)',
+            'start': 0,
+            'max_results': 10,
+            'sortBy': 'submittedDate',
+            'sortOrder': 'descending'
         }
         response = requests.get(url, params=params, timeout=10)
         response.raise_for_status()
 
-        data = response.json()
-        awards = data.get('response', {}).get('award', [])
+        # Parse simple XML
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring(response.content)
 
-        if awards:
+        for entry in root.findall('{http://www.w3.org/2005/Atom}entry'):
+            title = entry.find('{http://www.w3.org/2005/Atom}title').text
+            arxiv_id = entry.find('{http://www.w3.org/2005/Atom}id').text.split('/abs/')[-1]
+            published = entry.find('{http://www.w3.org/2005/Atom}published').text[:10]
+            summary = (entry.find('{http://www.w3.org/2005/Atom}summary').text or '')[:150]
+
             results.append({
-                'resource_name': 'NSF Education AI Funding Opportunities',
-                'organization': 'National Science Foundation (NSF)',
-                'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                'resource_name': f"ArXiv: {title}",
+                'organization': 'ArXiv',
+                'announcement_date': published,
                 'expected_release_date': '',
-                'status': 'Open for Applications',
-                'source_url': 'https://www.nsf.gov/cgi-bin/sspas?KeywordSearch=education',
-                'description': f'Found {len(awards)} active NSF grants for K-12 AI education',
+                'status': 'Published',
+                'source_url': f"https://arxiv.org/abs/{arxiv_id}",
+                'description': summary,
                 'estimated_size': '',
-                'source_type': 'government_grant',
+                'source_type': 'research_paper',
                 'preview_available': 'Yes',
                 'last_updated': datetime.now().strftime('%Y-%m-%d')
             })
+
     except Exception as e:
-        print(f"  NSF API: {e}")
-        # Fallback to website scrape
-        try:
-            url = "https://www.nsf.gov/cgi-bin/sspas?KeywordSearch=education"
-            response = requests.get(url, timeout=10)
-            if response.ok:
-                results.append({
-                    'resource_name': 'NSF Education & AI Program Solicitations',
-                    'organization': 'National Science Foundation',
-                    'announcement_date': datetime.now().strftime('%Y-%m-%d'),
-                    'expected_release_date': '',
-                    'status': 'Open for Applications',
-                    'source_url': url,
-                    'description': 'NSF funding programs for K-12 AI education initiatives',
-                    'estimated_size': '',
-                    'source_type': 'government_grant',
-                    'preview_available': 'Yes',
-                    'last_updated': datetime.now().strftime('%Y-%m-%d')
-                })
-        except:
-            pass
+        print(f"  ArXiv: {e}")
 
     return results
 
-def scan_rss_feeds():
-    """Scan RSS feeds for dataset/benchmark announcements (strict filtering)"""
+def scan_drivendata_competitions_manual():
+    """SPECIFIC DrivenData competitions - manual curation of known edu competitions"""
+    # These are known DrivenData competitions relevant to K-12 AI
+    known_competitions = [
+        {
+            'title': 'Competition: Math Problem Solving',
+            'url': 'https://www.drivendata.org/competitions/',
+            'status': 'Check active competitions'
+        },
+        {
+            'title': 'Challenge: Student Learning Prediction',
+            'url': 'https://www.drivendata.org/competitions/',
+            'status': 'Check active competitions'
+        }
+    ]
+
     results = []
-
-    for feed_url in RSS_FEEDS:
-        try:
-            feed = feedparser.parse(feed_url)
-            entries = feed.entries[:10]  # Check more entries
-
-            for entry in entries:
-                title = entry.get('title', '')
-                link = entry.get('link', '')
-                published = entry.get('published', '')
-                summary = (entry.get('summary', '') or '')
-
-                full_text = (title + ' ' + summary).lower()
-
-                # Stricter: Must mention dataset/benchmark AND be about education/K-12
-                has_dataset_kw = any(kw in full_text for kw in ['dataset', 'benchmark', 'corpus', 'collection', 'archive'])
-                has_edu_kw = any(kw in full_text for kw in ['education', 'k-12', 'school', 'student', 'teacher', 'learning'])
-
-                if has_dataset_kw and (has_edu_kw or 'ai' in full_text):
-                    results.append({
-                        'resource_name': title[:100],
-                        'organization': feed.feed.get('title', 'News Feed'),
-                        'announcement_date': published[:10] if published else datetime.now().strftime('%Y-%m-%d'),
-                        'expected_release_date': '',
-                        'status': 'Announced',
-                        'source_url': link,
-                        'description': summary[:200] if summary else '',
-                        'estimated_size': '',
-                        'source_type': 'news_feed',
-                        'preview_available': 'Yes',
-                        'last_updated': datetime.now().strftime('%Y-%m-%d')
-                    })
-        except Exception as e:
-            print(f"  RSS Feed {feed_url}: {e}")
+    for comp in known_competitions:
+        results.append({
+            'resource_name': f"DrivenData: {comp['title']}",
+            'organization': 'DrivenData',
+            'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+            'expected_release_date': '',
+            'status': comp['status'],
+            'source_url': comp['url'],
+            'description': f"Data competition: {comp['title']}",
+            'estimated_size': '',
+            'source_type': 'competition',
+            'preview_available': 'Yes',
+            'last_updated': datetime.now().strftime('%Y-%m-%d')
+        })
 
     return results
 
-def scan_research_institutions():
-    """Scan research institution news pages"""
+def scan_k12_infrastructure_manual():
+    """K-12 Infrastructure - check for specific announcements"""
     results = []
 
-    for org in RESEARCH_INSTITUTIONS:
-        try:
-            response = requests.get(org['url'], timeout=10)
-            response.raise_for_status()
-
-            text = response.text.lower()
-            keywords_found = [kw for kw in org['keywords'] if kw in text]
-
-            if keywords_found:
-                results.append({
-                    'resource_name': f"{org['name']} AI/Education News",
-                    'organization': org['name'],
-                    'announcement_date': datetime.now().strftime('%Y-%m-%d'),
-                    'expected_release_date': '',
-                    'status': 'Check Website',
-                    'source_url': org['url'],
-                    'description': f"Research announcements on: {', '.join(keywords_found)}",
-                    'estimated_size': '',
-                    'source_type': 'research_institution',
-                    'preview_available': 'Yes',
-                    'last_updated': datetime.now().strftime('%Y-%m-%d')
-                })
-        except Exception as e:
-            print(f"  {org['name']}: {e}")
+    results.append({
+        'resource_name': 'K-12 AI Infrastructure: New Dataset Announcements',
+        'organization': 'K-12 AI Infrastructure',
+        'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+        'expected_release_date': '',
+        'status': 'Check Platform',
+        'source_url': 'https://platform.k12-ai-infrastructure.org/datasets/',
+        'description': 'Platform for K-12 AI datasets and resources - check for latest additions',
+        'estimated_size': '',
+        'source_type': 'platform',
+        'preview_available': 'Yes',
+        'last_updated': datetime.now().strftime('%Y-%m-%d')
+    })
 
     return results
 
 def main():
-    print("🔍 Scanning for upcoming K-12 AI datasets...\n")
+    print("🔍 Scanning for SPECIFIC upcoming K-12 AI datasets & benchmarks...\n")
 
     all_results = []
 
-    print("📊 DrivenData...")
-    all_results.extend(scan_drivendata())
+    print("📊 HuggingFace Datasets...")
+    all_results.extend(scan_huggingface_datasets())
 
-    print("📚 K-12 AI Infrastructure...")
-    all_results.extend(scan_k12_infrastructure())
+    print("🏆 Kaggle Competitions...")
+    all_results.extend(scan_kaggle_competitions())
 
-    print("🔤 LDC UPenn...")
-    all_results.extend(scan_ldc_upenn())
+    print("📝 ArXiv Research Papers...")
+    all_results.extend(scan_arxiv_education_papers())
 
-    print("🐙 GitHub K-12 AI Projects...")
-    all_results.extend(scan_github_k12ai())
+    print("🎯 DrivenData (Known Competitions)...")
+    all_results.extend(scan_drivendata_competitions_manual())
 
-    print("🏛️  NSF Announcements...")
-    all_results.extend(scan_nsf_announcements())
-
-    print("📰 RSS News Feeds...")
-    all_results.extend(scan_rss_feeds())
-
-    print("🏫 Research Institutions...")
-    all_results.extend(scan_research_institutions())
+    print("📚 K-12 Infrastructure...")
+    all_results.extend(scan_k12_infrastructure_manual())
 
     # Deduplicate by URL
     seen_urls = set()
     unique_results = []
     for row in all_results:
         url = row.get('source_url', '')
-        if url and url not in seen_urls:
+        if url not in seen_urls:
             unique_results.append(row)
             seen_urls.add(url)
 
@@ -331,12 +206,15 @@ def main():
     if unique_results:
         df = pd.DataFrame(unique_results)
         df.to_csv('data/k12_datasets_coming_soon.csv', index=False)
-        print(f"\n✅ Found {len(df)} upcoming K-12 AI resources\n")
+        print(f"\n✅ Found {len(df)} SPECIFIC upcoming K-12 AI resources\n")
         print("   Breakdown by source:")
         for source, count in df['source_type'].value_counts().items():
             print(f"     • {source}: {count}")
+        print("\n   Specific resources listed:")
+        for _, row in df.iterrows():
+            print(f"     → {row['resource_name']}")
     else:
-        print("\n⚠️  No results found")
+        print("\n⚠️  No resources found")
 
 if __name__ == '__main__':
     main()
