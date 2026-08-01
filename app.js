@@ -423,11 +423,24 @@ function loadComingSoon() {
             lastUpdated: row.last_updated || ''
           };
         })
-        .filter(r => r.title !== 'Untitled' && r.url);
 
-      console.log(`Loaded ${state.comingSoon.length} coming soon resources`);
+      console.log('Raw parsed resources:', state.comingSoon.length);
+
+      // Filter out entries with no name or no link
+      state.comingSoon = state.comingSoon.filter(r => {
+        const keep = r.title && r.title !== 'Untitled' && r.url;
+        if (!keep) {
+          console.log('Filtered out:', { title: r.title, url: r.url });
+        }
+        return keep;
+      });
+
+      console.log(`✅ Loaded ${state.comingSoon.length} coming soon resources`);
       if (state.comingSoon.length > 0) {
         console.log('Sample:', state.comingSoon[0]);
+        state.comingSoon.forEach((r, i) => {
+          console.log(`  ${i+1}. "${r.title}" - ${r.url ? '✓' : '✗'}`);
+        });
       }
     })
     .catch(err => {
