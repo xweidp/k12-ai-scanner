@@ -138,6 +138,39 @@ def scan_huggingface_datasets():
 
     return results
 
+def scan_ldc_rss():
+    """Scan LDC RSS feed for new education-related datasets"""
+    results = []
+    try:
+        import feedparser
+        url = "https://www.ldc.upenn.edu/rss.xml"
+        feed = feedparser.parse(url)
+
+        for entry in feed.entries[:10]:  # Get last 10 releases
+            title = entry.get('title', '')
+            # Filter for education/K-12 related keywords
+            if any(kw in title.lower() for kw in ['education', 'student', 'school', 'k-12', 'learning', 'classroom', 'teacher', 'curriculum']):
+                link = entry.get('link', '')
+                published = entry.get('published', '')[:10] if entry.get('published') else datetime.now().strftime('%Y-%m-%d')
+
+                results.append({
+                    'resource_name': f"LDC: {title[:80]}",
+                    'organization': 'Linguistic Data Consortium',
+                    'announcement_date': published,
+                    'expected_release_date': '',
+                    'status': 'Available',
+                    'source_url': link,
+                    'description': 'Linguistic dataset from LDC',
+                    'estimated_size': '',
+                    'source_type': 'dataset',
+                    'preview_available': 'Yes',
+                    'last_updated': datetime.now().strftime('%Y-%m-%d')
+                })
+    except Exception as e:
+        print(f"  LDC RSS: {e}")
+
+    return results
+
 def scan_huggingface_models():
     """Scan HuggingFace for new education models"""
     results = []
@@ -210,6 +243,10 @@ def main():
     # 5. HUGGINGFACE MODELS
     print("🤖 HuggingFace models...")
     all_results.extend(scan_huggingface_models())
+
+    # 6. LDC RSS FEED
+    print("📚 LDC Linguistic Data Consortium...")
+    all_results.extend(scan_ldc_rss())
 
     # Deduplicate
     seen_urls = set()
