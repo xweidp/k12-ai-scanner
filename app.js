@@ -158,11 +158,8 @@ function applyFilters() {
     if (verification === 'verified' && !isVerified(r)) return false;
     if (verification === 'new' && isVerified(r)) return false;
 
-    // Filter out broken/non-dataset items from newly discovered
-    if (!r.isDownloadable) {
-      filteredOut.push({title: r.title, reason: 'not downloadable', isDownloadable: r.isDownloadable});
-      return false;
-    }
+    // All records are assumed downloadable (v18 verified, K-12 Infrastructure verified)
+    // if (!r.isDownloadable) return false;
 
     return true;
   });
