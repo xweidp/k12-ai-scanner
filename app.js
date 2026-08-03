@@ -115,8 +115,15 @@ function loadInventory() {
       console.log(`Loaded ${state.resources.length} resources`);
       const withDates = state.resources.filter(r => r.publicationDate).length;
       console.log(`Resources with publication dates: ${withDates}`);
-      if (state.resources[0]) {
-        console.log(`Sample resource:`, state.resources[0]);
+
+      // Debug: show Bridge record if found
+      const bridge = state.resources.find(r => r.title && r.title.includes('Bridge'));
+      if (bridge) {
+        console.log(`Bridge found:`, {
+          title: bridge.title,
+          publicationDate: bridge.publicationDate,
+          url: bridge.url
+        });
       }
       applyFilters();
       render();
