@@ -93,15 +93,19 @@
           <p class="helper-text">This dashboard refreshes from generated data covering curated K-12 AI catalogs and resource hubs.</p>
         </section>
 
-        <details class="panel custom-scan">
-          <summary>Custom Search</summary>
-          <label for="bulkInput">Paste resource titles or URLs (one per line)</label>
-          <textarea id="bulkInput" spellcheck="false" placeholder="e.g., GSM8k, Bridge dataset..."></textarea>
-          <div class="button-row">
-            <button id="searchButton" type="button">Search</button>
-            <button id="reloadButton" type="button" class="secondary">Reload Weekly Scan</button>
+        <section class="panel">
+          <h2>Data Sources</h2>
+          <p class="helper-text">Browse directly from key K-12 education AI platforms:</p>
+          <div class="button-row" style="flex-direction: column; gap: 8px;">
+            <a href="https://platform.k12-ai-infrastructure.org/datasets/" target="_blank" style="display: inline-block; padding: 10px; background: #0f7b6c; color: white; border-radius: 6px; text-decoration: none; text-align: center; font-weight: 700;">
+              📊 K-12 AI Infrastructure Datasets
+            </a>
+            <a href="https://www.drivendata.org/competitions/" target="_blank" style="display: inline-block; padding: 10px; background: #0f7b6c; color: white; border-radius: 6px; text-decoration: none; text-align: center; font-weight: 700;">
+              🏆 DrivenData Competitions
+            </a>
           </div>
-        </details>
+        </section>
+
       </aside>
 
       <section class="workspace">
