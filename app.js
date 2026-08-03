@@ -143,8 +143,12 @@ function applyFilters() {
 
   const isVerified = r => r.readinessTier && !r.readinessTier.includes('Not Reviewed');
 
+  const filteredOut = [];
   state.filtered = state.resources.filter(r => {
-    if (resourceType !== 'all' && r.resourceType !== resourceType) return false;
+    if (resourceType !== 'all' && r.resourceType !== resourceType) {
+      filteredOut.push({r: r.title, reason: 'resourceType'});
+      return false;
+    }
     if (subject !== 'all' && !r.subjects.includes(subject)) return false;
     if (gradeBand !== 'all' && r.gradeBand !== gradeBand) return false;
     if (source !== 'all' && r.source !== source) return false;
@@ -155,10 +159,17 @@ function applyFilters() {
     if (verification === 'new' && isVerified(r)) return false;
 
     // Filter out broken/non-dataset items from newly discovered
-    if (!r.isDownloadable) return false;
+    if (!r.isDownloadable) {
+      filteredOut.push({title: r.title, reason: 'not downloadable', isDownloadable: r.isDownloadable});
+      return false;
+    }
 
     return true;
   });
+
+  if (filteredOut.length > 0 && filteredOut.length <= 20) {
+    console.log('Filtered out (' + filteredOut.length + '):', filteredOut);
+  }
 
   applySorting();
   populateSelects();
