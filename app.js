@@ -138,7 +138,7 @@ function applyFilters() {
   const subject = els.subjectSelect?.value || 'all';
   const gradeBand = els.gradeBandSelect?.value || 'all';
   const source = els.sourceSelect?.value || 'all';
-  const verification = els.verificationSelect?.value || 'verified';
+  const verification = els.verificationSelect?.value || 'all';
   const licenseOpen = els.licenseToggle?.checked;
 
   const isVerified = r => r.readinessTier && !r.readinessTier.includes('Not Reviewed');
