@@ -64,7 +64,7 @@ function parseCSVLine(line) {
 
 // Load and parse CSV
 function loadInventory() {
-  const v = 'v99-' + Date.now();
+  const v = 'v100-' + Date.now();
   fetch('data/k12_inventory_latest.csv?v=' + v)
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
