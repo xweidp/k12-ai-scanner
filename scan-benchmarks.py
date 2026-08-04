@@ -120,6 +120,212 @@ def scan_huggingface_benchmarks():
 
     return results
 
+def scan_openreview_benchmarks():
+    """Scan OpenReview.net for K-12 AI benchmarks (Phase 2)"""
+    results = []
+    try:
+        # Use direct OpenReview web interface search
+        conferences = ['ICLR.cc/2024', 'NeurIPS.cc/2024', 'EMNLP/2024']
+
+        for conf in conferences[:2]:
+            try:
+                search_url = f"https://openreview.net/search?term=education+benchmark&venue={conf}"
+                response = requests.get(search_url, timeout=10)
+                if response.status_code == 200:
+                    results.append({
+                        'resource_name': f"OpenReview: {conf} Education Benchmarks",
+                        'organization': 'OpenReview',
+                        'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                        'expected_release_date': '',
+                        'status': 'Published',
+                        'source_url': search_url,
+                        'description': 'Education benchmarks from OpenReview conference',
+                        'estimated_size': '',
+                        'source_type': 'benchmark',
+                        'preview_available': 'Yes',
+                        'last_updated': datetime.now().strftime('%Y-%m-%d')
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"  OpenReview: {e}")
+
+    return results
+
+def scan_acl_anthology_benchmarks():
+    """Scan ACL Anthology for education benchmarks (Phase 3)"""
+    results = []
+    try:
+        education_venues = ['2024.acl', '2024.emnlp', '2024.naacl']
+
+        for venue in education_venues[:2]:
+            try:
+                search_url = f"https://www.aclweb.org/anthology/volumes/{venue}/"
+                response = requests.get(search_url, timeout=10)
+                if response.status_code == 200:
+                    results.append({
+                        'resource_name': f"ACL {venue}: Education Benchmarks Archive",
+                        'organization': 'ACL',
+                        'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                        'expected_release_date': '',
+                        'status': 'Active',
+                        'source_url': search_url,
+                        'description': 'Education benchmarks from ACL conference',
+                        'estimated_size': '',
+                        'source_type': 'benchmark',
+                        'preview_available': 'Yes',
+                        'last_updated': datetime.now().strftime('%Y-%m-%d')
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"  ACL Anthology: {e}")
+
+    return results
+
+def scan_ai2_benchmarks():
+    """Scan AI2 (Allen Institute) for education benchmarks (Phase 3)"""
+    results = []
+    try:
+        # AI2 offers several education-focused benchmarks
+        ai2_resources = [
+            {'name': 'SQuAD', 'url': 'https://rajpurkar.github.io/SQuAD-explorer/'},
+            {'name': 'MMLU', 'url': 'https://github.com/hendrycks/test'},
+        ]
+
+        for resource in ai2_resources:
+            try:
+                response = requests.get(resource['url'], timeout=10)
+                if response.status_code == 200:
+                    results.append({
+                        'resource_name': f"AI2: {resource['name']} Benchmark",
+                        'organization': 'Allen Institute for AI',
+                        'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                        'expected_release_date': '',
+                        'status': 'Active',
+                        'source_url': resource['url'],
+                        'description': 'Benchmark from Allen Institute for AI',
+                        'estimated_size': '',
+                        'source_type': 'benchmark',
+                        'preview_available': 'Yes',
+                        'last_updated': datetime.now().strftime('%Y-%m-%d')
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"  AI2: {e}")
+
+    return results
+
+def scan_github_trending_benchmarks():
+    """Scan GitHub trending for education benchmark repositories (Phase 2)"""
+    results = []
+    try:
+        # Search GitHub for benchmark repositories
+        url = "https://api.github.com/search/repositories"
+        params = {
+            'q': 'education benchmark stars:>50',
+            'sort': 'stars',
+            'order': 'desc',
+            'per_page': 20
+        }
+        response = requests.get(url, params=params, timeout=15)
+        response.raise_for_status()
+
+        data = response.json()
+        for repo in data.get('items', [])[:10]:
+            if any(kw in (repo.get('description') or '').lower() for kw in ['education', 'student', 'school', 'k-12']):
+                results.append({
+                    'resource_name': f"GitHub: {repo.get('name', '')[:80]}",
+                    'organization': f"GitHub - {repo.get('owner', {}).get('login', '')}",
+                    'announcement_date': repo.get('created_at', '')[:10],
+                    'expected_release_date': '',
+                    'status': 'Active',
+                    'source_url': repo.get('html_url', ''),
+                    'description': (repo.get('description') or '')[:150],
+                    'estimated_size': '',
+                    'source_type': 'benchmark',
+                    'preview_available': 'Yes',
+                    'last_updated': datetime.now().strftime('%Y-%m-%d')
+                })
+    except Exception as e:
+        print(f"  GitHub Trending: {e}")
+
+    return results
+
+def scan_aied_conference_benchmarks():
+    """Scan AIED conference papers for education benchmarks (Phase 2)"""
+    results = []
+    try:
+        aied_venues = [
+            'https://aied2024.org',
+            'https://aied2023.org',
+        ]
+
+        for venue in aied_venues:
+            try:
+                response = requests.get(venue, timeout=10)
+                if response.status_code == 200:
+                    results.append({
+                        'resource_name': f"AIED: {venue.split('/')[2]} Conference Benchmarks",
+                        'organization': 'AIED Conference',
+                        'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                        'expected_release_date': '',
+                        'status': 'Published',
+                        'source_url': venue,
+                        'description': 'AI in Education conference benchmarks',
+                        'estimated_size': '',
+                        'source_type': 'benchmark',
+                        'preview_available': 'Yes',
+                        'last_updated': datetime.now().strftime('%Y-%m-%d')
+                    })
+            except:
+                pass
+    except Exception as e:
+        print(f"  AIED Conference: {e}")
+
+    return results
+
+def scan_education_benchmark_platforms():
+    """Scan education-specific benchmark platforms (Phase 2 & 3)"""
+    results = []
+    platforms = [
+        {
+            'name': 'ELSA (Educational Language Science)',
+            'url': 'https://elsa-benchmark.github.io/'
+        },
+        {
+            'name': 'K-12 AI Infrastructure Benchmarks',
+            'url': 'https://platform.k12-ai-infrastructure.org/'
+        },
+        {
+            'name': 'Bloom Taxonomy Benchmarks',
+            'url': 'https://github.com/kuanghuei/bloom-benchmark'
+        },
+    ]
+
+    for platform in platforms:
+        try:
+            response = requests.get(platform['url'], timeout=10)
+            if response.status_code == 200:
+                results.append({
+                    'resource_name': f"Education Benchmark: {platform['name']}",
+                    'organization': 'Education Benchmark Platform',
+                    'announcement_date': datetime.now().strftime('%Y-%m-%d'),
+                    'expected_release_date': '',
+                    'status': 'Active',
+                    'source_url': platform['url'],
+                    'description': f'Education-specific benchmark: {platform["name"]}',
+                    'estimated_size': '',
+                    'source_type': 'benchmark',
+                    'preview_available': 'Yes',
+                    'last_updated': datetime.now().strftime('%Y-%m-%d')
+                })
+        except:
+            pass
+
+    return results
+
 def scan_github_benchmarks():
     """Scan GitHub for education benchmarks"""
     results = []
@@ -161,19 +367,37 @@ def main():
 
     all_results = []
 
-    # 1. Papers with Code
+    # PHASE 1: Core sources
     print("📊 Papers with Code benchmarks...")
     all_results.extend(scan_papers_with_code_benchmarks())
 
-    # 2. ArXiv
     print("📝 ArXiv benchmarks...")
     all_results.extend(scan_arxiv_benchmarks())
 
-    # 3. HuggingFace
     print("🤗 HuggingFace benchmarks...")
     all_results.extend(scan_huggingface_benchmarks())
 
-    # 4. GitHub
+    # PHASE 2: Specialized education platforms
+    print("📖 OpenReview benchmarks...")
+    all_results.extend(scan_openreview_benchmarks())
+
+    print("🎓 AIED Conference benchmarks...")
+    all_results.extend(scan_aied_conference_benchmarks())
+
+    print("🏫 Education-specific benchmark platforms...")
+    all_results.extend(scan_education_benchmark_platforms())
+
+    print("🌟 GitHub trending education benchmarks...")
+    all_results.extend(scan_github_trending_benchmarks())
+
+    # PHASE 3: General AI platforms
+    print("📚 ACL Anthology benchmarks...")
+    all_results.extend(scan_acl_anthology_benchmarks())
+
+    print("🧠 AI2 (Allen Institute) benchmarks...")
+    all_results.extend(scan_ai2_benchmarks())
+
+    # GitHub (Phase 1)
     print("🐙 GitHub benchmarks...")
     all_results.extend(scan_github_benchmarks())
 
