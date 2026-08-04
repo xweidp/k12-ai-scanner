@@ -38,6 +38,9 @@ jobs:
       - name: Scan for K-12 AI benchmarks
         run: python3 scan-benchmarks.py
 
+      - name: Scan for K-12 AI data catalogs
+        run: python3 scan-data-catalogs.py
+
       - name: Merge scan results
         run: |
           python3 << 'EOF'
@@ -144,6 +147,24 @@ jobs:
                       })
                       existing_urls.add(url)
 
+          # 4. Load data catalogs
+          if Path('data/k12_data_catalogs_discovered.csv').exists():
+              catalogs = pd.read_csv('data/k12_data_catalogs_discovered.csv')
+              for _, row in catalogs.iterrows():
+                  url = row.get('source_url', '')
+                  if url not in existing_urls:
+                      new_records.append({
+                          'record_id': f"new_{hash(url) % 10000000}",
+                          'resource_name': row.get('resource_name', '')[:100],
+                          'author_name': row.get('organization', ''),
+                          'url': url,
+                          'resource_subtype': 'Data Catalog',
+                          'discovery_date': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
+                          'discovery_source': row.get('organization', 'Scanner'),
+                          'fit_score': 75
+                      })
+                      existing_urls.add(url)
+
           # Merge with inventory
           if new_records:
               new_df = pd.DataFrame(new_records)
@@ -163,6 +184,7 @@ jobs:
               print(f"  - Coming Soon: {len([r for r in new_records if r['resource_subtype'].lower() in ['dataset', 'model', 'competition']])}")
               print(f"  - Leaderboards: {len([r for r in new_records if r['resource_subtype'] == 'Leaderboard'])}")
               print(f"  - Benchmarks: {len([r for r in new_records if r['resource_subtype'] == 'Benchmark'])}")
+              print(f"  - Data Catalogs: {len([r for r in new_records if r['resource_subtype'] == 'Data Catalog'])}")
           else:
               print("No new resources to add")
           EOF
