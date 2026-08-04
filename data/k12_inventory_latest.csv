@@ -191,6 +191,6 @@ new_2737313,OpenReview: NeurIPS.cc/2024 Education Benchmarks,OpenReview,https://
 new_7447196,GitHub: arm-gem5-rsk,GitHub - arm-education,https://github.com/arm-education/arm-gem5-rsk,Benchmark,,,,,,,,,,,,,,,,,,,,,,2026-08-04,GitHub - arm-education,,,68.0,,
 new_189079,AI2: SQuAD Benchmark,Allen Institute for AI,https://rajpurkar.github.io/SQuAD-explorer/,Benchmark,,,,,,,,,,,,,,,,,,,,,,2026-08-04,Allen Institute for AI,,,68.0,,
 new_7462957,AI2: MMLU Benchmark,Allen Institute for AI,https://github.com/hendrycks/test,Benchmark,,,,,,,,,,,,,,,,,,,,,,2026-08-04,Allen Institute for AI,,,68.0,,
-new_1096812,LDC Catalog - Linguistic Data Consortium,University of Pennsylvania,https://catalog.ldc.upenn.edu/search,Data Catalog,,,,,,,,,,,,,,,,,,,,,,2026-08-04,University of Pennsylvania,,,75.0,,
 new_8901205,IEEE DataPort - Open Data Catalog,IEEE,https://ieee-dataport.org,Data Catalog,,,,,,,,,,,,,,,,,,,,,,2026-08-04,IEEE,,,75.0,,
 new_664612,Zenodo - Open Research Data Repository,CERN,https://zenodo.org,Data Catalog,,,,,,,,,,,,,,,,,,,,,,2026-08-04,CERN,,,75.0,,
+new_ldc_search_2024,LDC Catalog - Linguistic Data Consortium Search,University of Pennsylvania,https://catalog.ldc.upenn.edu/search,Data Catalog,,,,,,,,,,,,,,,,,,,,,,2026-08-04,University of Pennsylvania,,,75.0,,

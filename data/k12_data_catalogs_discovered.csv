@@ -1,4 +1,4 @@
 resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
-LDC Catalog - Linguistic Data Consortium,University of Pennsylvania,2026-08-04,,Active,https://catalog.ldc.upenn.edu/search,"Searchable catalog of linguistic datasets for education, speech, NLP",500+ resources,data_catalog,Yes,2026-08-04
+LDC Catalog - Linguistic Data Consortium Search,University of Pennsylvania,2026-08-04,,Active,https://catalog.ldc.upenn.edu/search,"Searchable catalog of 500+ linguistic datasets for education, speech, NLP, language learning",500+ resources,data_catalog,Yes,2026-08-04
 IEEE DataPort - Open Data Catalog,IEEE,2026-08-04,,Active,https://ieee-dataport.org,Searchable catalog of open datasets including education and K-12 AI,1000+ datasets,data_catalog,Yes,2026-08-04
 Zenodo - Open Research Data Repository,CERN,2026-08-04,,Active,https://zenodo.org,Open access research data repository with education and AI datasets,5000+ datasets,data_catalog,Yes,2026-08-04

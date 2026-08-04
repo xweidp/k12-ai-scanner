@@ -68,18 +68,18 @@ def scan_ldc_catalog():
     """Scan LDC Catalog for K-12 education language datasets"""
     results = []
     try:
-        # LDC Catalog - Linguistic data for education
+        # Main LDC Catalog page
         url = "https://catalog.ldc.upenn.edu/search"
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
             results.append({
-                'resource_name': 'LDC Catalog - Linguistic Data Consortium',
+                'resource_name': 'LDC Catalog - Linguistic Data Consortium Search',
                 'organization': 'University of Pennsylvania',
                 'announcement_date': datetime.now().strftime('%Y-%m-%d'),
                 'expected_release_date': '',
                 'status': 'Active',
                 'source_url': url,
-                'description': 'Searchable catalog of linguistic datasets for education, speech, NLP',
+                'description': 'Searchable catalog of 500+ linguistic datasets for education, speech, NLP, language learning',
                 'estimated_size': '500+ resources',
                 'source_type': 'data_catalog',
                 'preview_available': 'Yes',
