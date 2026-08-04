@@ -1,0 +1,19 @@
+resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
+ArXiv: MonitrLLM: A Community-Centered Evaluation Infrastructure for Large Language Mod,ArXiv,2026-08-03,,Published,https://arxiv.org/abs/2608.02409v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: Humans Are More Diverse: Frontier LLMs Show Extreme Policies in Idealised AI Dev,ArXiv,2026-08-02,,Published,https://arxiv.org/abs/2608.01193v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: A Protocol for Evaluating the Accessibility of AI-Generated Educational Material,ArXiv,2026-08-01,,Published,https://arxiv.org/abs/2608.00749v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: The Deployment Wall: A Diagnostic Framework and Instrument for Enterprise AI in ,ArXiv,2026-07-31,,Published,https://arxiv.org/abs/2607.29089v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: Fairness Pruning: Locating Demographic Bias in GLU-MLP Layers via Differential A,ArXiv,2026-07-30,,Published,https://arxiv.org/abs/2607.28319v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: Constitutional Midtraining: Content Presence Drives Alignment Gains,ArXiv,2026-07-29,,Published,https://arxiv.org/abs/2607.26654v2,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: When benchmark inferences do not compose: Projectibility in AI evaluation,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26159v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: Towards Trustworthy Embodied Intelligence: A Systems Framework and Graded Trustw,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.26121v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: The Disruptive Impact of Large Language Models on Capture the Flag Competitions ,ArXiv,2026-07-28,,Published,https://arxiv.org/abs/2607.25425v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+ArXiv: BHARATI: Morphology-Aware Tokenizers for Classical Indian Languages with Subword,ArXiv,2026-07-25,,Published,https://arxiv.org/abs/2607.23319v1,Benchmark from research paper,,benchmark,Yes,2026-08-04
+OpenReview: ICLR.cc/2024 Education Benchmarks,OpenReview,2026-08-04,,Published,https://openreview.net/search?term=education+benchmark&venue=ICLR.cc/2024,Education benchmarks from OpenReview conference,,benchmark,Yes,2026-08-04
+OpenReview: NeurIPS.cc/2024 Education Benchmarks,OpenReview,2026-08-04,,Published,https://openreview.net/search?term=education+benchmark&venue=NeurIPS.cc/2024,Education benchmarks from OpenReview conference,,benchmark,Yes,2026-08-04
+AIED: aied2024.org Conference Benchmarks,AIED Conference,2026-08-04,,Published,https://aied2024.org,AI in Education conference benchmarks,,benchmark,Yes,2026-08-04
+AIED: aied2023.org Conference Benchmarks,AIED Conference,2026-08-04,,Published,https://aied2023.org,AI in Education conference benchmarks,,benchmark,Yes,2026-08-04
+Education Benchmark: K-12 AI Infrastructure Benchmarks,Education Benchmark Platform,2026-08-04,,Active,https://platform.k12-ai-infrastructure.org/,Education-specific benchmark: K-12 AI Infrastructure Benchmarks,,benchmark,Yes,2026-08-04
+GitHub: arm-gem5-rsk,GitHub - arm-education,2017-07-24,,Active,https://github.com/arm-education/arm-gem5-rsk,"Research starter kit for Armv8-A system modeling and benchmarking using the gem5 simulator (education, research)",,benchmark,Yes,2026-08-04
+AI2: SQuAD Benchmark,Allen Institute for AI,2026-08-04,,Active,https://rajpurkar.github.io/SQuAD-explorer/,Benchmark from Allen Institute for AI,,benchmark,Yes,2026-08-04
+AI2: MMLU Benchmark,Allen Institute for AI,2026-08-04,,Active,https://github.com/hendrycks/test,Benchmark from Allen Institute for AI,,benchmark,Yes,2026-08-04

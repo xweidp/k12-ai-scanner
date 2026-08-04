@@ -1,0 +1,20 @@
+resource_name,organization,announcement_date,expected_release_date,status,source_url,description,estimated_size,source_type,preview_available,last_updated
+Papers with Code: ARC Leaderboard,Papers with Code,2026-08-04,,Active,https://paperswithcode.com/benchmark/arc,Leaderboard from Papers with Code,,leaderboard,Yes,2026-08-04
+Papers with Code: SUPERGLUE Leaderboard,Papers with Code,2026-08-04,,Active,https://paperswithcode.com/benchmark/superglue,Leaderboard from Papers with Code,,leaderboard,Yes,2026-08-04
+Papers with Code: GLUE Leaderboard,Papers with Code,2026-08-04,,Active,https://paperswithcode.com/benchmark/glue,Leaderboard from Papers with Code,,leaderboard,Yes,2026-08-04
+ArXiv: Measuring Whether LLM Tutors Teach or Solve: A Diagnostic for Educational Impact,ArXiv,2026-06-15,,Published,https://arxiv.org/abs/2606.16206v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: Office Comprehension Benchmark,ArXiv,2026-05-29,,Published,https://arxiv.org/abs/2607.01245v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: The Compliance Gap: Why AI Systems Promise to Follow Process Instructions but Do,ArXiv,2026-05-03,,Published,https://arxiv.org/abs/2605.01771v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: Breakable Machine: A K-12 Classroom Game for Transformative AI Literacy Through ,ArXiv,2025-08-19,,Published,https://arxiv.org/abs/2508.14201v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: LOTUS: A Leaderboard for Detailed Image Captioning from Quality to Societal Bias,ArXiv,2025-07-25,,Published,https://arxiv.org/abs/2507.19362v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: Correlated Errors in Large Language Models,ArXiv,2025-06-09,,Published,https://arxiv.org/abs/2506.07962v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: WaLLM -- Insights from an LLM-Powered Chatbot deployment via WhatsApp,ArXiv,2025-05-13,,Published,https://arxiv.org/abs/2505.08894v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: Signformer is all you need: Towards Edge AI for Sign Language,ArXiv,2024-11-19,,Published,https://arxiv.org/abs/2411.12901v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: Innovation in Education: Developing and Assessing Gamification in the University,ArXiv,2024-09-05,,Published,https://arxiv.org/abs/2409.03309v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+ArXiv: S-RAF: A Simulation-Based Robustness Assessment Framework for Responsible Autono,ArXiv,2024-08-16,,Published,https://arxiv.org/abs/2408.08584v1,Leaderboard from research paper,,leaderboard,Yes,2026-08-04
+OpenReview: ICLR.cc/2024 Education Leaderboards,OpenReview,2026-08-04,,Published,https://openreview.net/search?term=education+leaderboard&venue=ICLR.cc/2024,Education leaderboards from OpenReview conference,,leaderboard,Yes,2026-08-04
+OpenReview: NeurIPS.cc/2024 Education Leaderboards,OpenReview,2026-08-04,,Published,https://openreview.net/search?term=education+leaderboard&venue=NeurIPS.cc/2024,Education leaderboards from OpenReview conference,,leaderboard,Yes,2026-08-04
+AIED: aied2024.org Conference Proceedings,AIED Conference,2026-08-04,,Published,https://aied2024.org,AI in Education conference with leaderboards,,leaderboard,Yes,2026-08-04
+AIED: aied2023.org Conference Proceedings,AIED Conference,2026-08-04,,Published,https://aied2023.org,AI in Education conference with leaderboards,,leaderboard,Yes,2026-08-04
+Education Platform: K-12 AI Infrastructure,Education AI Platform,2026-08-04,,Active,https://platform.k12-ai-infrastructure.org/,Education-specific leaderboard: K-12 AI Infrastructure,,leaderboard,Yes,2026-08-04
+Education Platform: Common Sense Knowledge Leaderboard,Education AI Platform,2026-08-04,,Active,https://www.conceptnet.io/,Education-specific leaderboard: Common Sense Knowledge Leaderboard,,leaderboard,Yes,2026-08-04
