@@ -32,6 +32,12 @@ jobs:
       - name: Scan for upcoming K-12 AI datasets
         run: python3 scan-coming-soon.py
 
+      - name: Scan for K-12 AI leaderboards
+        run: python3 scan-leaderboards.py
+
+      - name: Scan for K-12 AI benchmarks
+        run: python3 scan-benchmarks.py
+
       - name: Merge scan results
         run: |
           python3 << 'EOF'
@@ -68,63 +74,95 @@ jobs:
 
       - name: Update inventory with new discoveries
         run: |
-          # Update the merge script to use all_scanned_resources.json
           python3 << 'EOF'
           import json
           import pandas as pd
           from datetime import datetime, timezone
           from pathlib import Path
 
-          def load_base_inventory():
-              try:
-                  df = pd.read_excel('data/k12_inventory_v18_base.xlsx')
-                  return df
-              except:
-                  return pd.DataFrame()
-
-          def load_all_scanned():
-              try:
-                  with open('data/all_scanned_resources.json') as f:
-                      data = json.load(f)
-                  return data.get('resources', [])
-              except:
-                  return []
-
-          base = load_base_inventory()
-          scanned = load_all_scanned()
-
-          if base.empty or not scanned:
-              print("Cannot update inventory")
+          # Load base inventory
+          try:
+              inventory = pd.read_csv('data/k12_inventory_latest.csv')
+          except:
+              print("Error: Cannot find k12_inventory_latest.csv")
               exit(1)
 
-          existing_urls = set(base['url'].tolist())
           new_records = []
+          existing_urls = set(inventory['url'].tolist()) if 'url' in inventory.columns else set()
 
-          for res in scanned:
-              url = res.get('url', '')
-              if url not in existing_urls:
-                  new_records.append({
-                      'record_id': f"new_{hash(url) % 10000000}",
-                      'resource_name': res.get('title', '')[:100],
-                      'author_name': res.get('source', ''),
-                      'url': url,
-                      'resource_subtype': res.get('resourceType', 'Dataset'),
-                      'discovery_date': res.get('discovery_date', datetime.now(timezone.utc).strftime('%Y-%m-%d')),
-                      'discovery_source': res.get('addedVia', res.get('source', 'Scanner')),
-                      'subject_area': ', '.join(res.get('subjects', []) or ['General']),
-                      'fit_score': res.get('fit', 0)
-                  })
+          # 1. Load coming-soon datasets
+          if Path('data/k12_datasets_coming_soon.csv').exists():
+              coming_soon = pd.read_csv('data/k12_datasets_coming_soon.csv')
+              for _, row in coming_soon.iterrows():
+                  url = row.get('source_url', '')
+                  if url not in existing_urls:
+                      new_records.append({
+                          'record_id': f"new_{hash(url) % 10000000}",
+                          'resource_name': row.get('resource_name', '')[:100],
+                          'author_name': row.get('organization', ''),
+                          'url': url,
+                          'resource_subtype': row.get('source_type', 'Dataset').title(),
+                          'discovery_date': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
+                          'discovery_source': row.get('organization', 'Scanner'),
+                          'fit_score': 65
+                      })
+                      existing_urls.add(url)
 
+          # 2. Load leaderboards
+          if Path('data/k12_leaderboards_discovered.csv').exists():
+              leaderboards = pd.read_csv('data/k12_leaderboards_discovered.csv')
+              for _, row in leaderboards.iterrows():
+                  url = row.get('source_url', '')
+                  if url not in existing_urls:
+                      new_records.append({
+                          'record_id': f"new_{hash(url) % 10000000}",
+                          'resource_name': row.get('resource_name', '')[:100],
+                          'author_name': row.get('organization', ''),
+                          'url': url,
+                          'resource_subtype': 'Leaderboard',
+                          'discovery_date': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
+                          'discovery_source': row.get('organization', 'Scanner'),
+                          'fit_score': 70
+                      })
+                      existing_urls.add(url)
+
+          # 3. Load benchmarks
+          if Path('data/k12_benchmarks_discovered.csv').exists():
+              benchmarks = pd.read_csv('data/k12_benchmarks_discovered.csv')
+              for _, row in benchmarks.iterrows():
+                  url = row.get('source_url', '')
+                  if url not in existing_urls:
+                      new_records.append({
+                          'record_id': f"new_{hash(url) % 10000000}",
+                          'resource_name': row.get('resource_name', '')[:100],
+                          'author_name': row.get('organization', ''),
+                          'url': url,
+                          'resource_subtype': 'Benchmark',
+                          'discovery_date': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
+                          'discovery_source': row.get('organization', 'Scanner'),
+                          'fit_score': 68
+                      })
+                      existing_urls.add(url)
+
+          # Merge with inventory
           if new_records:
               new_df = pd.DataFrame(new_records)
-              for col in base.columns:
+              # Ensure all columns exist
+              for col in inventory.columns:
                   if col not in new_df.columns:
                       new_df[col] = ''
+              # Add any new columns from new_df to inventory
+              for col in new_df.columns:
+                  if col not in inventory.columns:
+                      inventory[col] = ''
 
-              combined = pd.concat([base, new_df], ignore_index=True)
+              combined = pd.concat([inventory, new_df], ignore_index=True)
               combined = combined.drop_duplicates(subset=['url'], keep='first')
               combined.to_csv('data/k12_inventory_latest.csv', index=False)
               print(f"Updated inventory: {len(combined)} total records (+{len(new_records)} new)")
+              print(f"  - Coming Soon: {len([r for r in new_records if r['resource_subtype'].lower() in ['dataset', 'model', 'competition']])}")
+              print(f"  - Leaderboards: {len([r for r in new_records if r['resource_subtype'] == 'Leaderboard'])}")
+              print(f"  - Benchmarks: {len([r for r in new_records if r['resource_subtype'] == 'Benchmark'])}")
           else:
               print("No new resources to add")
           EOF
