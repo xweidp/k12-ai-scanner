@@ -64,7 +64,7 @@ function parseCSVLine(line) {
 
 // Load and parse CSV
 function loadInventory() {
-  const v = 'v116-' + Date.now();
+  const v = 'v117-' + Date.now();
   fetch('data/k12_inventory_latest.csv?v=' + v)
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -248,7 +248,7 @@ function render() {
   const newCount = state.filtered.filter(r => r.readinessTier?.includes('Not Reviewed')).length;
 
   if (els.scanMeta) {
-    els.scanMeta.textContent = `${verified} verified (high quality, manually reviewed). ${newCount} newly discovered (auto-found, need manual review).`;
+    els.scanMeta.textContent = '';
   }
 
   if (els.viewTitle) {
