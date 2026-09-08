@@ -104,8 +104,17 @@ jobs:
           starting_urls = set(inventory['url'].dropna().tolist()) if 'url' in inventory.columns else set()
           print(f"Existing inventory: {starting_count} records (these will all be preserved)")
 
+          # REJECTION LIST: URLs removed during manual review. Dedup alone can't
+          # keep these out - deleting a row frees its URL, so the next scan would
+          # treat it as a brand-new find and re-add it. This makes deletion stick.
+          rejected_urls = set()
+          if Path('data/rejected_urls.csv').exists():
+              rejected_urls = set(pd.read_csv('data/rejected_urls.csv')['url'].dropna().tolist())
+              print(f"Rejection list: {len(rejected_urls)} URLs will be skipped")
+
           new_records = []
-          existing_urls = set(starting_urls)
+          # Treating rejected URLs as "already seen" is what blocks re-adding them.
+          existing_urls = set(starting_urls) | rejected_urls
 
           # 1. Load leaderboards
           if Path('data/k12_leaderboards_discovered.csv').exists():
@@ -190,6 +199,14 @@ jobs:
                   print(f"ABORT: record count shrank {starting_count} -> {len(combined)}")
                   raise SystemExit(1)
               print(f"Additive-only check passed: all {starting_count} prior records intact")
+
+              # Nothing on the rejection list may ever reach the inventory.
+              readmitted = rejected_urls & surviving_urls
+              if readmitted:
+                  print(f"ABORT: {len(readmitted)} rejected URLs were re-admitted:")
+                  for u in list(readmitted)[:10]:
+                      print(f"   - {u}")
+                  raise SystemExit(1)
 
               combined.to_csv('data/k12_inventory_latest.csv', index=False)
               print(f"Updated inventory: {len(combined)} total records (+{len(combined) - starting_count} new)")

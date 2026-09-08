@@ -1,0 +1,35 @@
+url,resource_name,rejected_from,rejected_date,reason
+https://paperswithcode.com/benchmark/arc,Papers with Code: ARC Leaderboard,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://paperswithcode.com/benchmark/superglue,Papers with Code: SUPERGLUE Leaderboard,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://paperswithcode.com/benchmark/glue,Papers with Code: GLUE Leaderboard,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2606.16206v1,ArXiv: Measuring Whether LLM Tutors Teach or Solve: A Diagnostic for Educational Impact,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.01245v1,ArXiv: Office Comprehension Benchmark,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2605.01771v1,ArXiv: The Compliance Gap: Why AI Systems Promise to Follow Process Instructions but Do,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2508.14201v1,ArXiv: Breakable Machine: A K-12 Classroom Game for Transformative AI Literacy Through ,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2507.19362v1,ArXiv: LOTUS: A Leaderboard for Detailed Image Captioning from Quality to Societal Bias,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2506.07962v1,ArXiv: Correlated Errors in Large Language Models,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2505.08894v1,ArXiv: WaLLM -- Insights from an LLM-Powered Chatbot deployment via WhatsApp,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2411.12901v1,ArXiv: Signformer is all you need: Towards Edge AI for Sign Language,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2409.03309v1,ArXiv: Innovation in Education: Developing and Assessing Gamification in the University,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2408.08584v1,ArXiv: S-RAF: A Simulation-Based Robustness Assessment Framework for Responsible Autono,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://openreview.net/search?term=education+leaderboard&venue=ICLR.cc/2024,OpenReview: ICLR.cc/2024 Education Leaderboards,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://openreview.net/search?term=education+leaderboard&venue=NeurIPS.cc/2024,OpenReview: NeurIPS.cc/2024 Education Leaderboards,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://aied2024.org,AIED: aied2024.org Conference Proceedings,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://aied2023.org,AIED: aied2023.org Conference Proceedings,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://platform.k12-ai-infrastructure.org/,Education Platform: K-12 AI Infrastructure,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://www.conceptnet.io/,Education Platform: Common Sense Knowledge Leaderboard,Leaderboard,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2608.02409v1,ArXiv: MonitrLLM: A Community-Centered Evaluation Infrastructure for Large Language Mod,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2608.01193v1,ArXiv: Humans Are More Diverse: Frontier LLMs Show Extreme Policies in Idealised AI Dev,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2608.00749v1,ArXiv: A Protocol for Evaluating the Accessibility of AI-Generated Educational Material,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.26159v1,ArXiv: When benchmark inferences do not compose: Projectibility in AI evaluation,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.26121v1,ArXiv: Towards Trustworthy Embodied Intelligence: A Systems Framework and Graded Trustw,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.25425v1,ArXiv: The Disruptive Impact of Large Language Models on Capture the Flag Competitions ,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.23319v1,ArXiv: BHARATI: Morphology-Aware Tokenizers for Classical Indian Languages with Subword,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://openreview.net/search?term=education+benchmark&venue=ICLR.cc/2024,OpenReview: ICLR.cc/2024 Education Benchmarks,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://openreview.net/search?term=education+benchmark&venue=NeurIPS.cc/2024,OpenReview: NeurIPS.cc/2024 Education Benchmarks,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://github.com/arm-education/arm-gem5-rsk,GitHub: arm-gem5-rsk,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://rajpurkar.github.io/SQuAD-explorer/,AI2: SQuAD Benchmark,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://github.com/hendrycks/test,AI2: MMLU Benchmark,Benchmark,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://www.drivendata.org/competitions/,DrivenData: K-12 Education Competitions,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://arxiv.org/abs/2607.29527v1,ArXiv: TerraNova: A Foundation Model for the Anthropocene,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://github.com/huggingface/transformers/releases/tag/v5.14.0,GitHub transformers: Release v5.14.0,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
