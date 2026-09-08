@@ -80,6 +80,54 @@ NOT_A_RESOURCE_URL = [
 ]
 
 
+# Site-chrome link text. scan-resources.py regexes every <a> on a page, so
+# without this the header and footer of any monitored site arrive as resources.
+# The 2026-09 inventory contained "Business", "Company", "Developers",
+# "Security" and "Foundation (opens in a new window)" - all typed as Dataset.
+NAV_LABELS = {
+    'about', 'about us', 'ai adoption', 'api', 'applied ai', 'blog', 'business',
+    'careers', 'company', 'contact', 'contact us', 'developers', 'docs',
+    'documentation', 'download', 'engineering', 'enterprise', 'faq', 'features',
+    'global affairs', 'help', 'home', 'jobs', 'legal', 'log in', 'login',
+    'models', 'news', 'newsroom', 'overview', 'partners', 'press', 'pricing',
+    'privacy', 'privacy policy', 'product', 'products', 'research', 'resources',
+    'safety', 'security', 'services', 'sign in', 'sign up', 'solutions',
+    'stories', 'support', 'team', 'terms', 'terms of use',
+    # Plurals and section names seen from Papers with Code, AI2, and
+    # learningcommons.org - all previously ingested as "Datasets".
+    'datasets', 'dataset', 'benchmarks', 'leaderboards', 'papers',
+    'daily papers', 'all projects', 'projects', 'inference providers',
+    'knowledge graph', 'curriculum sync', 'methods', 'libraries', 'tasks',
+    'spaces', 'collections', 'trending', 'browse', 'explore', 'search',
+}
+
+
+def is_nav_label(title):
+    """True when the link text is site navigation rather than a resource name."""
+    t = re.sub(r'\s*\(opens in a new window\)\s*', '', str(title or ''), flags=re.I)
+    t = t.strip().strip('›»→|-').strip().lower()
+    return t in NAV_LABELS or len(t) < 3
+
+
+def keyword_matches(keywords, *fields):
+    """Whole-word keyword match.
+
+    Substring matching is why the OpenAI watchlist ingested an entire website:
+    its keyword list included "ai", and `"ai" in "https://openai.com/business/"`
+    is True for every link on the domain. Match on word boundaries, and never
+    against the host portion of a URL.
+    """
+    parts = []
+    for f in fields:
+        s = str(f or '')
+        # Strip scheme+host so a keyword can't match the domain name itself.
+        s = re.sub(r'^https?://[^/]+', ' ', s)
+        parts.append(s)
+    text = ' '.join(parts).lower()
+    return any(re.search(r'\b' + re.escape(str(kw).lower()) + r'\b', text)
+               for kw in keywords)
+
+
 def _hits(patterns, text):
     return [p for p in patterns if re.search(p, text, re.I)]
 

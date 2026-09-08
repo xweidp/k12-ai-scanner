@@ -12,6 +12,8 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from html.parser import HTMLParser
 
+from k12_relevance import is_k12_relevant, is_nav_label, keyword_matches
+
 # Scoring vocabulary
 PROFILE_TERMS = [
     "dataset", "benchmark", "model", "corpus", "annotated", "labeled",
@@ -127,12 +129,23 @@ def scan_monitor_source(source):
         if re.search(skip_pattern, haystack, re.IGNORECASE):
             continue
 
-        # Check keyword match
-        keyword_match = any(kw.lower() in haystack for kw in keywords)
+        # Drop site chrome. This scraper regexes every <a> on the page, so
+        # without this the header/footer nav arrives as "resources".
+        if is_nav_label(title):
+            continue
+
+        # Whole-word keyword match, ignoring the URL host. Substring matching
+        # against the full URL meant the keyword "ai" matched "openai.com" on
+        # every link of that domain, ingesting an entire website as datasets.
+        keyword_match = keyword_matches(keywords, title, url)
         if not keyword_match and source.get('linkPattern'):
             if not re.search(source['linkPattern'], url):
                 continue
         elif not keyword_match:
+            continue
+
+        # Final gate: must actually look like a K-12 education resource.
+        if not is_k12_relevant(title, url):
             continue
 
         context = f"{title} {source['name']}"

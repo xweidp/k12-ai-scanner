@@ -33,3 +33,29 @@ https://github.com/hendrycks/test,AI2: MMLU Benchmark,Benchmark,2026-09-08,Remov
 https://www.drivendata.org/competitions/,DrivenData: K-12 Education Competitions,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
 https://arxiv.org/abs/2607.29527v1,ArXiv: TerraNova: A Foundation Model for the Anthropocene,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
 https://github.com/huggingface/transformers/releases/tag/v5.14.0,GitHub transformers: Release v5.14.0,Coming Soon,2026-09-08,Removed during manual review - not a K-12 AI resource
+https://openai.com/index/chatgpt-for-academic-researchers/,"Accelerating scientific discovery with ChatGPT for Academic Researchers Company Jul 29, 2026",Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/index/scientific-computing-agentic-ai/,"Scientific computing in the age of agentic AI Publication Jul 28, 2026",Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://www.semanticscholar.org,Semantic Scholar,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/ai-adoption/,AI Adoption,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/,"Advancing the price-performance frontier with GPT 5.6 Product Jul 30, 2026",Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/applied-ai/,Applied AI,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/index/building-abundant-intelligence/,"Building abundant intelligence Company Jul 31, 2026",Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/business/,Business,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/about/,Company,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/company-announcements/,Company,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/api/,Developers,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/engineering/,Engineering,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openaifoundation.org,Foundation (opens in a new window),Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/global-affairs/,Global Affairs,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency/,"How GPT-5.6 fuses frontier intelligence with frontier efficiency Engineering Jul 29, 2026",Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/product-releases/,Product,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/research/index/,Research,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/research/,Research,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/safety-alignment/,Safety,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://openai.com/news/security/,Security,Dataset,2026-09-08,Scraped site navigation / homepage - not a dataset
+https://allenai.org/ai-for-science,All projects,Dataset,2026-09-08,"Site navigation label, not a resource"
+https://paperswithcode.com/datasets,Datasets,Dataset,2026-09-08,"Site navigation label, not a resource"
+https://learningcommons.org/curriculum-sync/,Curriculum Sync,Dataset,2026-09-08,"Site navigation label, not a resource"
+https://paperswithcode.com/papers,Daily Papers,Dataset,2026-09-08,"Site navigation label, not a resource"
+https://paperswithcode.com/inference/models,Inference Providers,Dataset,2026-09-08,"Site navigation label, not a resource"
+https://learningcommons.org/knowledge-graph/,Knowledge Graph,Dataset,2026-09-08,"Site navigation label, not a resource"
