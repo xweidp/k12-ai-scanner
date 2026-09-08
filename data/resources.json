@@ -1,10 +1,10 @@
 {
-  "scannedAt": "2026-09-08T21:36:42.199649Z",
+  "scannedAt": "2026-09-08T21:48:52.109349Z",
   "source": "K-12 AI resource watchlist (monitor sources)",
   "profile": "K-12 AI datasets, benchmarks, and models",
   "counts": {
-    "total": 4,
-    "datasets": 3,
+    "total": 3,
+    "datasets": 2,
     "benchmarks": 0,
     "models": 0,
     "competitions": 1
@@ -28,26 +28,6 @@
         "benchmark"
       ],
       "fit": 31
-    },
-    {
-      "id": "monitor-learning-commons-knowledge-graph-20",
-      "title": "Curriculum Sync",
-      "source": "Learning Commons Knowledge Graph",
-      "program": "Learning Commons Knowledge Graph",
-      "sourceType": "Open infrastructure",
-      "resourceType": "Dataset",
-      "url": "https://learningcommons.org/curriculum-sync/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "curriculum",
-        "knowledge graph"
-      ],
-      "fit": 26
     },
     {
       "id": "monitor-learning-commons-knowledge-graph-7",

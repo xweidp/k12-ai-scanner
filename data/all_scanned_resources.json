@@ -1,13 +1,63 @@
 {
-  "scannedAt": "2026-09-08T21:48:54.888246+00:00",
-  "source": "GitHub & Hugging Face direct scan",
-  "profile": "K-12 AI datasets, benchmarks, and models",
-  "counts": {
-    "github": 6,
-    "huggingface": 53,
-    "total": 59
-  },
   "resources": [
+    {
+      "id": "monitor-drivendata-competitions-11",
+      "title": "Trace the Ace",
+      "source": "DrivenData Competitions",
+      "program": "DrivenData Competitions",
+      "sourceType": "Competition / benchmark",
+      "resourceType": "Competition",
+      "url": "https://platform.k12-ai-infrastructure.org/competitions/3/tutoring-outcomes/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Competition / benchmark lead from DrivenData Competitions.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "benchmark"
+      ],
+      "fit": 31
+    },
+    {
+      "id": "monitor-learning-commons-knowledge-graph-7",
+      "title": "Curriculum Sync Overview",
+      "source": "Learning Commons Knowledge Graph",
+      "program": "Learning Commons Knowledge Graph",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/curriculum-sync/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "curriculum",
+        "knowledge graph"
+      ],
+      "fit": 26
+    },
+    {
+      "id": "monitor-learning-commons-news-21",
+      "title": "Introducing Claude for Teachers and open-source Agent Skills",
+      "source": "Learning Commons News",
+      "program": "Learning Commons News",
+      "sourceType": "Open infrastructure",
+      "resourceType": "Dataset",
+      "url": "https://learningcommons.org/blog/claude-for-teachers-agent-skills/",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "Open infrastructure lead from Learning Commons News.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "teacher"
+      ],
+      "fit": 23
+    },
     {
       "id": "github-1197445562",
       "title": "K12-KGraph",
@@ -1538,5 +1588,7 @@
       "discovery_date": "2026-09-08",
       "discovery_time": "2026-09-08T21:48:54.888244+00:00"
     }
-  ]
+  ],
+  "scannedAt": null,
+  "totalScanned": 62
 }
