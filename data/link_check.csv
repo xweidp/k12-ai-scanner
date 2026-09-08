@@ -1,0 +1,141 @@
+resource_name,url,status,verdict,note,resource_subtype,discovery_source,tier
+K-12 Science Standards Aligned Learning Framework Dataset,https://huggingface.co/datasets/robworks-software/k12-science-standards,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K-12 Mathematics Standards-Aligned Dataset,https://huggingface.co/datasets/robworks-software/k12-mathematics-standards-aligned,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K-12 Social Studies Standards-Aligned Learning Framework Dataset,https://huggingface.co/datasets/robworks-software/k12-social-studies-standards,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K12-KGraph,https://huggingface.co/datasets/lhpku20010120/K12-KGraph,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: license insufficient; relevance + documentation clear
+pedagogy-luganda-reviewed,https://huggingface.co/datasets/CraneAILabs/pedagogy-luganda-reviewed,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: relevance weak; documentation + license clear
+Question-Anchored-Tutoring-Dialogues-2k,https://huggingface.co/datasets/Eedi/Question-Anchored-Tutoring-Dialogues-2k,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: license insufficient; relevance + documentation clear
+MM-K12,https://huggingface.co/datasets/Cierra0506/MM-K12,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+BharatLLM K-12 Indian Curriculum Dataset (4.9M),https://huggingface.co/datasets/FoundryAILabs/k12-indian-curriculum-4.9m,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: relevance weak; documentation + license clear
+ijanhq8809/k12-ela-standards,https://huggingface.co/datasets/ijanhq8809/k12-ela-standards,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+GYPCC2/korean-tutoring-persona-dataset,https://huggingface.co/datasets/GYPCC2/korean-tutoring-persona-dataset,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+MathDial: A Dialogue Tutoring Dataset with Rich Pedagogical Properties Grounded in Math Reasoning Problems,https://huggingface.co/datasets/eth-nlped/mathdial,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Ready: relevance + documentation + license clear
+EdNet: A Large-Scale Hierarchical Dataset in Education,https://huggingface.co/papers/1912.03072,429,ratelimited,"rate limited after retries - inconclusive, not a broken link",Dataset,,Near Ready: license insufficient; relevance + documentation clear
+K-12 Enhanced Educational Dataset with School Directory Integration,https://huggingface.co/datasets/robworks-software/k12-enhanced-with-school-directory,200,ok,"429, retrying after 3s",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Texas K-12 Comprehensive Educational Standards Dataset (TEKS),https://huggingface.co/datasets/robworks-software/texas-k12-curriculum-standards-teks,200,ok,"429, retrying after 3s",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+California K-12 Comprehensive Educational Standards Dataset,https://huggingface.co/datasets/robworks-software/california-k12-comprehensive,200,ok,"429, retrying after 3s",Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Luganda Pedagogy Examples for Teacher Companion AI,https://huggingface.co/datasets/CraneAILabs/pedagogy-luganda-replaced,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+ruTeacherTalk: Teacher Talk Techniques in Russian Schools,https://huggingface.co/datasets/ai-education/ruTeacherTalk,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+NMT Education Parallel Data (English-Kinyarwanda),https://huggingface.co/datasets/mbazaNLP/NMT_Education_parallel_data_en_kin,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Educational Query Classification Dataset,https://huggingface.co/datasets/haider0941/Educational_Noneducational_Dataset,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Vectorstore Dataset: Academic Tutoring,https://huggingface.co/datasets/meetara-lab/vectorstore-academic_tutoring,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Chess Explained SF6 K-12 Curriculum (20%),https://huggingface.co/datasets/ritwika96/chess-explained-sf6-k12-curriculum-20pct,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Chess Explained SF6 K-12 Curriculum (500k),https://huggingface.co/datasets/ritwika96/chess-explained-sf6-k12-curriculum-500k,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+robworks-software/k12-science-standards-expanded,https://huggingface.co/datasets/robworks-software/k12-science-standards-expanded,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+robworks-software/k12-special-education-accommodations,https://huggingface.co/datasets/robworks-software/k12-special-education-accommodations,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Ultimate K-12 ELA Standards Dataset,https://huggingface.co/datasets/robworks-software/ultimate-k12-ela-standards,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K-12 Digital Learning Platforms Research Dataset,https://huggingface.co/datasets/robworks-software/k12-digital-learning-platforms-research,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+US K-12 Schools Comprehensive Dataset,https://huggingface.co/datasets/robworks-software/us-k12-schools-comprehensive,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K-12 Computer Science Comprehensive Standards Dataset,https://huggingface.co/datasets/robworks-software/k12-computer-science-comprehensive,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Student_feedback_analysis_dataset,https://huggingface.co/datasets/NLPC-UOM/Student_feedback_analysis_dataset,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+K-12 Business and Economics Comprehensive Standards Dataset,https://huggingface.co/datasets/robworks-software/k12-business-economics-comprehensive,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+opendatalab/K12textbook,https://huggingface.co/datasets/opendatalab/K12textbook,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+simonguest/marathi-k12-conversations,https://huggingface.co/datasets/simonguest/marathi-k12-conversations,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+ryandt/datasets.for.education-writing-strategies,https://huggingface.co/datasets/ryandt/datasets.for.education-writing-strategies,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Fralet/educationalPrograms,https://huggingface.co/datasets/Fralet/educationalPrograms,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+letinnghia/student-feedbacks,https://huggingface.co/datasets/letinnghia/student-feedbacks,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Daye34/student_feedback_pattern_recognition,https://huggingface.co/datasets/Daye34/student_feedback_pattern_recognition,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Daye34/student_feedback_pattern_recognition_short_summary,https://huggingface.co/datasets/Daye34/student_feedback_pattern_recognition_short_summary,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Daye34/student_feedback_pattern_recognition_large_summary,https://huggingface.co/datasets/Daye34/student_feedback_pattern_recognition_large_summary,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Daye34/student_feedback_pattern_recognition_medium_summary,https://huggingface.co/datasets/Daye34/student_feedback_pattern_recognition_medium_summary,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+janerkegb/synthetic-student-feedback,https://huggingface.co/datasets/janerkegb/synthetic-student-feedback,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+mteb/vie_student_feedback,https://huggingface.co/datasets/mteb/vie_student_feedback,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Philseok/student-feedback,https://huggingface.co/datasets/Philseok/student-feedback,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+webdevsha/pedagogy,https://huggingface.co/datasets/webdevsha/pedagogy,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+H4438/education-QA-contact,https://huggingface.co/datasets/H4438/education-QA-contact,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+kaitchup/qa-chat-persona-education,https://huggingface.co/datasets/kaitchup/qa-chat-persona-education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+LuckyPolaRBEaR/Entrepreneurship-EducationQA,https://huggingface.co/datasets/LuckyPolaRBEaR/Entrepreneurship-EducationQA,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+vasugoel/K-12Corpus,https://huggingface.co/datasets/vasugoel/K-12Corpus,200,ok,,Dataset,,Near Ready: relevance weak; documentation + license clear
+burgerbee/pedagogy_wiki,https://huggingface.co/datasets/burgerbee/pedagogy_wiki,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+burgerbee/pedagogy_textbook,https://huggingface.co/datasets/burgerbee/pedagogy_textbook,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Asap7772/education_autolabel,https://huggingface.co/datasets/Asap7772/education_autolabel,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Asap7772/education_raw,https://huggingface.co/datasets/Asap7772/education_raw,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Asap7772/education_autolabel_noisy,https://huggingface.co/datasets/Asap7772/education_autolabel_noisy,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+ajibawa-2023/Education-Researchers,https://huggingface.co/datasets/ajibawa-2023/Education-Researchers,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+ajibawa-2023/Education-Young-Children,https://huggingface.co/datasets/ajibawa-2023/Education-Young-Children,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+theskrtnerd/adelaide-education-q-and-a,https://huggingface.co/datasets/theskrtnerd/adelaide-education-q-and-a,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+kakase/hko_education_resources,https://huggingface.co/datasets/kakase/hko_education_resources,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+mkh0813/dataset_for_education,https://huggingface.co/datasets/mkh0813/dataset_for_education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+PabloWang/education_data,https://huggingface.co/datasets/PabloWang/education_data,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+chkla/quiz-politics-germany-education,https://huggingface.co/datasets/chkla/quiz-politics-germany-education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+kh4dien/education-sentiment,https://huggingface.co/datasets/kh4dien/education-sentiment,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+kh4dien/politics-education,https://huggingface.co/datasets/kh4dien/politics-education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+ramieid04/education_finetuning_demo,https://huggingface.co/datasets/ramieid04/education_finetuning_demo,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+KashiwaByte/viking-education,https://huggingface.co/datasets/KashiwaByte/viking-education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+micky080/books_education,https://huggingface.co/datasets/micky080/books_education,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+Alloprof: French question-answer education dataset,https://huggingface.co/datasets/lyon-nlp/alloprof,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+EduQG: A Multi-format Multiple Choice Dataset for the Educational Domain,https://huggingface.co/papers/2210.06104,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+MathTutorBench: A Benchmark for Measuring Open-ended Pedagogical Capabilities of LLM Tutors,https://huggingface.co/papers/2502.18940,200,ok,,Dataset,,Near Ready: relevance weak; documentation + license clear
+Stepwise Verification and Remediation of Student Reasoning Errors with Large Language Model Tutors,https://huggingface.co/datasets/eth-nlped/stepverify,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+EDUMATH: Generating Standards-aligned Educational Math Word Problems,https://huggingface.co/datasets/bryanchrist/STEM,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+Is ChatGPT a Good Teacher Coach? Measuring Zero-Shot Performance For Scoring and Providing Actionable Insights on Classroom Instruction,https://huggingface.co/datasets/rose-e-wang/zero-shot-teacher-feedback,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+Can Language Models Evaluate Human Written Text? Case Study on Korean Student Writing for Education,https://huggingface.co/papers/2407.17022,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+A Turkish Educational Crossword Puzzle Generator,https://huggingface.co/papers/2405.07035,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+EduBench: A Comprehensive Benchmarking Dataset for Evaluating Large Language Models in Diverse Educational Scenarios,https://huggingface.co/datasets/DirectionAI/EduBench,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+SAS-Bench: A Fine-Grained Benchmark for Evaluating Short Answer Scoring with Large Language Models,https://huggingface.co/datasets/aleversn/SAS-Bench,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+AI-for-Education/pedagogy-benchmark,https://huggingface.co/datasets/AI-for-Education/pedagogy-benchmark,200,ok,,Benchmark,,Near Ready: documentation insufficient; relevance + license clear
+AlaminI/tushe-grade-school-stem,https://huggingface.co/datasets/AlaminI/tushe-grade-school-stem,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+dry-melon/Chinese-middle-school-English-exam-questions,https://huggingface.co/datasets/dry-melon/Chinese-middle-school-English-exam-questions,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+hllj/vi_grade_school_math_mcq,https://huggingface.co/datasets/hllj/vi_grade_school_math_mcq,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+NCTE Transcripts (Demszky & Hill 2023),https://github.com/ddemszky/classroom-transcript-analysis,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+TalkMoves,https://github.com/SumnerLab/TalkMoves,200,ok,,Dataset,,Near Ready: license insufficient; relevance + documentation clear
+masharma/convolearn,https://huggingface.co/datasets/masharma/convolearn,200,ok,,Dataset,,Ready: relevance + documentation + license clear
+laion/School_BUD-E,https://huggingface.co/datasets/laion/School_BUD-E,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+iastate/onestop_english,https://huggingface.co/datasets/iastate/onestop_english,200,ok,,Dataset,,Near Ready: relevance weak; documentation + license clear
+iblai/ibl-khanacademy-transcripts,https://huggingface.co/datasets/iblai/ibl-khanacademy-transcripts,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+ysdede/khanacademy-turkish-math,https://huggingface.co/datasets/ysdede/khanacademy-turkish-math,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+ysdede/khanacademy-turkish,https://huggingface.co/datasets/ysdede/khanacademy-turkish,200,ok,,Dataset,,Near Ready: documentation insufficient; relevance + license clear
+coild-aikosh/Education,https://huggingface.co/datasets/coild-aikosh/Education,200,ok,,Dataset,,Near Ready: relevance weak; documentation + license clear
+PERSUADE corpus,https://learlab.org/data/,200,ok,,Dataset,,Near Ready: license insufficient; relevance + documentation clear
+ELLIPSE corpus,https://github.com/scrosseye/ELLIPSE-Corpus,200,ok,,Dataset,,Near Ready: license insufficient; relevance + documentation clear
+NahedAbdelgaber/evaluating-student-writing,https://huggingface.co/datasets/NahedAbdelgaber/evaluating-student-writing,200,ok,,Dataset,,Not Ready: multiple insufficiencies
+UAS-Based Hyperspectral Imaging of an Unstructured Prairie with Georeferenced Live Fuel Moisture Measurements,https://ieee-dataport.org/documents/uas-based-hyperspectral-imaging-unstructured-prairie-georeferenced-live-fuel-moisture,200,ok,,Dataset,IEEE Dataport - Education Datasets,Not Reviewed: newly discovered
+"13,000+ Datasets:",https://ieee-dataport.org/datasets,200,ok,,Dataset,IEEE Dataport - Education Datasets,Not Reviewed: newly discovered
+2+TB Data Storage:,https://ieee-dataport.org/submit-dataset,200,ok,,Dataset,IEEE Dataport - Education Datasets,Not Reviewed: newly discovered
+Active User Community:,https://ieee-dataport.org/news/share-your-research-data-world-through-ieee-dataport,200,ok,,Dataset,IEEE Dataport - Education Datasets,Not Reviewed: newly discovered
+Deep Learning-Based Phaseless Near-Field to Near-Field Transformation via Joint Height-Frequency Embedding,https://ieee-dataport.org/documents/deep-learning-based-phaseless-near-field-near-field-transformation-joint-height-frequency,200,ok,,Dataset,IEEE Dataport - Education Datasets,Not Reviewed: newly discovered
+Trace the Ace,https://platform.k12-ai-infrastructure.org/competitions/3/tutoring-outcomes/,200,ok,,Competition,DrivenData Competitions,Not Reviewed: newly discovered
+Introducing Claude for Teachers and open-source Agent Skills,https://learningcommons.org/blog/claude-for-teachers-agent-skills/,200,ok,,Dataset,Learning Commons News,Not Reviewed: newly discovered
+"ArXiv: The Theoretical Foundation of Socratic Tests: Dynamic, Multimodal, Conversationa",https://arxiv.org/abs/2607.29624v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: The Deployment Wall: A Diagnostic Framework and Instrument for Enterprise AI in ,https://arxiv.org/abs/2607.29089v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: The Role of Causality in Algorithmic Recourse,https://arxiv.org/abs/2607.28497v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Structured AI Demonstrations and Student LLM Use in Engineering Mechanics: Study,https://arxiv.org/abs/2607.28710v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Fairness Pruning: Locating Demographic Bias in GLU-MLP Layers via Differential A,https://arxiv.org/abs/2607.28319v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Technology-Enhanced Tabletop Exercises for Cybersecurity Education: Lessons Lear,https://arxiv.org/abs/2607.28179v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Rethinking LLM-Judged Helpfulness as a Pedagogy Signal: A Pre-Registered Audit A,https://arxiv.org/abs/2607.28128v1,200,ok,,Model,ArXiv,
+ArXiv: Can AI agents conduct open-ended AI research? Early evidence from two case studi,https://arxiv.org/abs/2607.27191v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Constitutional Midtraining: Content Presence Drives Alignment Gains,https://arxiv.org/abs/2607.26654v2,200,ok,,Research_Paper,ArXiv,
+HuggingFace: ianncity/GLM-5.2-Conversation,https://huggingface.co/datasets/ianncity/GLM-5.2-Conversation,200,ok,,Dataset,HuggingFace,
+HuggingFace: r0b0tlab/qwen3.8-max-distillation-50k,https://huggingface.co/datasets/r0b0tlab/qwen3.8-max-distillation-50k,200,ok,,Dataset,HuggingFace,
+IEEE DataPort - Open Data Catalog,https://ieee-dataport.org,200,ok,,Data Catalog,IEEE,
+Zenodo - Open Research Data Repository,https://zenodo.org,403,gated,,Data Catalog,CERN,
+LDC Catalog - Linguistic Data Consortium Search,https://catalog.ldc.upenn.edu/search,200,ok,,Data Catalog,University of Pennsylvania,
+FAB-AI Edtech Quality Benchmarks,https://www.fab-ai.org/initiatives/ai-for-education/edtech-quality/benchmarks?benchmark=CDPK&models=%5B%5D&cost=10&pageView=table&benchmarkType=core_benchmarks&dataset=&modelMode=default,200,ok,,Leaderboard,FAB-AI,Ready
+Korabench: AI Child Safety Leaderboard,https://korabench.ai/leaderboard,200,ok,,Leaderboard,Korabench,Ready
+Korabench Apps Leaderboard,https://korabench.ai/apps/leaderboard,200,ok,,Leaderboard,Korabench,Ready
+KORA Benchmark Methodology,https://korabench.notion.site/KORA-Benchmark-Methodology-1b15eb9ec0c983bd9eb701d3e54dd0c1?source=copy_link,200,ok,,Benchmark,Korabench,Ready
+KORA Apps Methodology,https://korabench.notion.site/kora-apps-methodology?source=copy_link,200,ok,,Benchmark,Korabench,Ready
+FAB-AI Pedagogy Benchmark,https://www.fab-ai.org/initiatives/ai-for-education/edtech-quality/resources/benchmarks/about-the-pedagogy-benchmark,200,ok,,Benchmark,FAB-AI,Ready
+FAB-AI SEND Pedagogy Benchmark,https://www.fab-ai.org/initiatives/ai-for-education/edtech-quality/resources/benchmarks/about-the-send-pedagogy-benchmark,200,ok,,Benchmark,FAB-AI,Ready
+FAB-AI Visual Maths Benchmark,https://www.fab-ai.org/initiatives/ai-for-education/edtech-quality/resources/benchmarks/about-the-visual-maths-benchmark,200,ok,,Benchmark,FAB-AI,Ready
+FAB-AI Visual Reasoning Benchmark,https://www.fab-ai.org/initiatives/ai-for-education/edtech-quality/resources/benchmarks/about-the-visual-reasoning-benchmark,200,ok,,Benchmark,FAB-AI,Ready
+On Top of Pasketti: Children's Speech Recognition Challenge,https://www.drivendata.org/competitions/group/childrens-asr-competition/,200,ok,,Competition,Manual - DrivenData,
+AIAI Challenge: Artificial Intelligence for Advancing Instruction,https://www.drivendata.org/competitions/group/competition-uva-aiai-challenge/,200,ok,,Competition,Manual - DrivenData,
+"Goodnight Moon, Hello Early Literacy Screening",https://www.drivendata.org/competitions/298/literacy-screening/,200,ok,,Competition,Manual - DrivenData,
+Reboot: Box-Plots for Education,https://www.drivendata.org/competitions/46/box-plots-for-education-reboot/,200,ok,,Competition,Manual - DrivenData,
+Box-Plots for Education,https://www.drivendata.org/competitions/4/box-plots-for-education/,200,ok,,Competition,Manual - DrivenData,
+CMU DataShop - Learning Analytics Repository,https://pslcdatashop.web.cmu.edu,200,ok,,Data Catalog,Manual - CMU,
+"ArXiv: LLM Judges as Raters: A Pre-Registered Audit of Severity, Halo, Reliability, and",https://arxiv.org/abs/2608.29517v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Beyond Helpfulness: A Teaching-over-Solving Diagnostic for Measuring Educational,https://arxiv.org/abs/2606.16206v2,200,ok,,Research_Paper,ArXiv,
+ArXiv: The Design and Organization of Educational Competitions with Anonymous and Real-,https://arxiv.org/abs/2402.07936v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: A Conceptual Model for End-to-End Causal Discovery in Knowledge Tracing,https://arxiv.org/abs/2305.16165v2,200,ok,,Research_Paper,ArXiv,
+ArXiv: Education Stats Made Visible: Helping School District Managers Write Better Thre,https://arxiv.org/abs/1609.08770v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Cite or Decline: A Strict Course-Grounded Chatbot for STEM Lecture Videos,https://arxiv.org/abs/2609.01846v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Measuring the Partial-Credit Gap: A Strict Benchmark on Vietnam's 2025 Convex Ma,https://arxiv.org/abs/2608.18336v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Mitigating AI Risks in Computing Education via LLM-Driven Lecture Video Curation,https://arxiv.org/abs/2608.16131v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Structural Silence: When AI Infrastructure Fails Speakers of Underrepresented La,https://arxiv.org/abs/2608.12278v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: ELBench: A Multi-Dimensional Benchmark for Education-Facing Large Language Model,https://arxiv.org/abs/2608.09548v2,200,ok,,Research_Paper,ArXiv,
+ArXiv: Measuring the Tokenization Premium: A Cost Audit for Underserved Language Commun,https://arxiv.org/abs/2608.09046v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: Findings of the First Teaching Monster Challenge: A Benchmark of Pedagogical Con,https://arxiv.org/abs/2608.08852v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: School network reorganization under educational and spatial constraints using cl,https://arxiv.org/abs/2608.05427v1,200,ok,,Research_Paper,ArXiv,
+ArXiv: EduClaw-Bench: A Long-Horizon Benchmark for Pedagogical LLM Agents with Simulate,https://arxiv.org/abs/2608.03206v1,200,ok,,Research_Paper,ArXiv,
