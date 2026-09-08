@@ -9,6 +9,8 @@ import requests
 from datetime import datetime
 import time
 
+from k12_relevance import is_k12_relevant, is_search_page
+
 def scan_papers_with_code_benchmarks():
     """Scan Papers with Code for education benchmarks"""
     results = []
@@ -33,7 +35,7 @@ def scan_papers_with_code_benchmarks():
                     'expected_release_date': '',
                     'status': 'Active',
                     'source_url': f"https://paperswithcode.com/benchmark/{name.lower().replace(' ', '-')}",
-                    'description': 'Benchmark from Papers with Code',
+                    'description': f"Papers with Code benchmark: {name}",
                     'estimated_size': '',
                     'source_type': 'benchmark',
                     'preview_available': 'Yes',
@@ -50,7 +52,7 @@ def scan_arxiv_benchmarks():
     try:
         url = "http://export.arxiv.org/api/query"
         params = {
-            'search_query': 'cat:cs.CY AND benchmark AND (education OR student OR school OR "k-12" OR learning)',
+            'search_query': 'cat:cs.CY AND benchmark AND (education OR student OR school OR "k-12" OR classroom OR teacher OR pedagogy OR curriculum OR tutoring)',
             'start': 0,
             'max_results': 20,
             'sortBy': 'submittedDate',
@@ -63,9 +65,13 @@ def scan_arxiv_benchmarks():
         root = ET.fromstring(response.content)
 
         for entry in root.findall('{http://www.w3.org/2005/Atom}entry')[:10]:
-            title = entry.find('{http://www.w3.org/2005/Atom}title').text
+            title = ' '.join(entry.find('{http://www.w3.org/2005/Atom}title').text.split())
             arxiv_id = entry.find('{http://www.w3.org/2005/Atom}id').text.split('/abs/')[-1]
             published = entry.find('{http://www.w3.org/2005/Atom}published').text[:10]
+            # Keep the real abstract: it is the only usable description we get,
+            # and the relevance gate needs it to judge more than the title.
+            summary_el = entry.find('{http://www.w3.org/2005/Atom}summary')
+            abstract = ' '.join(summary_el.text.split()) if summary_el is not None else ''
 
             results.append({
                 'resource_name': f"ArXiv: {title[:80]}",
@@ -74,7 +80,7 @@ def scan_arxiv_benchmarks():
                 'expected_release_date': '',
                 'status': 'Published',
                 'source_url': f"https://arxiv.org/abs/{arxiv_id}",
-                'description': 'Benchmark from research paper',
+                'description': abstract[:600],
                 'estimated_size': '',
                 'source_type': 'benchmark',
                 'preview_available': 'Yes',
@@ -401,14 +407,31 @@ def main():
     print("🐙 GitHub benchmarks...")
     all_results.extend(scan_github_benchmarks())
 
-    # Deduplicate
+    # Filter for genuine K-12 AI relevance, then deduplicate.
+    # Every source funnels through here, so the gate applies uniformly rather
+    # than being reimplemented per-source (ArXiv had no filter at all).
     seen_urls = set()
     unique_results = []
+    dropped_url, dropped_topic = [], []
     for row in all_results:
         url = row.get('source_url', '')
-        if url not in seen_urls:
-            unique_results.append(row)
-            seen_urls.add(url)
+        name = row.get('resource_name', '')
+        if url in seen_urls:
+            continue
+        if is_search_page(url):
+            dropped_url.append(name)
+            continue
+        if not is_k12_relevant(name, row.get('description', '')):
+            dropped_topic.append(name)
+            continue
+        unique_results.append(row)
+        seen_urls.add(url)
+
+    if dropped_url or dropped_topic:
+        print(f"\n  Filtered out {len(dropped_url)} search/index pages "
+              f"and {len(dropped_topic)} off-topic results")
+        for n in dropped_topic[:5]:
+            print(f"     skip: {str(n)[:70]}")
 
     # Save
     if unique_results:
