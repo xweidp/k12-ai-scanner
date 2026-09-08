@@ -48,8 +48,7 @@ button:hover {
   filter: brightness(0.95);
 }
 
-button.secondary,
-button.chip {
+button.secondary {
   background: white;
   color: var(--ink);
   border-color: var(--line);
@@ -59,12 +58,6 @@ a {
   color: inherit;
   text-decoration-color: rgba(15, 123, 108, 0.4);
   text-underline-offset: 3px;
-}
-
-button.chip.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: white;
 }
 
 .app-shell {
@@ -197,8 +190,7 @@ textarea {
   accent-color: var(--accent);
 }
 
-.button-row,
-.filter-group {
+.button-row {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -239,11 +231,74 @@ textarea {
 }
 
 .toolbar {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   margin-bottom: 18px;
+}
+
+/* Search sits directly below the Export CSV button. */
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.95rem;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-clear {
+  flex: 0 0 auto;
+  min-height: 42px;
+  background: white;
+  color: var(--muted);
+  border-color: var(--line);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.search-clear:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+/* Screen-reader-only label */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Date column: a known publication date reads as primary; a scanner-discovered
+   fallback is visibly secondary so the two aren't mistaken for each other. */
+.date-published {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.date-added {
+  color: var(--muted);
+  font-size: 0.86em;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.date-unknown {
+  color: var(--muted);
 }
 
 .hero-strip {
@@ -296,14 +351,15 @@ textarea {
 .table-header,
 .result-row {
   display: grid;
+  /* Resource | Type | Subject | Source | Date | License | Description */
   grid-template-columns:
-    minmax(190px, 1.08fr)
-    minmax(130px, 0.78fr)
-    110px
-    96px
-    minmax(150px, 0.9fr)
-    minmax(170px, 1fr)
-    minmax(230px, 1.25fr);
+    minmax(200px, 1.1fr)
+    minmax(120px, 0.62fr)
+    minmax(155px, 0.85fr)
+    minmax(110px, 0.6fr)
+    125px
+    minmax(140px, 0.8fr)
+    minmax(200px, 1.1fr);
   min-width: 1130px;
   gap: 12px;
   align-items: start;
@@ -577,41 +633,3 @@ textarea {
   border-color: var(--ink);
 }
 
-/* Tab switcher styling */
-.tab-switcher {
-  display: flex;
-  gap: 4px;
-  border-bottom: 2px solid var(--line);
-  margin-right: auto;
-}
-
-.tab-button {
-  min-height: 40px;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  color: var(--muted);
-  font-weight: 700;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
-}
-
-.tab-button:hover {
-  background: transparent;
-  color: var(--ink);
-}
-
-.tab-button.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.tab-panel {
-  display: none;
-}
-
-.tab-panel.active {
-  display: block;
-}

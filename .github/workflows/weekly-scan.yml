@@ -1,10 +1,15 @@
-name: Weekly K-12 Resource Scan & Inventory Update
+name: Monthly K-12 Resource Scan & Inventory Update
 
 on:
   schedule:
-    # Every Monday at 1:00 PM UTC (8:00 AM Central)
-    - cron: '0 13 * * 1'
+    # 1st of every month at 1:00 PM UTC (8:00 AM Central)
+    - cron: '0 13 1 * *'
   workflow_dispatch:  # Allow manual trigger
+
+# Required so the scanner bot can push the updated inventory back to the repo.
+# Without this, GITHUB_TOKEN is read-only and every run dies at `git push`.
+permissions:
+  contents: write
 
 jobs:
   scan-and-update:
@@ -28,9 +33,6 @@ jobs:
 
       - name: Run GitHub & Hugging Face direct scanner
         run: python3 scan-github-hf.py
-
-      - name: Scan for upcoming K-12 AI datasets
-        run: python3 scan-coming-soon.py
 
       - name: Scan for K-12 AI leaderboards
         run: python3 scan-leaderboards.py
@@ -79,9 +81,15 @@ jobs:
         run: |
           python3 << 'EOF'
           import json
+          import hashlib
           import pandas as pd
           from datetime import datetime, timezone
           from pathlib import Path
+
+          def stable_id(url):
+              """Deterministic record id. Python's hash() is randomized per process,
+              which would mint a new id for the same URL on every run."""
+              return 'new_' + hashlib.sha1(str(url).encode()).hexdigest()[:10]
 
           # Load base inventory
           try:
@@ -90,35 +98,23 @@ jobs:
               print("Error: Cannot find k12_inventory_latest.csv")
               exit(1)
 
+          # ADDITIVE-ONLY CONTRACT: this step may only ever append rows.
+          # We record the starting state and verify nothing was lost at the end.
+          starting_count = len(inventory)
+          starting_urls = set(inventory['url'].dropna().tolist()) if 'url' in inventory.columns else set()
+          print(f"Existing inventory: {starting_count} records (these will all be preserved)")
+
           new_records = []
-          existing_urls = set(inventory['url'].tolist()) if 'url' in inventory.columns else set()
+          existing_urls = set(starting_urls)
 
-          # 1. Load coming-soon datasets
-          if Path('data/k12_datasets_coming_soon.csv').exists():
-              coming_soon = pd.read_csv('data/k12_datasets_coming_soon.csv')
-              for _, row in coming_soon.iterrows():
-                  url = row.get('source_url', '')
-                  if url not in existing_urls:
-                      new_records.append({
-                          'record_id': f"new_{hash(url) % 10000000}",
-                          'resource_name': row.get('resource_name', '')[:100],
-                          'author_name': row.get('organization', ''),
-                          'url': url,
-                          'resource_subtype': row.get('source_type', 'Dataset').title(),
-                          'discovery_date': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
-                          'discovery_source': row.get('organization', 'Scanner'),
-                          'fit_score': 65
-                      })
-                      existing_urls.add(url)
-
-          # 2. Load leaderboards
+          # 1. Load leaderboards
           if Path('data/k12_leaderboards_discovered.csv').exists():
               leaderboards = pd.read_csv('data/k12_leaderboards_discovered.csv')
               for _, row in leaderboards.iterrows():
                   url = row.get('source_url', '')
                   if url not in existing_urls:
                       new_records.append({
-                          'record_id': f"new_{hash(url) % 10000000}",
+                          'record_id': stable_id(url),
                           'resource_name': row.get('resource_name', '')[:100],
                           'author_name': row.get('organization', ''),
                           'url': url,
@@ -136,7 +132,7 @@ jobs:
                   url = row.get('source_url', '')
                   if url not in existing_urls:
                       new_records.append({
-                          'record_id': f"new_{hash(url) % 10000000}",
+                          'record_id': stable_id(url),
                           'resource_name': row.get('resource_name', '')[:100],
                           'author_name': row.get('organization', ''),
                           'url': url,
@@ -154,7 +150,7 @@ jobs:
                   url = row.get('source_url', '')
                   if url not in existing_urls:
                       new_records.append({
-                          'record_id': f"new_{hash(url) % 10000000}",
+                          'record_id': stable_id(url),
                           'resource_name': row.get('resource_name', '')[:100],
                           'author_name': row.get('organization', ''),
                           'url': url,
@@ -178,10 +174,25 @@ jobs:
                       inventory[col] = ''
 
               combined = pd.concat([inventory, new_df], ignore_index=True)
+              # keep='first' means an existing curated row always wins over a
+              # freshly-scanned duplicate, so manual edits are never overwritten.
               combined = combined.drop_duplicates(subset=['url'], keep='first')
+
+              # --- Verify the additive-only contract before writing ---
+              surviving_urls = set(combined['url'].dropna().tolist())
+              lost = starting_urls - surviving_urls
+              if lost:
+                  print(f"ABORT: {len(lost)} pre-existing records would be lost:")
+                  for u in list(lost)[:10]:
+                      print(f"   - {u}")
+                  raise SystemExit(1)
+              if len(combined) < starting_count:
+                  print(f"ABORT: record count shrank {starting_count} -> {len(combined)}")
+                  raise SystemExit(1)
+              print(f"Additive-only check passed: all {starting_count} prior records intact")
+
               combined.to_csv('data/k12_inventory_latest.csv', index=False)
-              print(f"Updated inventory: {len(combined)} total records (+{len(new_records)} new)")
-              print(f"  - Coming Soon: {len([r for r in new_records if r['resource_subtype'].lower() in ['dataset', 'model', 'competition']])}")
+              print(f"Updated inventory: {len(combined)} total records (+{len(combined) - starting_count} new)")
               print(f"  - Leaderboards: {len([r for r in new_records if r['resource_subtype'] == 'Leaderboard'])}")
               print(f"  - Benchmarks: {len([r for r in new_records if r['resource_subtype'] == 'Benchmark'])}")
               print(f"  - Data Catalogs: {len([r for r in new_records if r['resource_subtype'] == 'Data Catalog'])}")
@@ -194,4 +205,12 @@ jobs:
           git config user.name "K-12 Scanner Bot"
           git config user.email "scanner@digitalpromise.org"
           git add data/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Weekly K-12 scan & inventory update - $(date -u +'%Y-%m-%d %H:%M:%S') UTC" && git push)
+          if git diff --staged --quiet; then
+            echo "No inventory changes this month - nothing to commit."
+          else
+            git commit -m "Monthly K-12 scan & inventory update - $(date -u +'%Y-%m-%d') UTC"
+            # Rebase in case the site was edited between checkout and push
+            git pull --rebase --autostash origin main
+            git push
+            echo "Pushed updated inventory."
+          fi

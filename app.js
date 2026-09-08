@@ -4,12 +4,11 @@
 const state = {
   resources: [],
   filtered: [],
-  comingSoon: [],
-  comingSoonFiltered: [],
-  sortBy: null,
-  sortAsc: true,
-  scannedAt: new Date().toISOString(),
-  activeTab: 'current' // 'current' or 'coming'
+  search: '',
+  // Default view is newest-first; the Date header toggles direction.
+  sortBy: 'effectiveDate',
+  sortAsc: false,
+  scannedAt: new Date().toISOString()
 };
 
 const els = {
@@ -29,7 +28,9 @@ const els = {
   viewTitle: document.querySelector("#viewTitle"),
   scanMeta: document.querySelector("#scanMeta"),
   viewMeta: document.querySelector("#viewMeta"),
-  reloadButton: document.querySelector("#reloadButton")
+  reloadButton: document.querySelector("#reloadButton"),
+  searchInput: document.querySelector("#searchInput"),
+  searchClear: document.querySelector("#searchClear")
 };
 
 // Parse CSV line properly handling quoted fields
@@ -64,7 +65,7 @@ function parseCSVLine(line) {
 
 // Load and parse CSV
 function loadInventory() {
-  const v = 'v121-' + Date.now();
+  const v = 'v130-' + Date.now();
   fetch('data/k12_inventory_latest.csv?v=' + v)
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -87,29 +88,43 @@ function loadInventory() {
         });
 
         const resourceType = row.resource_subtype || 'Dataset';
-        const subjectArea = row.subject_area || '';
+        // subject_canonical is written by consolidate-subjects.py. Fall back to
+        // the raw field so the page still works on an un-consolidated CSV.
+        const subject = row.subject_canonical || row.subject_area || 'Cross-subject / General';
         const source = row.discovery_source || row.author_name || 'Curated';
 
-        return {
+        const publicationDate = row.publication_date || '';
+        const discoveryDate = row.discovery_date || '';
+
+        const rec = {
           id: row.record_id || `r-${idx}`,
           title: row.resource_name || 'Untitled',
           resourceType: resourceType,
           source: source,
-          subjects: subjectArea
-            .split(',')
-            .map(s => s.trim())
-            .filter(Boolean),
+          subject: subject,
           gradeBand: row.grade_span_group || 'K-12',
           license: row.license_status_clean || 'Not listed',
           description: row.dataset_artifact_evidence || row.notes || '',
           url: row.url || '',
-          publicationDate: row.publication_date || '',
-          discoveryDate: row.discovery_date || '',
+          publicationDate: publicationDate,
+          discoveryDate: discoveryDate,
+          // Every row gets a sortable date: when we don't know the publication
+          // date, fall back to when the scanner first saw it.
+          effectiveDate: publicationDate || discoveryDate || '',
+          dateIsPublication: Boolean(publicationDate),
           readinessTier: row.final_readiness_index_tier || 'Not Reviewed',
           isDownloadable: row.is_downloadable === 'True' || row.is_downloadable === true,
           verificationNote: row.verification_note || '',
           fit: parseInt(row.fit_score) || 50
         };
+
+        // Precomputed lowercase haystack so search doesn't rebuild it per keystroke.
+        rec.searchBlob = [
+          rec.title, rec.resourceType, rec.subject, rec.source,
+          rec.license, rec.description, rec.gradeBand
+        ].join(' ').toLowerCase();
+
+        return rec;
       });
 
       console.log(`Loaded ${state.resources.length} resources`);
@@ -150,13 +165,12 @@ function applyFilters() {
 
   const isVerified = r => r.readinessTier && !r.readinessTier.includes('Not Reviewed');
 
-  const filteredOut = [];
+  // Multi-word search: every term must appear somewhere in the record.
+  const terms = state.search.toLowerCase().split(/\s+/).filter(Boolean);
+
   state.filtered = state.resources.filter(r => {
-    if (resourceType !== 'all' && r.resourceType !== resourceType) {
-      filteredOut.push({r: r.title, reason: 'resourceType'});
-      return false;
-    }
-    if (subject !== 'all' && !r.subjects.includes(subject)) return false;
+    if (resourceType !== 'all' && r.resourceType !== resourceType) return false;
+    if (subject !== 'all' && r.subject !== subject) return false;
     if (gradeBand !== 'all' && r.gradeBand !== gradeBand) return false;
     if (source !== 'all' && r.source !== source) return false;
     if (licenseOpen && /^not|^see|^custom|^unknown/i.test(r.license)) return false;
@@ -165,38 +179,38 @@ function applyFilters() {
     if (verification === 'verified' && !isVerified(r)) return false;
     if (verification === 'new' && isVerified(r)) return false;
 
-    // All records are assumed downloadable (v18 verified, K-12 Infrastructure verified)
-    // if (!r.isDownloadable) return false;
+    if (terms.length && !terms.every(t => r.searchBlob.includes(t))) return false;
 
     return true;
   });
-
-  if (filteredOut.length > 0 && filteredOut.length <= 20) {
-    console.log('Filtered out (' + filteredOut.length + '):', filteredOut);
-  }
 
   applySorting();
   populateSelects();
   render();
 }
 
+const DATE_FIELDS = ['effectiveDate', 'publicationDate', 'discoveryDate'];
+
 function applySorting() {
   if (!state.sortBy) return;
+
+  const isDate = DATE_FIELDS.includes(state.sortBy);
 
   state.filtered.sort((a, b) => {
     let aVal = a[state.sortBy];
     let bVal = b[state.sortBy];
 
-    // Handle dates
-    if (state.sortBy === 'publicationDate' || state.sortBy === 'discoveryDate') {
+    if (isDate) {
       aVal = aVal ? new Date(aVal).getTime() : 0;
       bVal = bVal ? new Date(bVal).getTime() : 0;
-    }
-
-    // Handle strings
-    if (typeof aVal === 'string') {
+      // Undated rows sink to the bottom in either direction rather than
+      // hijacking the top of a newest-first list.
+      if (!aVal && !bVal) return 0;
+      if (!aVal) return 1;
+      if (!bVal) return -1;
+    } else if (typeof aVal === 'string') {
       aVal = aVal.toLowerCase();
-      bVal = bVal.toLowerCase();
+      bVal = String(bVal || '').toLowerCase();
     }
 
     if (aVal < bVal) return state.sortAsc ? -1 : 1;
@@ -206,8 +220,8 @@ function applySorting() {
 }
 
 function populateSelects() {
-  // Subjects
-  const subjects = [...new Set(state.resources.flatMap(r => r.subjects))].sort();
+  // Subjects (canonical buckets only - see consolidate-subjects.py)
+  const subjects = [...new Set(state.resources.map(r => r.subject))].filter(Boolean).sort();
   const subjectValue = els.subjectSelect?.value || 'all';
   if (els.subjectSelect) {
     els.subjectSelect.innerHTML = [
@@ -260,12 +274,23 @@ function render() {
   }
 
   if (els.viewMeta) {
-    els.viewMeta.textContent = `${counts.dataset} datasets, ${counts.benchmark} benchmarks, ${counts.model} models`;
+    const parts = [`${counts.dataset} datasets`, `${counts.benchmark} benchmarks`, `${counts.model} models`];
+    if (state.search) {
+      parts.push(`matching “${state.search}”`);
+    } else if (counts.total !== state.resources.length) {
+      parts.push(`of ${state.resources.length} total`);
+    }
+    els.viewMeta.textContent = parts.join(', ');
   }
 
   if (!counts.total) {
     if (els.resultsList) {
-      els.resultsList.innerHTML = `<div class="empty-state"><h2>${state.resources.length > 0 ? 'No resources match your filters.' : 'Loading inventory...'}</h2></div>`;
+      const msg = state.resources.length === 0
+        ? 'Loading inventory...'
+        : state.search
+          ? `No resources match “${esc(state.search)}”.`
+          : 'No resources match your filters.';
+      els.resultsList.innerHTML = `<div class="empty-state"><h2>${msg}</h2></div>`;
     }
     return;
   }
@@ -292,10 +317,10 @@ function renderRow(r) {
         </p>
         <p class="meta">${badge}</p>
       </div>
-      <div class="table-cell">${esc(r.resourceType)}</div>
-      <div class="table-cell">${r.subjects.join(', ') || 'General'}</div>
+      <div class="table-cell">${esc(prettyType(r.resourceType))}</div>
+      <div class="table-cell">${esc(r.subject) || 'Cross-subject / General'}</div>
       <div class="table-cell">${esc(r.source)}</div>
-      <div class="table-cell" style="font-weight: ${r.publicationDate ? 'bold' : 'normal'}">${r.publicationDate || '—'}</div>
+      <div class="table-cell">${renderDate(r)}</div>
       <div class="table-cell">${esc(r.license)}</div>
       <div class="table-cell description-cell">
         ${downloadBadge}<br/>
@@ -305,6 +330,24 @@ function renderRow(r) {
   `;
 }
 
+// Resource subtypes are stored snake_case (e.g. "Research_Paper"); display them
+// with spaces so they wrap cleanly instead of breaking mid-word.
+function prettyType(t) {
+  return String(t || '').replace(/_/g, ' ');
+}
+
+// Show the publication date when we know it. Otherwise show when the scanner
+// first found the resource, labelled so the two aren't confused.
+function renderDate(r) {
+  if (r.dateIsPublication) {
+    return `<span class="date-published">${esc(r.publicationDate)}</span>`;
+  }
+  if (r.discoveryDate) {
+    return `<span class="date-added" title="Publication date unknown; this is when the scanner first found it">added ${esc(r.discoveryDate)}</span>`;
+  }
+  return '<span class="date-unknown">—</span>';
+}
+
 function esc(s) {
   const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
   return String(s || '').replace(/[&<>"']/g, c => map[c]);
@@ -312,9 +355,11 @@ function esc(s) {
 
 function exportCsv() {
   if (!state.filtered.length) return;
-  const header = ['Title', 'Type', 'Source', 'License', 'Published', 'URL', 'Status'];
+  const header = ['Title', 'Type', 'Subject', 'Grade Band', 'Source', 'License',
+                  'Published', 'Date Added', 'URL', 'Status'];
   const rows = state.filtered.map(r => [
-    r.title, r.resourceType, r.source, r.license, r.publicationDate, r.url, r.readinessTier
+    r.title, r.resourceType, r.subject, r.gradeBand, r.source, r.license,
+    r.publicationDate, r.discoveryDate, r.url, r.readinessTier
   ]);
   const csv = [header, ...rows]
     .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
@@ -338,6 +383,33 @@ els.verificationSelect?.addEventListener('change', applyFilters);
 els.licenseToggle?.addEventListener('change', applyFilters);
 els.exportButton?.addEventListener('click', exportCsv);
 els.reloadButton?.addEventListener('click', loadInventory);
+
+// Search: debounced so typing stays smooth on the full inventory.
+let searchTimer;
+els.searchInput?.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.search = els.searchInput.value.trim();
+    if (els.searchClear) els.searchClear.hidden = !state.search;
+    applyFilters();
+  }, 150);
+});
+
+els.searchClear?.addEventListener('click', () => {
+  if (els.searchInput) els.searchInput.value = '';
+  state.search = '';
+  els.searchClear.hidden = true;
+  applyFilters();
+  els.searchInput?.focus();
+});
+
+// Escape clears the search while focus is in the box.
+els.searchInput?.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && els.searchInput.value) {
+    e.preventDefault();
+    els.searchClear?.click();
+  }
+});
 
 // Sort button click handler
 document.querySelectorAll('.sort-btn').forEach(btn => {
@@ -404,141 +476,5 @@ function parseFullCSV(csvText) {
   return rows;
 }
 
-function loadComingSoon() {
-  fetch('data/k12_datasets_coming_soon.csv?' + Date.now())
-    .then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.text();
-    })
-    .then(csv => {
-      const rows = parseFullCSV(csv);
-      if (rows.length < 2) {
-        state.comingSoon = [];
-        return;
-      }
-
-      const headers = rows[0];
-      state.comingSoon = rows.slice(1)
-        .map((values, idx) => {
-          const row = {};
-          headers.forEach((h, i) => {
-            row[h] = values[i] || '';
-          });
-
-          return {
-            id: `coming-${idx}`,
-            title: row.resource_name || 'Untitled',
-            organization: row.organization || '',
-            announcementDate: row.announcement_date || '',
-            expectedReleaseDate: row.expected_release_date || '',
-            status: row.status || '',
-            url: row.source_url || '',
-            description: row.description || '',
-            sourceType: row.source_type || '',
-            previewAvailable: row.preview_available || 'No',
-            lastUpdated: row.last_updated || ''
-          };
-        })
-
-      console.log('Raw parsed resources:', state.comingSoon.length);
-
-      // Filter out entries with no name or no link
-      state.comingSoon = state.comingSoon.filter(r => {
-        const keep = r.title && r.title !== 'Untitled' && r.url;
-        if (!keep) {
-          console.log('Filtered out:', { title: r.title, url: r.url });
-        }
-        return keep;
-      });
-
-      console.log(`✅ Loaded ${state.comingSoon.length} coming soon resources`);
-      if (state.comingSoon.length > 0) {
-        console.log('Sample:', state.comingSoon[0]);
-        state.comingSoon.forEach((r, i) => {
-          console.log(`  ${i+1}. "${r.title}" - ${r.url ? '✓' : '✗'}`);
-        });
-      }
-    })
-    .catch(err => {
-      console.error('Coming soon load error:', err);
-      state.comingSoon = [];
-    });
-}
-
-function switchTab(tabName) {
-  state.activeTab = tabName;
-
-  // Update button states
-  document.getElementById('tab-current').classList.toggle('active', tabName === 'current');
-  document.getElementById('tab-coming').classList.toggle('active', tabName === 'coming');
-
-  if (tabName === 'coming') {
-    renderComingSoon();
-  } else {
-    applyFilters();
-  }
-}
-
-function renderComingSoon() {
-  const counts = {
-    total: state.comingSoon.length,
-    bySource: {}
-  };
-
-  state.comingSoon.forEach(r => {
-    counts.bySource[r.sourceType] = (counts.bySource[r.sourceType] || 0) + 1;
-  });
-
-  if (els.viewTitle) {
-    els.viewTitle.textContent = counts.total ? `${counts.total} Upcoming K-12 Resources` : 'No upcoming resources tracked yet';
-  }
-
-  if (els.scanMeta) {
-    const sourceBreakdown = Object.entries(counts.bySource)
-      .map(([source, count]) => `${count} ${source}`)
-      .join(', ');
-    els.scanMeta.textContent = sourceBreakdown || 'Monitoring for announcements...';
-  }
-
-  if (!counts.total) {
-    if (els.resultsList) {
-      els.resultsList.innerHTML = '<div class="empty-state"><h2>No upcoming datasets announced yet.</h2><p>Check back soon for announcements from DrivenData, K-12 AI Infrastructure, and other partners.</p></div>';
-    }
-    return;
-  }
-
-  if (els.resultsList) {
-    els.resultsList.innerHTML = state.comingSoon.map(renderComingSoonRow).join('');
-  }
-}
-
-function renderComingSoonRow(r) {
-  const statusBadge = `<span style="color: #b67612; font-size: 0.85em;">📢 ${r.status}</span>`;
-  const releaseDate = r.expectedReleaseDate ? `Expected: ${r.expectedReleaseDate}` : `Published: ${r.announcementDate || 'Available'}`;
-
-  return `
-    <article class="result-row">
-      <div class="table-cell opportunity-cell">
-        <p class="opportunity-title">
-          ${r.url ? `<a href="${esc(r.url)}" target="_blank">${esc(r.title)}</a>` : esc(r.title)}
-        </p>
-        <p class="meta">${statusBadge}</p>
-      </div>
-      <div class="table-cell">${esc(r.sourceType)}</div>
-      <div class="table-cell">${esc(r.organization)}</div>
-      <div class="table-cell">${releaseDate}</div>
-      <div class="table-cell">${r.previewAvailable === 'Yes' ? '✓ Preview' : '—'}</div>
-      <div class="table-cell description-cell">
-        ${esc(r.description.slice(0, 80))}
-      </div>
-    </article>
-  `;
-}
-
 // Load on page load
 loadInventory();
-loadComingSoon();
-
-// Tab switching
-document.getElementById('tab-current')?.addEventListener('click', () => switchTab('current'));
-document.getElementById('tab-coming')?.addEventListener('click', () => switchTab('coming'));

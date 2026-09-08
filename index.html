@@ -86,9 +86,9 @@
         </section>
 
         <section class="panel status-panel">
-          <h2>Weekly Scan</h2>
-          <p id="scanMeta" class="scan-meta">Loading latest scan...</p>
-          <p class="helper-text">This dashboard refreshes from generated data covering curated K-12 AI catalogs and resource hubs.</p>
+          <h2>Monthly Scan</h2>
+          <p id="scanMeta" class="scan-meta"></p>
+          <p class="helper-text">New resources are added automatically on the 1st of each month. Existing entries are never removed.</p>
         </section>
 
         <section class="panel">
@@ -105,20 +105,18 @@
 
       <section class="workspace">
         <header class="toolbar">
-          <div class="tab-switcher" role="tablist">
-            <button type="button" class="tab-button active" id="tab-current" role="tab" aria-selected="true" aria-controls="panel-current">
-              📊 Current Datasets
-            </button>
-            <button type="button" class="tab-button" id="tab-coming" role="tab" aria-selected="false" aria-controls="panel-coming">
-              🔮 Coming Soon
-            </button>
-          </div>
-          <div class="filter-group" role="group" aria-label="Minimum fit">
-            <button type="button" class="chip active" data-min-fit="0">All</button>
-            <button type="button" class="chip" data-min-fit="70">70+</button>
-            <button type="button" class="chip" data-min-fit="85">85+</button>
-          </div>
           <button id="exportButton" type="button" class="secondary">Export CSV</button>
+          <div class="search-row">
+            <label class="sr-only" for="searchInput">Search resources</label>
+            <input
+              id="searchInput"
+              type="search"
+              class="search-input"
+              placeholder="Search by name, source, subject, or description..."
+              autocomplete="off"
+            />
+            <button id="searchClear" type="button" class="search-clear" hidden aria-label="Clear search">Clear</button>
+          </div>
         </header>
 
         <section class="hero-strip" aria-label="Scanner status">
@@ -135,13 +133,13 @@
             <span>Type</span>
             <span>Subject</span>
             <span>Source</span>
-            <span>Published <button class="sort-btn" data-sort="publicationDate">↑↓</button></span>
+            <span>Date <button class="sort-btn" data-sort="effectiveDate">↑↓</button></span>
             <span>License</span>
             <span>Description</span>
           </div>
           <div id="resultsList" class="results-list">
             <div class="empty-state">
-              <h2>Paste a search or load the weekly scan to begin.</h2>
+              <h2>Loading inventory...</h2>
               <p>The scanner curates K-12 AI datasets, benchmarks, and models from education-focused catalogs and research hubs.</p>
             </div>
           </div>
