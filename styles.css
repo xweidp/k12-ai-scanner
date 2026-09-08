@@ -358,9 +358,9 @@ textarea {
     minmax(155px, 0.85fr)
     minmax(110px, 0.6fr)
     125px
-    minmax(140px, 0.8fr)
-    minmax(200px, 1.1fr);
-  min-width: 1130px;
+    minmax(130px, 0.7fr)
+    minmax(280px, 1.7fr);
+  min-width: 1200px;
   gap: 12px;
   align-items: start;
 }
@@ -531,6 +531,25 @@ textarea {
 .description-cell {
   color: var(--muted);
   font-weight: 600;
+}
+
+/* The rightmost column carries the plain-language "what is this" text, so it
+   gets normal weight and comfortable leading rather than the muted bold used
+   for the terser metadata columns. */
+.row-description {
+  display: block;
+  font-weight: 400;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.row-caveat {
+  display: block;
+  margin-top: 6px;
+  color: var(--warn);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .deadline {

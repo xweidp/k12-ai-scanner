@@ -65,7 +65,7 @@ function parseCSVLine(line) {
 
 // Load and parse CSV
 function loadInventory() {
-  const v = 'v130-' + Date.now();
+  const v = 'v131-' + Date.now();
   fetch('data/k12_inventory_latest.csv?v=' + v)
     .then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -104,7 +104,12 @@ function loadInventory() {
           subject: subject,
           gradeBand: row.grade_span_group || 'K-12',
           license: row.license_status_clean || 'Not listed',
-          description: row.dataset_artifact_evidence || row.notes || '',
+          // short_description is built by generate-descriptions.py: a plain
+          // sentence saying what the resource IS. The old fallback chain here
+          // surfaced provenance notes ("Hugging Face dataset repository URL
+          // plus retained dataset inventory row"), which told readers nothing.
+          description: row.short_description || row.description
+                       || row.educational_use_case || '',
           url: row.url || '',
           publicationDate: publicationDate,
           discoveryDate: discoveryDate,
@@ -305,9 +310,10 @@ function renderRow(r) {
     ? '<span class="discovery-badge">NEW</span>'
     : '<span class="verified-badge">VERIFIED</span>';
 
-  const downloadBadge = r.isDownloadable
-    ? '<span style="color: green; font-size: 0.85em;">✓ Downloadable</span>'
-    : `<span style="color: orange; font-size: 0.85em;">⚠ ${esc(r.verificationNote)}</span>`;
+  // "✓ Downloadable" on nearly every row is noise; only flag the exceptions.
+  const caveat = (!r.isDownloadable && r.verificationNote)
+    ? `<span class="row-caveat">⚠ ${esc(r.verificationNote)}</span>`
+    : '';
 
   return `
     <article class="result-row">
@@ -323,8 +329,8 @@ function renderRow(r) {
       <div class="table-cell">${renderDate(r)}</div>
       <div class="table-cell">${esc(r.license)}</div>
       <div class="table-cell description-cell">
-        ${downloadBadge}<br/>
-        ${esc(r.description.slice(0, 80))}
+        <span class="row-description">${esc(r.description)}</span>
+        ${caveat}
       </div>
     </article>
   `;
