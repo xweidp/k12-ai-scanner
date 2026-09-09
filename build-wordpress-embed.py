@@ -30,6 +30,7 @@ from pathlib import Path
 CSV_URL = 'https://xweidp.github.io/k12-ai-scanner/data/k12_inventory_latest.csv'
 WRAPPER = 'k12-scanner'
 OUT = Path('wordpress-embed.html')
+OUT_CLASSIC = Path('wordpress-embed-classic.html')
 
 # Properties that only make sense on a real <body>; drop them when the body
 # rule is rescoped onto the wrapper.
@@ -138,6 +139,57 @@ def pair_filter_fields(markup):
     return paired
 
 
+def collapse_to_one_line(html):
+    """Flatten to a single line so wpautop has no newline to act on.
+
+    Comments are dropped (a // comment would swallow the rest of the file once
+    the newlines are gone) and JS line comments are converted before joining.
+    """
+    # Strip HTML comments entirely.
+    html = re.sub(r'<!--.*?-->', '', html, flags=re.S)
+
+    def strip_js_line_comments(m):
+        body = m.group(1)
+        out = []
+        for line in body.split('\n'):
+            # Remove a // comment only when it is not inside a string or URL.
+            if '//' in line:
+                idx = None
+                in_s, in_d, in_t = False, False, False
+                i = 0
+                while i < len(line) - 1:
+                    c, nxt = line[i], line[i + 1]
+                    if c == "\\":
+                        i += 2
+                        continue
+                    if c == "'" and not in_d and not in_t: in_s = not in_s
+                    elif c == '"' and not in_s and not in_t: in_d = not in_d
+                    elif c == '`' and not in_s and not in_d: in_t = not in_t
+                    elif c == '/' and nxt == '/' and not (in_s or in_d or in_t):
+                        if not (i > 0 and line[i-1] == ':'):
+                            idx = i
+                            break
+                    i += 1
+                if idx is not None:
+                    line = line[:idx]
+            out.append(line.strip())
+        # Semicolons already terminate statements; join with a space.
+        return '<script>' + ' '.join(x for x in out if x) + '</script>'
+
+    html = re.sub(r'<script>(.*?)</script>', strip_js_line_comments, html, flags=re.S)
+
+    # CSS: drop comments, collapse whitespace.
+    def flatten_css(m):
+        css = re.sub(r'/\*.*?\*/', '', m.group(1), flags=re.S)
+        return '<style>' + re.sub(r'\s+', ' ', css).strip() + '</style>'
+    html = re.sub(r'<style>(.*?)</style>', flatten_css, html, flags=re.S)
+
+    # Collapse remaining markup whitespace.
+    html = re.sub(r'>\s+<', '><', html)
+    html = re.sub(r'\s*\n\s*', ' ', html)
+    return re.sub(r'[ \t]{2,}', ' ', html).strip()
+
+
 def main():
     css = Path('styles.css').read_text()
     js = Path('app.js').read_text()
@@ -237,6 +289,19 @@ def main():
     OUT.write_text(out)
     kb = len(out) / 1024
     print(f'Wrote {OUT} ({kb:.0f} KB)')
+
+    # --- Classic Editor build -------------------------------------------
+    # The site runs the Classic Editor and the block editor will not be
+    # enabled (its plugins and security add-ons require Classic). Classic's
+    # Text tab does accept raw HTML; the hazard is wpautop, which turns blank
+    # lines into <p> and single newlines into <br>, corrupting inline CSS and
+    # JS. wpautop keys entirely off newlines, so a build with none is immune.
+    flat = collapse_to_one_line(out)
+    OUT_CLASSIC.write_text(flat)
+    print(f'Wrote {OUT_CLASSIC} ({len(flat)/1024:.0f} KB, '
+          f'{flat.count(chr(10))} newlines - must be 0)')
+    if chr(10) in flat:
+        sys.exit('ERROR: classic build still contains newlines; wpautop would corrupt it')
     print(f'  CSS rescoped under .{WRAPPER}, no leaking element selectors')
     print(f'  CSV source: {CSV_URL}')
 
