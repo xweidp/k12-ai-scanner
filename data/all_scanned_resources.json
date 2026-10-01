@@ -1,64 +1,6 @@
 {
   "resources": [
     {
-      "id": "monitor-drivendata-competitions-11",
-      "title": "Trace the Ace",
-      "source": "DrivenData Competitions",
-      "program": "DrivenData Competitions",
-      "sourceType": "Competition / benchmark",
-      "resourceType": "Competition",
-      "url": "https://platform.k12-ai-infrastructure.org/competitions/3/tutoring-outcomes/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Competition / benchmark lead from DrivenData Competitions.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "benchmark"
-      ],
-      "fit": 31
-    },
-    {
-      "id": "monitor-learning-commons-knowledge-graph-7",
-      "title": "Curriculum Sync Overview",
-      "source": "Learning Commons Knowledge Graph",
-      "program": "Learning Commons Knowledge Graph",
-      "sourceType": "Open infrastructure",
-      "resourceType": "Dataset",
-      "url": "https://learningcommons.org/curriculum-sync/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "curriculum",
-        "knowledge graph"
-      ],
-      "fit": 26
-    },
-    {
-      "id": "monitor-learning-commons-news-21",
-      "title": "Introducing Claude for Teachers and open-source Agent Skills",
-      "source": "Learning Commons News",
-      "program": "Learning Commons News",
-      "sourceType": "Open infrastructure",
-      "resourceType": "Dataset",
-      "url": "https://learningcommons.org/blog/claude-for-teachers-agent-skills/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Open infrastructure lead from Learning Commons News.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "teacher"
-      ],
-      "fit": 23
-    },
-    {
       "id": "github-1197445562",
       "title": "K12-KGraph",
       "source": "GitHub",
@@ -71,8 +13,8 @@
       "gradeBand": "K-12",
       "modality": [],
       "license": "Other",
-      "description": "A curriculum-aligned knowledge graph, benchmark, and multimodal training dataset for evaluating and improving curriculum cognition in educational LLMs.",
-      "stars": 362,
+      "description": "[NeurIPS 2026] A curriculum-aligned knowledge graph, benchmark, and multimodal training dataset for educational LLMs.",
+      "stars": 391,
       "matchedTerms": [
         "dataset",
         "github",
@@ -80,8 +22,8 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.887968+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915844+00:00"
     },
     {
       "id": "github-1295650615",
@@ -97,7 +39,7 @@
       "modality": [],
       "license": "MIT License",
       "description": "A BNCC como dados abertos e verificados: 1.721 aprendizagens em JSON, SQLite e CSV, com proveni\u00eancia por registro e pipeline de extra\u00e7\u00e3o reprodut\u00edvel.",
-      "stars": 17,
+      "stars": 19,
       "matchedTerms": [
         "dataset",
         "github",
@@ -105,8 +47,8 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.887995+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915863+00:00"
     },
     {
       "id": "github-1295749706",
@@ -130,8 +72,8 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888001+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915869+00:00"
     },
     {
       "id": "github-1078413905",
@@ -147,7 +89,7 @@
       "modality": [],
       "license": "MIT License",
       "description": "\ud83c\udf1f A curated collection of free, high quality AI tools \ud83e\udd16, APIs \ud83d\udd17, datasets \ud83d\udcca, and learning resources \ud83d\udcda covering machine learning \ud83e\udde0, deep learning \ud83e\udde9, generative AI \ud83c\udfa8, NLP \ud83d\udcac, and data science \ud83d\udcc8. Designed",
-      "stars": 840,
+      "stars": 912,
       "matchedTerms": [
         "dataset",
         "github",
@@ -155,8 +97,8 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888006+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915874+00:00"
     },
     {
       "id": "github-180012411",
@@ -172,7 +114,7 @@
       "modality": [],
       "license": "MIT License",
       "description": "A repository of pretty cool datasets that I collected for network science and machine learning research.",
-      "stars": 655,
+      "stars": 656,
       "matchedTerms": [
         "dataset",
         "github",
@@ -180,8 +122,8 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888010+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915879+00:00"
     },
     {
       "id": "github-661317030",
@@ -197,7 +139,7 @@
       "modality": [],
       "license": "Other",
       "description": "Explore my diverse collection of projects showcasing machine learning, data analysis, and more. Organized by project, each directory contains code, datasets, documentation, and resources. Dive in, to ",
-      "stars": 607,
+      "stars": 613,
       "matchedTerms": [
         "dataset",
         "github",
@@ -205,8 +147,134 @@
       ],
       "fit": 40,
       "addedVia": "github_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888015+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915884+00:00"
+    },
+    {
+      "id": "github-116198940",
+      "title": "cmrc2018",
+      "source": "GitHub",
+      "program": "ymcui",
+      "resourceType": "Dataset",
+      "url": "https://github.com/ymcui/cmrc2018",
+      "subjects": [
+        "Reading"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "Creative Commons Attribution Share Alike 4.0 International",
+      "description": "A Span-Extraction Dataset for Chinese Machine Reading Comprehension  (CMRC 2018)",
+      "stars": 457,
+      "matchedTerms": [
+        "dataset",
+        "github",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "github_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915889+00:00"
+    },
+    {
+      "id": "github-189153000",
+      "title": "CogQA",
+      "source": "GitHub",
+      "program": "THUDM",
+      "resourceType": "Dataset",
+      "url": "https://github.com/THUDM/CogQA",
+      "subjects": [
+        "Reading"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "MIT License",
+      "description": "Source code and dataset for ACL 2019 paper \"Cognitive Graph for Multi-Hop Reading Comprehension at Scale\"",
+      "stars": 457,
+      "matchedTerms": [
+        "dataset",
+        "github",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "github_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915894+00:00"
+    },
+    {
+      "id": "github-186884348",
+      "title": "MSMARCO-Passage-Ranking",
+      "source": "GitHub",
+      "program": "microsoft",
+      "resourceType": "Dataset",
+      "url": "https://github.com/microsoft/MSMARCO-Passage-Ranking",
+      "subjects": [
+        "Assessment",
+        "Reading"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "MIT License",
+      "description": "MS MARCO(Microsoft Machine Reading Comprehension) is a large scale dataset focused on machine reading comprehension, question answering, and passage ranking. A variant of this task will be the part of",
+      "stars": 346,
+      "matchedTerms": [
+        "dataset",
+        "github",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "github_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915899+00:00"
+    },
+    {
+      "id": "github-89308250",
+      "title": "triviaqa",
+      "source": "GitHub",
+      "program": "mandarjoshi90",
+      "resourceType": "Dataset",
+      "url": "https://github.com/mandarjoshi90/triviaqa",
+      "subjects": [
+        "Reading"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "Apache License 2.0",
+      "description": "Code for the TriviaQA reading comprehension dataset",
+      "stars": 340,
+      "matchedTerms": [
+        "dataset",
+        "github",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "github_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915903+00:00"
+    },
+    {
+      "id": "github-685175700",
+      "title": "belebele",
+      "source": "GitHub",
+      "program": "facebookresearch",
+      "resourceType": "Dataset",
+      "url": "https://github.com/facebookresearch/belebele",
+      "subjects": [
+        "Reading"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "Other",
+      "description": "Repo for the Belebele dataset, a massively multilingual reading comprehension dataset.",
+      "stars": 339,
+      "matchedTerms": [
+        "dataset",
+        "github",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "github_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915908+00:00"
     },
     {
       "id": "hf-ruiiw-k-12_education_data",
@@ -231,8 +299,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888019+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915913+00:00"
     },
     {
       "id": "hf-ruiiw-k-12_education_data2",
@@ -248,7 +316,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 17,
+      "downloads": 26,
       "likes": 2,
       "matchedTerms": [
         "dataset",
@@ -257,8 +325,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888024+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915917+00:00"
     },
     {
       "id": "hf-aslawliet-cn-k12",
@@ -274,7 +342,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 2277,
+      "downloads": 1341,
       "likes": 13,
       "matchedTerms": [
         "dataset",
@@ -283,8 +351,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888028+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915921+00:00"
     },
     {
       "id": "hf-tim-lawson-mlsae-pythia-70m-deduped-x64-k128-dists",
@@ -300,7 +368,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 5,
+      "downloads": 7,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -309,8 +377,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888032+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915926+00:00"
     },
     {
       "id": "hf-tim-lawson-mlsae-pythia-70m-deduped-x64-k128-examples",
@@ -319,6 +387,58 @@
       "program": "tim-lawson",
       "resourceType": "Dataset",
       "url": "https://huggingface.co/datasets/tim-lawson/mlsae-pythia-70m-deduped-x64-k128-examples",
+      "subjects": [
+        "General"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See repository",
+      "description": "",
+      "downloads": 20,
+      "likes": 0,
+      "matchedTerms": [
+        "dataset",
+        "huggingface",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "huggingface_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915930+00:00"
+    },
+    {
+      "id": "hf-GenAIJake-k12aifriend",
+      "title": "GenAIJake/k12aifriend",
+      "source": "Hugging Face",
+      "program": "GenAIJake",
+      "resourceType": "Dataset",
+      "url": "https://huggingface.co/datasets/GenAIJake/k12aifriend",
+      "subjects": [
+        "General"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See repository",
+      "description": "\n\n\t\n\t\t\n\t\tDataset Card for K-12 Prompt-Response Dataset\n\t\n\n\n\t\n\t\t\n\t\tDataset Details\n\t\n\n\n\t\n\t\t\n\t\tDataset Description\n\t\n\nThis dataset is designed for fine-tuning language models on K-12 level prompt-respon",
+      "downloads": 11,
+      "likes": 0,
+      "matchedTerms": [
+        "dataset",
+        "huggingface",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "huggingface_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915935+00:00"
+    },
+    {
+      "id": "hf-k12tr-penguencevJ",
+      "title": "k12tr/penguencevJ",
+      "source": "Hugging Face",
+      "program": "k12tr",
+      "resourceType": "Dataset",
+      "url": "https://huggingface.co/datasets/k12tr/penguencevJ",
       "subjects": [
         "General"
       ],
@@ -335,60 +455,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888037+00:00"
-    },
-    {
-      "id": "hf-GenAIJake-k12aifriend",
-      "title": "GenAIJake/k12aifriend",
-      "source": "Hugging Face",
-      "program": "GenAIJake",
-      "resourceType": "Dataset",
-      "url": "https://huggingface.co/datasets/GenAIJake/k12aifriend",
-      "subjects": [
-        "General"
-      ],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See repository",
-      "description": "\n\n\t\n\t\t\n\t\tDataset Card for K-12 Prompt-Response Dataset\n\t\n\n\n\t\n\t\t\n\t\tDataset Details\n\t\n\n\n\t\n\t\t\n\t\tDataset Description\n\t\n\nThis dataset is designed for fine-tuning language models on K-12 level prompt-respon",
-      "downloads": 15,
-      "likes": 0,
-      "matchedTerms": [
-        "dataset",
-        "huggingface",
-        "k-12"
-      ],
-      "fit": 40,
-      "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888041+00:00"
-    },
-    {
-      "id": "hf-k12tr-penguencevJ",
-      "title": "k12tr/penguencevJ",
-      "source": "Hugging Face",
-      "program": "k12tr",
-      "resourceType": "Dataset",
-      "url": "https://huggingface.co/datasets/k12tr/penguencevJ",
-      "subjects": [
-        "General"
-      ],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See repository",
-      "description": "",
-      "downloads": 12,
-      "likes": 0,
-      "matchedTerms": [
-        "dataset",
-        "huggingface",
-        "k-12"
-      ],
-      "fit": 40,
-      "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888045+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915939+00:00"
     },
     {
       "id": "hf-tttonyyy-NuminaMath-CoT-cn_k12-20000-old",
@@ -404,7 +472,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\u672c\u6570\u636e\u96c6\u4e3aNuminaMath-CoT\u5728cn_k12\u7c7b\u522b\u4e0b\u524d20000\u6761\u6570\u636e\u4e2d\u8fdb\u884c\u7684\u957fCoT\u6587\u672c\u751f\u6210\u5c1d\u8bd5\u3002\n\u91cc\u9762\u6709\u4e24\u4e2a\u6570\u636e\u6587\u4ef6\uff0ccompletion.jsonl\u548cdistilled.jsonl\u3002\n\u5176\u4e2d\uff0ccompletion.jsonl\u662fgemma2-27b-it\u751f\u6210\u7684\u6570\u636e\uff0c\u56e0\u4e3agemma2-27b-it\u6700\u540e\u5f97\u5230\u7684\u7ed3\u679c\u53ef\u80fd\u63d0\u53d6\u4e0d\u51fa\\boxed{}\u91cc\u9762\u7684\u5185\u5bb9\u7b49\u56e0\u7d20\uff0c\u6240\u4ee5\u6700\u540e\u751f\u6210\u4e86\u7ea618.6k\u7684\u6570\u636e\u3002\n",
-      "downloads": 52,
+      "downloads": 43,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -413,8 +481,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888050+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915943+00:00"
     },
     {
       "id": "hf-tttonyyy-NMC-cn_k12-20k-r1_32b_distilled",
@@ -439,8 +507,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888054+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915948+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education",
@@ -456,7 +524,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 11,
+      "downloads": 5,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -465,8 +533,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888058+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915952+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital-status",
@@ -482,7 +550,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 11,
+      "downloads": 5,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -491,8 +559,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888063+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915957+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital-status_occupation",
@@ -508,7 +576,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 13,
+      "downloads": 6,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -517,8 +585,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888067+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915961+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital-status_occupation_relationship",
@@ -534,7 +602,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 11,
+      "downloads": 10,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -543,8 +611,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888071+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915965+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital-status_occupation_relationship_race",
@@ -560,7 +628,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 14,
+      "downloads": 6,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -569,8 +637,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888076+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915970+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital-status_occupation_relationship_race_sex",
@@ -586,7 +654,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 13,
+      "downloads": 5,
       "likes": 1,
       "matchedTerms": [
         "dataset",
@@ -595,8 +663,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888080+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915974+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital__status",
@@ -612,7 +680,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 13,
+      "downloads": 7,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -621,8 +689,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888084+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915978+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital__status_occupation",
@@ -638,7 +706,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 16,
+      "downloads": 17,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -647,8 +715,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888089+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915983+00:00"
     },
     {
       "id": "hf-sert121-adult_dataset_age_workclass_education_marital__status_occupation_relationship",
@@ -664,7 +732,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 11,
+      "downloads": 5,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -673,8 +741,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888093+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915987+00:00"
     },
     {
       "id": "hf-electricsheepafrica-africa-synth-education-student-learning-assessment-africa-all",
@@ -690,7 +758,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\n\t\n\t\tAfrica Synth Education Student Learning Assessment Africa All | Africa (World Bank)\n\t\n\nSize category: 10K<n<100K - Formats: csv - Sector: education - Engineered by Electric Sheep Africa\n\n\n",
-      "downloads": 20,
+      "downloads": 17,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -699,8 +767,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888097+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915991+00:00"
     },
     {
       "id": "hf-jason1966-adilshamim8_student-performance-and-learning-style",
@@ -716,7 +784,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tStudent Performance and Learning Behavior Dataset\n\t\n\nStudent demographics, study habits, engagement, and academic performance\n\n\t\n\t\t\n\t\tDataset Info\n\t\n\n\nSource: Kaggle\nOriginal Size: 0.08 MB\nKag",
-      "downloads": 32,
+      "downloads": 14,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -725,8 +793,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888102+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.915996+00:00"
     },
     {
       "id": "hf-electricsheepasia-asia-owid-national-average-learning-outcomes-vs-government-expenditure-per-primary-student",
@@ -742,7 +810,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\n\t\n\t\tNational Average Learning Outcomes Vs Government Expenditure Per Primary Student | Asia (Our World in Data)\n\t\n\n\ud83c\udf0f 434 observations \u00b7 45 Asia countries \u00b7 1997\u20132023 \u00b7 Repackaged by Electric S",
-      "downloads": 12,
+      "downloads": 6,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -751,8 +819,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888106+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916000+00:00"
     },
     {
       "id": "hf-electricsheepeurope-europe-owid-national-average-learning-outcomes-vs-government-expenditure-per-primary-student",
@@ -768,7 +836,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\n\t\n\t\tNational Average Learning Outcomes Vs Government Expenditure Per Primary Student | Europe (Our World in Data)\n\t\n\n\ud83c\uddea\ud83c\uddfa 646 observations \u00b7 40 Europe countries \u00b7 1997\u20132023 \u00b7 Repackaged by Elect",
-      "downloads": 2,
+      "downloads": 7,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -777,8 +845,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888110+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916005+00:00"
     },
     {
       "id": "hf-electricsheepafrica-africa-owid-national-average-learning-outcomes-vs-government-expenditure-per-primary-student",
@@ -794,7 +862,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\n\t\n\t\tNational Average Learning Outcomes Vs Government Expenditure Per Primary Student | Africa (Our World in Data) | Africa (Electric Sheep Africa metadata inventory)\n\t\n\nSize category: n<1K - F",
-      "downloads": 13,
+      "downloads": 9,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -803,8 +871,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888115+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916009+00:00"
     },
     {
       "id": "hf-HarshaniMadhushaniBandara-llma_math_word_problem",
@@ -820,7 +888,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 25,
+      "downloads": 23,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -829,8 +897,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888119+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916013+00:00"
     },
     {
       "id": "hf-microsoft-orca-math-word-problems-200k",
@@ -846,8 +914,8 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card\n\t\n\n\n\nThis dataset contains ~200K grade school math word problems. All the answers in this dataset is generated using Azure GPT4-Turbo. Please refer to Orca-Math: Unlocking the pot",
-      "downloads": 24338,
-      "likes": 495,
+      "downloads": 24474,
+      "likes": 498,
       "matchedTerms": [
         "dataset",
         "huggingface",
@@ -855,8 +923,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888123+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916017+00:00"
     },
     {
       "id": "hf-HuggingFaceH4-orca-math-word-problems-200k",
@@ -872,7 +940,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card for Orca Math Word Problems 200k\n\t\n\nThis is a formatted version of microsoft/orca-math-word-problems-200k to store the conversations in the same format as the OpenAI SDK.\n",
-      "downloads": 356,
+      "downloads": 200,
       "likes": 12,
       "matchedTerms": [
         "dataset",
@@ -881,8 +949,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888128+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916022+00:00"
     },
     {
       "id": "hf-Sulav-orca-math-word-problems-25k_sharegpt_axolotol",
@@ -898,7 +966,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card for \"orca-math-word-problems-25k_sharegpt_axolotol\"\n\t\n\nMore Information needed\n",
-      "downloads": 31,
+      "downloads": 28,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -907,8 +975,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888132+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916026+00:00"
     },
     {
       "id": "hf-duxx-orca-math-word-problems-tr",
@@ -924,7 +992,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 119,
+      "downloads": 71,
       "likes": 7,
       "matchedTerms": [
         "dataset",
@@ -933,8 +1001,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888136+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916031+00:00"
     },
     {
       "id": "hf-juancopi81-orca-math-word-problems-0_10002",
@@ -950,7 +1018,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 22,
+      "downloads": 37,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -959,8 +1027,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888141+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916035+00:00"
     },
     {
       "id": "hf-juancopi81-orca-math-word-problems-10002_20004",
@@ -976,7 +1044,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 27,
+      "downloads": 53,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -985,8 +1053,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888145+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916039+00:00"
     },
     {
       "id": "hf-juancopi81-orca-math-word-problems-20004_30006",
@@ -1002,7 +1070,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 18,
+      "downloads": 34,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1011,8 +1079,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888150+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916044+00:00"
     },
     {
       "id": "hf-juancopi81-orca-math-word-problems-30006_40008",
@@ -1028,7 +1096,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 27,
+      "downloads": 41,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1037,8 +1105,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888154+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916048+00:00"
     },
     {
       "id": "hf-juancopi81-orca-math-word-problems-40008_50010",
@@ -1054,7 +1122,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 25,
+      "downloads": 39,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1063,8 +1131,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888158+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916053+00:00"
     },
     {
       "id": "hf-community-datasets-parsinlu_reading_comprehension",
@@ -1080,7 +1148,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card for PersiNLU (Reading Comprehension)\n\t\n\n\n\t\n\t\t\n\t\tDataset Summary\n\t\n\nA Persian reading comprehenion task (generating an answer, given a question and a context paragraph). \nThe quest",
-      "downloads": 161,
+      "downloads": 156,
       "likes": 3,
       "matchedTerms": [
         "dataset",
@@ -1089,8 +1157,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888163+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916057+00:00"
     },
     {
       "id": "hf-persiannlp-parsinlu_reading_comprehension",
@@ -1106,7 +1174,7 @@
       "modality": [],
       "license": "See repository",
       "description": "A Persian reading comprehenion task (generating an answer, given a question and a context paragraph). \nThe questions are mined using Google auto-complete, their answers and the corresponding evidence ",
-      "downloads": 39,
+      "downloads": 55,
       "likes": 1,
       "matchedTerms": [
         "dataset",
@@ -1115,8 +1183,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888167+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916061+00:00"
     },
     {
       "id": "hf-jmartin233-reading_comprehension_exercise_dataset",
@@ -1132,7 +1200,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card for \"reading_comprehension_exercise_dataset\"\n\t\n\nMore Information needed\n",
-      "downloads": 35,
+      "downloads": 15,
       "likes": 1,
       "matchedTerms": [
         "dataset",
@@ -1141,8 +1209,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888171+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916066+00:00"
     },
     {
       "id": "hf-jmartin233-reading_comprehension_exercise_dataset_v2",
@@ -1158,7 +1226,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Card for \"reading_comprehension_exercise_dataset_v2\"\n\t\n\nMore Information needed\n",
-      "downloads": 12,
+      "downloads": 15,
       "likes": 2,
       "matchedTerms": [
         "dataset",
@@ -1167,8 +1235,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888176+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916070+00:00"
     },
     {
       "id": "hf-MagicHub-domain-reading-comprehension",
@@ -1177,58 +1245,6 @@
       "program": "MagicHub",
       "resourceType": "Dataset",
       "url": "https://huggingface.co/datasets/MagicHub/domain-reading-comprehension",
-      "subjects": [
-        "General"
-      ],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See repository",
-      "description": "",
-      "downloads": 21,
-      "likes": 0,
-      "matchedTerms": [
-        "dataset",
-        "huggingface",
-        "k-12"
-      ],
-      "fit": 40,
-      "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888180+00:00"
-    },
-    {
-      "id": "hf-DandinPower-chinese-reading-comprehension",
-      "title": "DandinPower/chinese-reading-comprehension",
-      "source": "Hugging Face",
-      "program": "DandinPower",
-      "resourceType": "Dataset",
-      "url": "https://huggingface.co/datasets/DandinPower/chinese-reading-comprehension",
-      "subjects": [
-        "General"
-      ],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See repository",
-      "description": "",
-      "downloads": 68,
-      "likes": 0,
-      "matchedTerms": [
-        "dataset",
-        "huggingface",
-        "k-12"
-      ],
-      "fit": 40,
-      "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888184+00:00"
-    },
-    {
-      "id": "hf-NYCU-312555007-ZH-TW_Reading_Comprehension_Test_for_LLMs",
-      "title": "NYCU-312555007/ZH-TW_Reading_Comprehension_Test_for_LLMs",
-      "source": "Hugging Face",
-      "program": "NYCU-312555007",
-      "resourceType": "Dataset",
-      "url": "https://huggingface.co/datasets/NYCU-312555007/ZH-TW_Reading_Comprehension_Test_for_LLMs",
       "subjects": [
         "General"
       ],
@@ -1245,8 +1261,60 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888189+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916074+00:00"
+    },
+    {
+      "id": "hf-DandinPower-chinese-reading-comprehension",
+      "title": "DandinPower/chinese-reading-comprehension",
+      "source": "Hugging Face",
+      "program": "DandinPower",
+      "resourceType": "Dataset",
+      "url": "https://huggingface.co/datasets/DandinPower/chinese-reading-comprehension",
+      "subjects": [
+        "General"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See repository",
+      "description": "",
+      "downloads": 108,
+      "likes": 0,
+      "matchedTerms": [
+        "dataset",
+        "huggingface",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "huggingface_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916079+00:00"
+    },
+    {
+      "id": "hf-NYCU-312555007-ZH-TW_Reading_Comprehension_Test_for_LLMs",
+      "title": "NYCU-312555007/ZH-TW_Reading_Comprehension_Test_for_LLMs",
+      "source": "Hugging Face",
+      "program": "NYCU-312555007",
+      "resourceType": "Dataset",
+      "url": "https://huggingface.co/datasets/NYCU-312555007/ZH-TW_Reading_Comprehension_Test_for_LLMs",
+      "subjects": [
+        "General"
+      ],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See repository",
+      "description": "",
+      "downloads": 9,
+      "likes": 0,
+      "matchedTerms": [
+        "dataset",
+        "huggingface",
+        "k-12"
+      ],
+      "fit": 40,
+      "addedVia": "huggingface_scan",
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916083+00:00"
     },
     {
       "id": "hf-nlplabtdtu-law-reading-comprehension-qa",
@@ -1262,7 +1330,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 4,
+      "downloads": 46,
       "likes": 1,
       "matchedTerms": [
         "dataset",
@@ -1271,8 +1339,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888193+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916087+00:00"
     },
     {
       "id": "hf-ShynBui-Vietnamese_Reading_Comprehension_Dataset",
@@ -1288,7 +1356,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tDataset Describe\n\t\n\n\n\nThis dataset is collected from internet sources, SQuAD dataset, wiki, etc. It has been translated into Vietnamese using \"google translate\" and word segmented using VnCore",
-      "downloads": 23,
+      "downloads": 26,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1297,8 +1365,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888197+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916092+00:00"
     },
     {
       "id": "hf-ParsBench-parsinlu-reading-comprehension-alpaca-style",
@@ -1314,7 +1382,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tParsiNLU Reading Comprehension in Alpaca Style\n\t\n\nThis dataset is an Alpaca-style and instruction-included version of the ParsiNLU original dataset.\n",
-      "downloads": 11,
+      "downloads": 15,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1323,8 +1391,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888202+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916096+00:00"
     },
     {
       "id": "hf-Shoryai-science_reasoning_dataset",
@@ -1340,7 +1408,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 79,
+      "downloads": 58,
       "likes": 1,
       "matchedTerms": [
         "dataset",
@@ -1349,8 +1417,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888206+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916100+00:00"
     },
     {
       "id": "hf-dvilasuero-natural-science-reasoning",
@@ -1367,7 +1435,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tNatural Sciences Reasoning: the \"smolest\" reasoning dataset\n\t\n\nA smol-scale open dataset for reasoning tasks using Hugging Face Inference Endpoints. While intentionally limited in scale, this ",
-      "downloads": 616,
+      "downloads": 751,
       "likes": 40,
       "matchedTerms": [
         "dataset",
@@ -1376,8 +1444,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888210+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916105+00:00"
     },
     {
       "id": "hf-DataoceanAI-University-level_Mathematics_Physics_Chemistry_Computer_Science_Reasoning_Corpus",
@@ -1394,7 +1462,7 @@
       "modality": [],
       "license": "See repository",
       "description": "\n\t\n\t\t\n\t\tTitle\n\t\n\nUniversity-level Mathematics, Physics, Chemistry, Computer Science Reasoning Corpus\n\n\t\n\t\t\n\t\tSize\n\t\n\n200,000+ text+ multimodal university-level problems, each with step-by-step solutio",
-      "downloads": 201,
+      "downloads": 262,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1403,8 +1471,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888214+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916109+00:00"
     },
     {
       "id": "hf-II-Vietnam-Science-Reasoning-Nvidia",
@@ -1420,7 +1488,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 42,
+      "downloads": 39,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1429,8 +1497,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888219+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916113+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_questions",
@@ -1446,7 +1514,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 270,
+      "downloads": 313,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1455,8 +1523,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888223+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916118+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_traces_original_DeepSeek-R1-Distill-Qwen-32B",
@@ -1472,7 +1540,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 369,
+      "downloads": 519,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1481,8 +1549,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888227+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916122+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_traces_original_Llama-3.1-Nemotron-Nano-8B-v1",
@@ -1498,7 +1566,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 22,
+      "downloads": 17,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1507,8 +1575,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888231+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916126+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_traces_original_DeepSeek-R1-Distill-Qwen-14B",
@@ -1524,7 +1592,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 87,
+      "downloads": 54,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1533,8 +1601,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888236+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916131+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_traces_original_DeepSeek-R1-Distill-Qwen-1.5B",
@@ -1550,7 +1618,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 123,
+      "downloads": 69,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1559,8 +1627,8 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888240+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916135+00:00"
     },
     {
       "id": "hf-reasoning-proj-science_traces_original_DeepSeek-R1-Distill-Qwen-7B",
@@ -1576,7 +1644,7 @@
       "modality": [],
       "license": "See repository",
       "description": "",
-      "downloads": 83,
+      "downloads": 53,
       "likes": 0,
       "matchedTerms": [
         "dataset",
@@ -1585,10 +1653,10 @@
       ],
       "fit": 40,
       "addedVia": "huggingface_scan",
-      "discovery_date": "2026-09-08",
-      "discovery_time": "2026-09-08T21:48:54.888244+00:00"
+      "discovery_date": "2026-10-01",
+      "discovery_time": "2026-10-01T18:37:46.916139+00:00"
     }
   ],
-  "scannedAt": null,
-  "totalScanned": 62
+  "scannedAt": "2026-10-01",
+  "totalScanned": 64
 }

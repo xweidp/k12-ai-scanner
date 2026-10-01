@@ -1,72 +1,13 @@
 {
-  "scannedAt": "2026-09-08T21:48:52.109349Z",
+  "scannedAt": "2026-10-01T18:37:40.315713Z",
   "source": "K-12 AI resource watchlist (monitor sources)",
   "profile": "K-12 AI datasets, benchmarks, and models",
   "counts": {
-    "total": 3,
-    "datasets": 2,
+    "total": 0,
+    "datasets": 0,
     "benchmarks": 0,
     "models": 0,
-    "competitions": 1
+    "competitions": 0
   },
-  "resources": [
-    {
-      "id": "monitor-drivendata-competitions-11",
-      "title": "Trace the Ace",
-      "source": "DrivenData Competitions",
-      "program": "DrivenData Competitions",
-      "sourceType": "Competition / benchmark",
-      "resourceType": "Competition",
-      "url": "https://platform.k12-ai-infrastructure.org/competitions/3/tutoring-outcomes/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Competition / benchmark lead from DrivenData Competitions.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "benchmark"
-      ],
-      "fit": 31
-    },
-    {
-      "id": "monitor-learning-commons-knowledge-graph-7",
-      "title": "Curriculum Sync Overview",
-      "source": "Learning Commons Knowledge Graph",
-      "program": "Learning Commons Knowledge Graph",
-      "sourceType": "Open infrastructure",
-      "resourceType": "Dataset",
-      "url": "https://learningcommons.org/curriculum-sync/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Open infrastructure lead from Learning Commons Knowledge Graph.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "curriculum",
-        "knowledge graph"
-      ],
-      "fit": 26
-    },
-    {
-      "id": "monitor-learning-commons-news-21",
-      "title": "Introducing Claude for Teachers and open-source Agent Skills",
-      "source": "Learning Commons News",
-      "program": "Learning Commons News",
-      "sourceType": "Open infrastructure",
-      "resourceType": "Dataset",
-      "url": "https://learningcommons.org/blog/claude-for-teachers-agent-skills/",
-      "subjects": [],
-      "gradeBand": "K-12",
-      "modality": [],
-      "license": "See source",
-      "description": "Open infrastructure lead from Learning Commons News.",
-      "addedVia": "monitor",
-      "matchedTerms": [
-        "teacher"
-      ],
-      "fit": 23
-    }
-  ]
+  "resources": []
 }
