@@ -1,13 +1,35 @@
 {
-  "scannedAt": "2026-10-01T18:37:40.315713Z",
+  "scannedAt": "2026-11-01T18:11:42.608055Z",
   "source": "K-12 AI resource watchlist (monitor sources)",
   "profile": "K-12 AI datasets, benchmarks, and models",
   "counts": {
-    "total": 0,
-    "datasets": 0,
+    "total": 1,
+    "datasets": 1,
     "benchmarks": 0,
     "models": 0,
     "competitions": 0
   },
-  "resources": []
+  "resources": [
+    {
+      "id": "monitor-ieee-dataport---education-datasets-18",
+      "title": "Student Placement Prediction and Career Readiness Dataset for Personalized Career Guidance",
+      "source": "IEEE Dataport - Education Datasets",
+      "program": "IEEE Dataport - Education Datasets",
+      "sourceType": "IEEE research data platform",
+      "resourceType": "Dataset",
+      "url": "https://ieee-dataport.org/documents/student-placement-prediction-and-career-readiness-dataset-personalized-career-guidance",
+      "subjects": [],
+      "gradeBand": "K-12",
+      "modality": [],
+      "license": "See source",
+      "description": "IEEE research data platform lead from IEEE Dataport - Education Datasets.",
+      "addedVia": "monitor",
+      "matchedTerms": [
+        "dataset",
+        "student",
+        "education"
+      ],
+      "fit": 37
+    }
+  ]
 }
